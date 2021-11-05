@@ -5,7 +5,7 @@ import SimpleRegistrationComp from "../components/simple-registration/SimpleRegi
 import CreateCardComp from "../components/my-cards/CreateCardComp";
 import { useState } from "react";
 import { signInUser } from "../helpers/FetchHelper";
-import { createBrowserHistory } from "history";
+import { useHistory } from "react-router-dom";
 
 function BusinessRegistrationPage({ set }) {
   const [isStep1, setIsStep1] = useState(true);
