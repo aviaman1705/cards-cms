@@ -20,9 +20,7 @@ function App() {
       <>
         <SinglePageAppComp set={set} user={user}></SinglePageAppComp>
         <ToastContainer></ToastContainer>
-        <Footer set={set} user={user}>
-          זה יהיה למטה 44444
-        </Footer>
+        <Footer set={set} user={user} />
       </>
     </div>
   );
