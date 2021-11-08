@@ -12,7 +12,7 @@ function BusinessRegistrationPage({ set }) {
   const history = useHistory();
 
   return (
-    <Container>
+    <Container className="h-100">
       {isStep1 && (
         <SimpleRegistrationComp
           clickHandler={registerUser}

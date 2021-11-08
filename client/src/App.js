@@ -20,7 +20,7 @@ function App() {
       <>
         <SinglePageAppComp set={set} user={user}></SinglePageAppComp>
         <ToastContainer></ToastContainer>
-        <Footer set={set} user={user} />
+        <Footer set={set} user={user}></Footer>
       </>
     </div>
   );

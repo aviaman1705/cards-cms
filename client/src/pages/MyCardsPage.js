@@ -12,7 +12,7 @@ function MyCardsPage() {
   const [card, setCard] = useState(null);
 
   return (
-    <Container className="card-container">
+    <Container className="h-100" id="card-container">
       <Row>
         <Col lg={12}>
           <h1 className="title-page">My Cards</h1>

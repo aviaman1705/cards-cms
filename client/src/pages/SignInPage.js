@@ -9,7 +9,7 @@ function SignInPage({ set }) {
   const history = useHistory();
 
   return (
-    <Container>
+    <Container className="h-100">
       <SignInComp clickHandler={signIn}></SignInComp>
     </Container>
   );

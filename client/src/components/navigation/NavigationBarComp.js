@@ -54,7 +54,7 @@ function NavigationBarComp({ user, set }) {
                     </Nav.Link>
                   ))}
           </Nav>
-          {user._id && <SignOutUser></SignOutUser>}
+          {user._id && <SignOutUser user={user}></SignOutUser>}
         </Navbar.Collapse>
       </Container>
     </Navbar>

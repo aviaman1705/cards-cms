@@ -8,7 +8,7 @@ function SimpleRegistrationPage() {
   const history = createBrowserHistory({ forceRefresh: true });
 
   return (
-    <Container>
+    <Container className="h-100">
       <SimpleRegistrationComp
         clickHandler={registerUser}
         text="Simple Registration"

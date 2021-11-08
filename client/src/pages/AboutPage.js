@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 
 function AboutPage() {
   return (
-    <Container className="about-container">
+    <Container className="h-100" id="about-container">
       <h1 className="title-page">About Page</h1>
       <p className="text">
         Contrary to popular belief, Lorem Ipsum is not simply random text. It

@@ -1,8 +1,8 @@
 import { NavDropdown } from "react-bootstrap";
 
-function SignOutUser() {
+function SignOutUser({ user, set }) {
   return (
-    <NavDropdown title="Hi User" id="basic-nav-dropdown">
+    <NavDropdown title={`Hi ${user.name}`} id="basic-nav-dropdown">
       <NavDropdown.Item href="#" onClick={logout}>
         Logout
       </NavDropdown.Item>
