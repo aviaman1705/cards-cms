@@ -5,161 +5,217 @@ import { tabs } from "../../helpers/tabs";
 
 function Footer({ user }) {
   return (
-    <section className="footer bg-dark">
-      <div className="social">
-        <SocialIcon url="https://facebook.com" target="_blank" />
-        <SocialIcon url="https://twitter.com" target="_blank" />
-        <SocialIcon url="https://google-plus.com" target="_blank" />
-      </div>
+    //   <section className="footer bg-dark">
+    //   <div className="social">
+    //     <SocialIcon url="https://facebook.com" target="_blank" />
+    //     <SocialIcon url="https://twitter.com" target="_blank" />
+    //     <SocialIcon url="https://google-plus.com" target="_blank" />
+    //   </div>
 
-      <ul className="list">
-        <li>
-          <a href="#">Trems</a>
-        </li>
-        <li>
-          <a href="#">Privacy </a>
-        </li>
-        <li>
-          <a href="#">Policy</a>
-        </li>
-      </ul>
-      <p className="copyright">Avi Aman @ 2021</p>
-    </section>
-    // <footer className="footer-section">
-    //   <div className="container">
-    //     <div className="footer-content pt-5 pb-5">
-    //       <div className="row">
-    //         <div className="col-xl-4 col-lg-4 mb-50">
-    //           <div className="footer-widget">
-    //             <div className="footer-logo">
-    //               <a href="index.html">
-    //                 <img
-    //                   src="https://i.ibb.co/QDy827D/ak-logo.png"
-    //                   className="img-fluid"
-    //                   alt="logo"
-    //                 />
-    //               </a>
-    //             </div>
-    //             <div className="footer-text">
-    //               <p>
-    //                 Lorem ipsum dolor sit amet, consec tetur adipisicing elit,
-    //                 sed do eiusmod tempor incididuntut consec tetur adipisicing
-    //                 elit,Lorem ipsum dolor sit amet.
-    //               </p>
-    //             </div>
-    //           </div>
-    //         </div>
-    //         <div className="col-xl-4 col-lg-4 col-md-6 mb-30">
-    //           <div className="footer-widget">
-    //             <div className="footer-widget-heading">
-    //               <h3>Useful Links</h3>
-    //             </div>
-    //             <Router>
-    //               <Nav className="footer-nav">
-    //                 {user._id
-    //                   ? tabs
-    //                       .filter((x) => x.displayForLoggedin)
-    //                       .map((tab, index) => (
-    //                         <Nav.Link
-    //                           key={index}
-    //                           to={tab.href}
-    //                           as={Link}
-    //                           onClick={redirect("test")}
-    //                         >
-    //                           {" "}
-    //                           {tab.icon} {tab.name}{" "}
-    //                         </Nav.Link>
-    //                       ))
-    //                   : tabs
-    //                       .filter((x) => !x.hideForLoggedout)
-    //                       .map((tab, index) => (
-    //                         <Nav.Link
-    //                           key={index}
-    //                           to={tab.href}
-    //                           as={Link}
-    //                           onClick={redirect("test")}
-    //                         >
-    //                           {" "}
-    //                           {tab.icon} {tab.name}{" "}
-    //                         </Nav.Link>
-    //                       ))}
-    //               </Nav>
-    //             </Router>
-    //             {/* <ul>
-    //               <li>
-    //                 <a href="/about">Home</a>
-    //               </li>
-    //               <li>
-    //                 <a href="#">about</a>
-    //               </li>
-    //               <li>
-    //                 <a href="#">services</a>
-    //               </li>
-    //               <li>
-    //                 <a href="#">portfolio</a>
-    //               </li>
-    //               <li>
-    //                 <a href="#">Contact</a>
-    //               </li>
-    //               <li>
-    //                 <a href="#">About us</a>
-    //               </li>
-    //               <li>
-    //                 <a href="#">Our Services</a>
-    //               </li>
-    //               <li>
-    //                 <a href="#">Expert Team</a>
-    //               </li>
-    //               <li>
-    //                 <a href="#">Contact us</a>
-    //               </li>
-    //               <li>
-    //                 <a href="#">Latest News</a>
-    //               </li>
-    //             </ul> */}
-    //           </div>
-    //         </div>
-    //         <div className="col-xl-4 col-lg-4 col-md-6 mb-50">
-    //           <div className="footer-social-icon">
-    //             <span>Follow us</span>
-    //             <SocialIcon url="https://facebook.com" target="_blank" />
-    //             <SocialIcon url="https://twitter.com" target="_blank" />
-    //             <SocialIcon url="https://google-plus.com" target="_blank" />
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div className="copyright-area">
-    //     <div className="container">
-    //       <div className="row">
-    //         <div className="col-xl-6 col-lg-6 text-center text-lg-left">
-    //           <div className="copyright-text">
-    //             <p>
-    //               Copyright &copy; 2018, All Right Reserved{" "}
-    //               <a href="https://codepen.io/anupkumar92/">Anup</a>
-    //             </p>
-    //           </div>
-    //         </div>
-    //         <div className="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-    //           <div className="footer-menu">
-    //             <ul>
-    //               <li>
-    //                 <a href="#">Terms</a>
-    //               </li>
-    //               <li>
-    //                 <a href="#">Privacy</a>
-    //               </li>
-    //               <li>
-    //                 <a href="#">Policy</a>
-    //               </li>
-    //             </ul>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </footer>
+    //   <ul className="list">
+    //     <li>
+    //       <a href="#">Trems</a>
+    //     </li>
+    //     <li>
+    //       <a href="#">Privacy </a>
+    //     </li>
+    //     <li>
+    //       <a href="#">Policy</a>
+    //     </li>
+    //   </ul>
+    //   <p className="copyright">Avi Aman @ 2021</p>
+    // </section>
+    <footer class="bd-footer py-5 mt-5 bg-dark">
+      <div class="container py-5">
+        <div class="row">
+          <div className="col-lg-4">
+            <p className="copyright">Avi Aman @ 2021</p>
+          </div>
+          <div className="col-lg-4">
+            <ul className="list">
+              <li>
+                <a href="#">Trems</a>
+              </li>
+              <li>
+                <a href="#">Privacy </a>
+              </li>
+              <li>
+                <a href="#">Policy</a>
+              </li>
+            </ul>
+          </div>
+          <div className="col-lg-4 text-center">
+            <div className="social">
+              <SocialIcon
+                className="ms-3"
+                url="https://facebook.com"
+                target="_blank"
+              />
+              <SocialIcon
+                className="ms-3"
+                url="https://twitter.com"
+                target="_blank"
+              />
+              <SocialIcon
+                className="ms-3"
+                url="https://google-plus.com"
+                target="_blank"
+              />
+            </div>
+          </div>
+          {/* <div class="col-lg-3 mb-3">
+            <a
+              class="d-inline-flex align-items-center mb-2 link-dark text-decoration-none"
+              href="/"
+              aria-label="Bootstrap"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="32"
+                class="d-block me-2"
+                viewBox="0 0 118 94"
+                role="img"
+              >
+                <title>Bootstrap</title>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span class="fs-5">Bootstrap</span>
+            </a>
+            <ul class="list-unstyled small text-muted">
+              <li class="mb-2">
+                Designed and built with all the love in the world by the{" "}
+                <a href="/docs/5.1/about/team/">Bootstrap team</a> with the help
+                of{" "}
+                <a href="https://github.com/twbs/bootstrap/graphs/contributors">
+                  our contributors
+                </a>
+                .
+              </li>
+              <li class="mb-2">
+                Code licensed{" "}
+                <a
+                  href="https://github.com/twbs/bootstrap/blob/main/LICENSE"
+                  target="_blank"
+                  rel="license noopener"
+                >
+                  MIT
+                </a>
+                , docs{" "}
+                <a
+                  href="https://creativecommons.org/licenses/by/3.0/"
+                  target="_blank"
+                  rel="license noopener"
+                >
+                  CC BY 3.0
+                </a>
+                .
+              </li>
+              <li class="mb-2">Currently v5.1.3.</li>
+            </ul>
+          </div>
+          <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+            <h5>Links</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="/">Home</a>
+              </li>
+              <li class="mb-2">
+                <a href="/docs/5.1/">Docs</a>
+              </li>
+              <li class="mb-2">
+                <a href="/docs/5.1/examples/">Examples</a>
+              </li>
+              <li class="mb-2">
+                <a href="https://themes.getbootstrap.com/">Themes</a>
+              </li>
+              <li class="mb-2">
+                <a href="https://blog.getbootstrap.com/">Blog</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-lg-2 mb-3">
+            <h5>Guides</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="/docs/5.1/getting-started/">Getting started</a>
+              </li>
+              <li class="mb-2">
+                <a href="/docs/5.1/examples/starter-template/">
+                  Starter template
+                </a>
+              </li>
+              <li class="mb-2">
+                <a href="/docs/5.1/getting-started/webpack/">Webpack</a>
+              </li>
+              <li class="mb-2">
+                <a href="/docs/5.1/getting-started/parcel/">Parcel</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-lg-2 mb-3">
+            <h5>Projects</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="https://github.com/twbs/bootstrap">Bootstrap 5</a>
+              </li>
+              <li class="mb-2">
+                <a href="https://github.com/twbs/bootstrap/tree/v4-dev">
+                  Bootstrap 4
+                </a>
+              </li>
+              <li class="mb-2">
+                <a href="https://github.com/twbs/icons">Icons</a>
+              </li>
+              <li class="mb-2">
+                <a href="https://github.com/twbs/rfs">RFS</a>
+              </li>
+              <li class="mb-2">
+                <a href="https://github.com/twbs/bootstrap-npm-starter">
+                  npm starter
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-lg-2 mb-3">
+            <h5>Community</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="https://github.com/twbs/bootstrap/issues">Issues</a>
+              </li>
+              <li class="mb-2">
+                <a href="https://github.com/twbs/bootstrap/discussions">
+                  Discussions
+                </a>
+              </li>
+              <li class="mb-2">
+                <a href="https://github.com/sponsors/twbs">
+                  Corporate sponsors
+                </a>
+              </li>
+              <li class="mb-2">
+                <a href="https://opencollective.com/bootstrap">
+                  Open Collective
+                </a>
+              </li>
+              <li class="mb-2">
+                <a href="https://bootstrap-slack.herokuapp.com/">Slack</a>
+              </li>
+              <li class="mb-2">
+                <a href="https://stackoverflow.com/questions/tagged/bootstrap-5">
+                  Stack Overflow
+                </a>
+              </li>
+            </ul>
+          </div> */}
+        </div>
+      </div>
+    </footer>
   );
 }
 
