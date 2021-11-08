@@ -1,5 +1,5 @@
 import { insertNewCard, editCard } from "../helpers/FetchHelper";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Row, Col } from "react-bootstrap";
 import CardsComp from "../components/my-cards/CardsComp";
 import CreateCardComp from "../components/my-cards/CreateCardComp";
 import EditCardComp from "../components/my-cards/EditCardComp";
@@ -13,44 +13,44 @@ function MyCardsPage() {
 
   return (
     <Container className="card-container">
-      <h1 className="title-page">My Cards</h1>
+      <Row>
+        <Col lg={12}>
+          <h1 className="title-page">My Cards</h1>
+        </Col>
+        {!isAddMode && !isEditMode && (
+          <Col lg={12}>
+            <Button
+              id="create-new-card-btn"
+              className="btn primary"
+              onClick={() => {
+                setAddMode(true);
+              }}
+            >
+              Create New Card
+            </Button>
+          </Col>
+        )}
 
-      {!isAddMode && !isEditMode && (
-        <Button
-          className="btn primary"
-          onClick={() => {
-            setAddMode(true);
-          }}
-        >
-          Create New Card
-        </Button>
-      )}
-
-      <Container id="cards-section">
         {!isAddMode && !isEditMode && (
           <CardsComp onEdit={onEditCart}></CardsComp>
         )}
 
         {isAddMode && !isEditMode && (
-          <CreateCardComp clickHandler={insertCard}></CreateCardComp>
+          <CreateCardComp
+            clickHandler={insertCard}
+            addMode={setAddMode}
+            editMode={setEditMode}
+          ></CreateCardComp>
         )}
         {!isAddMode && isEditMode && (
-          <EditCardComp clickHandler={edit} card={card}></EditCardComp>
+          <EditCardComp
+            clickHandler={edit}
+            card={card}
+            addMode={setAddMode}
+            editMode={setEditMode}
+          ></EditCardComp>
         )}
-
-        {(isAddMode || isEditMode) && (
-          <Button
-            id="back-btn"
-            className="btn btn-secondary"
-            onClick={() => {
-              setAddMode(false);
-              setEditMode(false);
-            }}
-          >
-            Back
-          </Button>
-        )}
-      </Container>
+      </Row>
     </Container>
   );
 

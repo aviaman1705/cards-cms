@@ -17,7 +17,10 @@ function NavigationBarComp({ user, set }) {
     >
       <Container>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Collapse
+          id="responsive-navbar-nav"
+          className="justify-content-between"
+        >
           <Nav className="me-auto">
             {user._id
               ? tabs
