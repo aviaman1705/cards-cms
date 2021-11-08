@@ -21,7 +21,7 @@ img {
 @media (min-width: 300px) {
     /* HEADER */
     #basic-nav-dropdown {
-        color: rgba(255, 255, 255, 0.55)
+        color: #fff;
     }
     /* CARDS */
     .card-container.container {
@@ -192,6 +192,24 @@ img {
 /* Small devies (large desktops, 1200px and up) */
 
 @media (min-width: 1200px) {
+    /* HEADER */
+    nav.main-header {
+        padding: 1.1em 0em;
+    }
+    a.nav-item-link {
+        color: #fff !important;
+        display: flex;
+        align-items: center;
+    }
+    a.dropdown-item {
+        font-weight: 500 !important;
+    }
+    a.nav-item-link.active.nav-link {
+        background: #fff;
+        border-radius: 5px;
+        color: #212529 !important;
+        font-weight: 500;
+    }
     /* ABOUT */
     p.text {
         font-size: 1.2em;
