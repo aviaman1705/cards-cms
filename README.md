@@ -1,20 +1,25 @@
 ## Cards CMS
-    .A system for business owners that allows them to create business cards for their businesses.
-  
-  
+    A website made for large sized companies to sell their daughter companies they own by publishing 
+    selling cards to - Cards, the company that will sell your daughter company.
+    
 ## Installation
-    .Client project npm install
-    .Server project npm install
- 
- 
-## How to use the project
-    .Client project npm start
-    .Server project node app
- 
- 
+    To run this project, install it locally using 2 npm terminal in your Visual Studio Code:
+
+First terminal:
+
+    cd ../server
+    npm install
+    $ node app
+    
+Second terminal:
+
+    cd ../client
+    npm install
+    npm start
+
+    
 ## Credit
-    .Avi Aman
-
-
+    Avi Aman
+    
 ## Github profile
     .https://github.com/aviaman1705
