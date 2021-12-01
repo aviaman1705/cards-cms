@@ -1,9 +1,11 @@
 const express = require("express");
 const _ = require("lodash");
 const { Card, validateCard, generateBizNumber } = require("../models/card");
+const { User, Faveorite } = require("../models/user");
 const auth = require("../middleware/auth");
 const router = express.Router();
 
+//delete card
 router.delete("/:id", auth, async (req, res) => {
   const card = await Card.findOneAndRemove({
     _id: req.params.id,
@@ -14,6 +16,7 @@ router.delete("/:id", auth, async (req, res) => {
   res.send(card);
 });
 
+//edit card
 router.put("/:id", auth, async (req, res) => {
   const { error } = validateCard(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -29,6 +32,30 @@ router.put("/:id", auth, async (req, res) => {
   res.send(card);
 });
 
+//get cards without user cards
+router.get("/favorites", auth, async (req, res) => {
+  const user = await User.findOne({ _id: req.user._id });
+  if (!user) return res.status(404).send("User does'nt exists.");
+
+  const favorites = await Faveorite.find({ user_id: req.user._id });
+  let cards;
+
+  if (!favorites) {
+    return res.status(404).send("The is no favorites cards.");
+  } else {
+    let favoritesIds = favorites.map((card) => card.card_id);
+
+    cards = await Card.find({
+      user_id: { $ne: req.user._id },
+      _id: { $nin: favoritesIds },
+    });
+  }
+
+  if (!cards) return res.status(404).send("The is no cards.");
+  res.send(cards);
+});
+
+//get card
 router.get("/:id", auth, async (req, res) => {
   const card = await Card.findOne({
     _id: req.params.id,
@@ -39,6 +66,7 @@ router.get("/:id", auth, async (req, res) => {
   res.send(card);
 });
 
+//create card
 router.post("/", auth, async (req, res) => {
   const { error } = validateCard(req.body);
   if (error) return res.status(400).send(error.details[0].message);

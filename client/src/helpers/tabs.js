@@ -5,6 +5,7 @@ import BusinessRegistrationPage from "../pages/BusinessRegistrationPage";
 import SimpleRegistrationPage from "../pages/SimpleRegistrationPage";
 import MyCardsPage from "../pages/MyCardsPage";
 import { BiArchive, BiCreditCard, BiHome, BiLeftIndent } from "react-icons/bi";
+import MyFavePage from "../pages/MyFavePage";
 
 export const tabs = [
   {
@@ -39,6 +40,14 @@ export const tabs = [
     name: "My Cards",
     href: "/my-cards",
     page: MyCardsPage,
+    displayForLoggedin: true,
+    hideForLoggedout: true,
+    icon: <BiCreditCard></BiCreditCard>,
+  },
+  {
+    name: "My Favorites",
+    href: "/my-favorites",
+    page: MyFavePage,
     displayForLoggedin: true,
     hideForLoggedout: true,
     icon: <BiCreditCard></BiCreditCard>,

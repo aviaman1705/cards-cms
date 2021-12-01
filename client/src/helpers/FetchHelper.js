@@ -25,6 +25,17 @@ export function signInUser(data, callback) {
     });
 }
 
+export function addFaveoriteCard(cardId, token, callback) {
+  let url = baseUrl + "/api/users/addFaveoriteCard";
+  let obj = getConfigurationForPostRequest(cardId);
+  obj.headers["x-auth-token"] = token;
+
+  fetch(url, obj)
+    .then((x) => x.json())
+    .then((x) => callback(x))
+    .catch((x) => callback(x));
+}
+
 export function getMeData(token, callback) {
   if (!token) return;
   let url = baseUrl + "/api/users/me";
@@ -53,6 +64,22 @@ export function getUsersCount(callback) {
 export function getBusinessCount(callback) {
   let url = baseUrl + "/api/users/businessCount";
   fetch(url)
+    .then((x) => x.json())
+    .then((x) => callback(x))
+    .catch((x) => callback(x));
+}
+
+export function getFavoritesCards(token, callback) {
+  let url = baseUrl + "/api/cards/favorites";
+  fetch(url, { headers: { "x-auth-token": token } })
+    .then((x) => x.json())
+    .then((x) => callback(x))
+    .catch((x) => callback(x));
+}
+
+export function getUserFavoritesCards(token, callback) {
+  let url = baseUrl + "/api/users/favorites";
+  fetch(url, { headers: { "x-auth-token": token } })
     .then((x) => x.json())
     .then((x) => callback(x))
     .catch((x) => callback(x));
@@ -90,6 +117,14 @@ export function editCard(data, token, callback) {
 
 export function deleteCard(idToDelete, token, callback) {
   let url = baseUrl + "/api/cards/" + idToDelete;
+  fetch(url, { method: "DELETE", headers: { "x-auth-token": token } })
+    .then((x) => x.json())
+    .then((x) => callback(x))
+    .catch((x) => callback(x));
+}
+
+export function deleteCardFromFaveorite(idToDelete, token, callback) {
+  let url = baseUrl + "/api/users/deleteFaveorite/" + idToDelete;
   fetch(url, { method: "DELETE", headers: { "x-auth-token": token } })
     .then((x) => x.json())
     .then((x) => callback(x))
