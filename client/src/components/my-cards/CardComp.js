@@ -1,19 +1,24 @@
 import { Card, Button } from "react-bootstrap";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
-function CardComp({ card, handleClick, onEdit }) {
+function CardComp({
+  card,
+  handleClick = (f) => f,
+  onEdit = (f) => f,
+  editBtnClass = "",
+  deleteBtnClass = "",
+}) {
   return (
     (card && (
-      <Card>
-        <Card.Img variant="top" src={card.bizImage} />
-        <Card.Body>
-          <Card.Title> {card.bizName}</Card.Title>
-          <Card.Text>{card.bizDescription}</Card.Text>
-          <Card.Text>{card.bizAddress}</Card.Text>
-          <Card.Text>{card.bizPhone}</Card.Text>
-        </Card.Body>
-        <Card.Footer>
+      <div class="card">
+        <img src={card.bizImage} class="card-img-top" alt={card.bizName} />
+        <div class="card-body">
+          <h5 class="card-title">{card.bizName}</h5>
+          <p class="card-text">{card.bizDescription}</p>
+          <p class="card-address">{card.bizAddress}</p>
+          <p class="card-phone">{card.bizPhone}</p>
           <a
+            className={editBtnClass}
             onClick={(e) => {
               e.preventDefault();
               handleClick(card._id);
@@ -23,14 +28,15 @@ function CardComp({ card, handleClick, onEdit }) {
           </a>
 
           <a
+            className={deleteBtnClass}
             onClick={() => {
               onEdit(card);
             }}
           >
             <AiFillEdit></AiFillEdit>
           </a>
-        </Card.Footer>
-      </Card>
+        </div>
+      </div>
     )) || <></>
   );
 }

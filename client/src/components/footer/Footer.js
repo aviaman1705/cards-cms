@@ -5,7 +5,7 @@ import { tabs } from "../../helpers/tabs";
 
 function Footer({ user }) {
   return (
-    <footer className="bd-footer py-5 mt-5 bg-dark">
+    <footer className="bd-footer bg-dark">
       <div className="container py-5">
         <div className="row">
           <div className="col-lg-4">

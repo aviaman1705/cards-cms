@@ -77,6 +77,14 @@ export function getFavoritesCards(token, callback) {
     .catch((x) => callback(x));
 }
 
+export function getSearchResults(token, key, callback) {
+  let url = baseUrl + "/api/cards/search/" + key;
+  fetch(url, { headers: { "x-auth-token": token } })
+    .then((x) => x.json())
+    .then((x) => callback(x))
+    .catch((x) => callback(x));
+}
+
 export function getUserFavoritesCards(token, callback) {
   let url = baseUrl + "/api/users/favorites";
   fetch(url, { headers: { "x-auth-token": token } })

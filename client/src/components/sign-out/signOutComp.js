@@ -11,7 +11,7 @@ function SignOutUser({ user, set }) {
 
   function logout() {
     localStorage.clear();
-    window.location.href = "/";
+    window.location.href = "/sign-in";
   }
 }
 export default SignOutUser;

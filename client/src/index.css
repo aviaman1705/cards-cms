@@ -7,9 +7,15 @@
     font-family: 'Zen Kaku Gothic New', sans-serif;
 }
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+/* 
 .App {
     height: 100vh;
-}
+} */
 
 img {
     width: 100%;
@@ -28,6 +34,18 @@ img {
 
 @media (min-width: 300px) {
 
+    /* AUTOCOMPLELTE */
+    .suggestion {
+        cursor: pointer;
+        border-right: 1px solid black;
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+
+    .suggestion:hover {
+        background-color: gray;
+    }
+
     a.d-inline:hover {
         cursor: pointer;
     }
@@ -35,6 +53,10 @@ img {
     /* HEADER */
     #basic-nav-dropdown {
         color: #fff;
+    }
+
+    #basic-nav-dropdown:hover {
+        cursor: pointer;
     }
 
     /* CARDS */
@@ -55,6 +77,13 @@ img {
 
     p.card-text {
         margin: 0px 0px 5px 0px;
+    }
+
+    p.card-address {
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+        text-overflow: ellipsis;
     }
 
     /* HOME */
@@ -96,7 +125,7 @@ img {
     }
 
     /* FOOTER */
-    .footer {
+    footer {
         padding: 40px 0;
         background-color: #fff;
         width: 100%;

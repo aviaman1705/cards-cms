@@ -7,13 +7,20 @@ const router = express.Router();
 
 //delete card
 router.delete("/:id", auth, async (req, res) => {
+  const favorities = await Faveorite.findOneAndRemove({
+    card_id: req.params.id,
+  });
+
   const card = await Card.findOneAndRemove({
     _id: req.params.id,
     user_id: req.user._id,
   });
-  if (!card)
+
+  if (!card) {
     return res.status(404).send("The card with the given ID was not found.");
-  res.send(card);
+  } else {
+    res.status(200).send("The card was successfully deleted");
+  }
 });
 
 //edit card
@@ -61,6 +68,22 @@ router.get("/:id", auth, async (req, res) => {
     _id: req.params.id,
     user_id: req.user._id,
   });
+  if (!card)
+    return res.status(404).send("The card with the given ID was not found.");
+  res.send(card);
+});
+
+//search cards
+router.get("/search/:key", auth, async (req, res) => {
+  const card = await Card.find({
+    $or: [
+      { bizName: { $regex: ".*" + req.params.key + ".*", $options: "i" } },
+      {
+        bizDescription: { $regex: ".*" + req.params.key + ".*", $options: "i" },
+      },
+    ],
+  });
+
   if (!card)
     return res.status(404).send("The card with the given ID was not found.");
   res.send(card);

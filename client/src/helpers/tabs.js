@@ -4,6 +4,7 @@ import SignInPage from "../pages/SignInPage";
 import BusinessRegistrationPage from "../pages/BusinessRegistrationPage";
 import SimpleRegistrationPage from "../pages/SimpleRegistrationPage";
 import MyCardsPage from "../pages/MyCardsPage";
+import SearchResultsPage from "../pages/SearchResultsPage";
 import { BiArchive, BiCreditCard, BiHome, BiLeftIndent } from "react-icons/bi";
 import MyFavePage from "../pages/MyFavePage";
 
@@ -51,6 +52,14 @@ export const tabs = [
     displayForLoggedin: true,
     hideForLoggedout: true,
     icon: <BiCreditCard></BiCreditCard>,
+  },
+  {
+    name: "Search Results",
+    href: "/search-results",
+    page: SearchResultsPage,
+    displayForLoggedin: true,
+    hideForLoggedout: true,
+    icon: <BiArchive></BiArchive>,
   },
   {
     name: "Sign In",

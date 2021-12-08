@@ -7,7 +7,7 @@ function SinglePageAppComp({ set, user }) {
       {" "}
       <NavigationBarComp user={user}></NavigationBarComp>
       <NavigationRouteComp set={set} user={user}></NavigationRouteComp>
-      <Redirect exact from="/" to="home" />
+      {/* <Redirect exact from="/" to="home" /> */}
     </Router>
   );
 }

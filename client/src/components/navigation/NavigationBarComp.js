@@ -2,10 +2,11 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { tabs } from "../../helpers/tabs";
 import SignOutUser from "../sign-out/signOutComp";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 function NavigationBarComp({ user, set }) {
   const location = useLocation();
+  const history = useHistory();
 
   return (
     <Navbar
@@ -24,7 +25,7 @@ function NavigationBarComp({ user, set }) {
           <Nav className="me-auto">
             {user._id
               ? tabs
-                  .filter((x) => x.displayForLoggedin)
+                  .filter((x) => x.displayForLoggedin && !x.searchResults)
                   .map((tab, index) => (
                     <Nav.Link
                       className={`nav-item-link ${

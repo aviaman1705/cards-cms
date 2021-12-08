@@ -28,7 +28,7 @@ function HomePage({ user }) {
       {user._id && (
         <div className="row">
           <div className="col-lg-12">
-            <h1 className="title-page">My Favorites</h1>
+            <h1 className="title-page">Business list</h1>
           </div>
 
           <FaveCardsComp
@@ -53,9 +53,16 @@ function HomePage({ user }) {
       { bizNumber: card.bizNumber },
       localStorage.getItem("token"),
       (data) => {
-        getFavoritesCards(localStorage.getItem("token"), (data) => {
-          setCards(data);
-        });
+        getFavoritesCards(
+          localStorage.getItem("token"),
+          (data) => {
+            setCards(data);
+            alert("Item added to favorites");
+          },
+          (error) => {
+            alert(error);
+          }
+        );
       }
     );
   }
