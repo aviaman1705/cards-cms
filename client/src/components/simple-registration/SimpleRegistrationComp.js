@@ -9,29 +9,31 @@ function SimpleRegistrationComp({ text = "", clickHandler = (f) => f }) {
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control type="email" />
+        <Form.Label className="error"></Form.Label>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" />
+        <Form.Label className="error"></Form.Label>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Name</Form.Label>
         <Form.Control type="text" />
+        <Form.Label className="error"></Form.Label>
       </Form.Group>
       <Button
         variant="primary"
         type="submit"
         onClick={(e) => {
           e.preventDefault();
-          var validatioErrorOrData = validateSimpleRegistration(
+          var errorOrData = validateSimpleRegistration(
             "formBasicEmail",
             "formBasicPassword",
             "formBasicName"
           );
-          if (typeof validatioErrorOrData == "string") {
-            notify(validatioErrorOrData);
-          } else {
-            clickHandler(validatioErrorOrData);
+
+          if (typeof errorOrData == "object") {
+            clickHandler(errorOrData);
           }
         }}
       >

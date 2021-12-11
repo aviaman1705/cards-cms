@@ -1,6 +1,6 @@
 import { getFavoritesCards, addFaveoriteCard } from "../helpers/FetchHelper";
 import { useEffect, useState } from "react";
-import FaveCardsComp from "../components/fave-cards/FaveCardsComp";
+import CardsComp from "../components/my-cards/CardsComp";
 
 function HomePage({ user }) {
   let [cards, setCards] = useState([]);
@@ -28,27 +28,26 @@ function HomePage({ user }) {
       {user._id && (
         <div className="row">
           <div className="col-lg-12">
-            <h1 className="title-page">Business list</h1>
+            <h1 className="p-4 text-center">Business list</h1>
           </div>
 
-          <FaveCardsComp
-            page="home"
+          <CardsComp
             cards={cards}
-            user={user}
-            onAdd={addCartToFave}
-          />
+            onAdd={addCardToFave}
+            btnAddStatus={true}
+          ></CardsComp>
         </div>
       )}
 
       {user._id && cards.length == 0 && (
-        <h2 className="empty-faveorite-title">
+        <h2 className="empty-faveorite-title text-center">
           There are no businesses left that can be saved in favorites
         </h2>
       )}
     </div>
   );
 
-  function addCartToFave(card) {
+  function addCardToFave(card) {
     addFaveoriteCard(
       { bizNumber: card.bizNumber },
       localStorage.getItem("token"),

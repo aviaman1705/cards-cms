@@ -5,7 +5,7 @@ export default function validateSimpleRegistration(
   idPassword,
   idName
 ) {
-  let error = "";
+  let notValidFrom = true;
   var data = {
     email: getElemVal(idEmail),
     password: getElemVal(idPassword),
@@ -14,7 +14,12 @@ export default function validateSimpleRegistration(
   };
 
   if (!data.password || data.password.length < 6) {
-    error = `*Password must hace 6 letters  *`;
+    document.getElementById(
+      idPassword
+    ).nextSibling.innerText = `*Password must hace 6 letters *`;
+    notValidFrom = false;
+  } else {
+    document.getElementById(idPassword).nextSibling.innerText = "";
   }
 
   if (data.email) {
@@ -22,14 +27,25 @@ export default function validateSimpleRegistration(
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var res = reges.test(data.email);
     if (!res) {
-      error += "Must enter  valid email   *";
+      document.getElementById(idEmail).nextSibling.innerText =
+        "Must enter  valid email *";
+      notValidFrom = false;
+    } else {
+      document.getElementById(idEmail).nextSibling.innerText = "";
     }
   } else {
-    error += "Must enter  valid email   *";
-  }
-  if (!data.name || data.name.length < 2) {
-    error += "Name must have at leat two letters";
+    document.getElementById(idEmail).nextSibling.innerText =
+      "Must enter valid email*";
+    notValidFrom = false;
   }
 
-  return error || data;
+  if (!data.name || data.name.length < 2) {
+    document.getElementById(idName).nextSibling.innerText =
+      "Name must have at leat two letters";
+    notValidFrom = false;
+  } else {
+    document.getElementById(idName).nextSibling.innerText = "";
+  }
+
+  return !notValidFrom || data;
 }

@@ -19,7 +19,7 @@ export default function validateCard(
   if (!data.bizName || data.bizName.length < 2) {
     document.getElementById(
       idName
-    ).nextSibling.innerText = `*Name must atleast 2 letters  *`;
+    ).nextSibling.innerText = `*Name must atleast 2 letters *`;
     notValidFrom = false;
   } else {
     document.getElementById(idName).nextSibling.innerText = ``;
@@ -28,7 +28,7 @@ export default function validateCard(
   if (!data.bizDescription || data.bizDescription.length < 2) {
     document.getElementById(
       idDescription
-    ).nextSibling.innerText = `*Description must atleast 2 letters  *`;
+    ).nextSibling.innerText = `*Description must atleast 2 letters *`;
     notValidFrom = false;
   } else {
     document.getElementById(idDescription).nextSibling.innerText = ``;
@@ -37,7 +37,7 @@ export default function validateCard(
   if (!data.bizAddress || data.bizAddress.length < 2) {
     document.getElementById(
       idBusinessAddress
-    ).nextSibling.innerText = `*Address must atleast 2 letters  *`;
+    ).nextSibling.innerText = `*Address must atleast 2 letters *`;
     notValidFrom = false;
   } else {
     document.getElementById(idBusinessAddress).nextSibling.innerText = ``;
@@ -56,6 +56,22 @@ export default function validateCard(
   } else {
     document.getElementById(idBusinessPhone).nextSibling.innerText =
       "Must enter valid phone *";
+    notValidFrom = false;
+  }
+
+  if (data.bizImage) {
+    var reges = /([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i;
+    var res = reges.test(data.bizImage);
+    if (!res) {
+      document.getElementById(idBasicBusinessImage).nextSibling.innerText =
+        "Must enter valid image *";
+      notValidFrom = false;
+    } else {
+      document.getElementById(idBasicBusinessImage).nextSibling.innerText = "";
+    }
+  } else {
+    document.getElementById(idBasicBusinessImage).nextSibling.innerText =
+      "Image is required *";
     notValidFrom = false;
   }
 

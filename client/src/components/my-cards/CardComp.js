@@ -1,42 +1,67 @@
-import { Card, Button } from "react-bootstrap";
-import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { Card } from "react-bootstrap";
+import { AiFillDelete, AiFillEdit, AiFillPlusCircle } from "react-icons/ai";
 
 function CardComp({
   card,
-  handleClick = (f) => f,
   onEdit = (f) => f,
-  editBtnClass = "",
-  deleteBtnClass = "",
+  onDelete = (f) => f,
+  onAdd = (f) => f,
+  btnAddStatus = false,
+  btnEditStatus = false,
+  btnDeleteStatus = false,
 }) {
   return (
     (card && (
-      <div class="card">
-        <img src={card.bizImage} class="card-img-top" alt={card.bizName} />
-        <div class="card-body">
-          <h5 class="card-title">{card.bizName}</h5>
-          <p class="card-text">{card.bizDescription}</p>
-          <p class="card-address">{card.bizAddress}</p>
-          <p class="card-phone">{card.bizPhone}</p>
-          <a
-            className={editBtnClass}
-            onClick={(e) => {
-              e.preventDefault();
-              handleClick(card._id);
-            }}
-          >
-            <AiFillDelete></AiFillDelete>
-          </a>
-
-          <a
-            className={deleteBtnClass}
-            onClick={() => {
-              onEdit(card);
-            }}
-          >
-            <AiFillEdit></AiFillEdit>
-          </a>
-        </div>
-      </div>
+      <Card>
+        <Card.Img
+          variant="top"
+          src={card.bizImage}
+          className="card-img-top"
+          alt={card.bizName}
+        />
+        <Card.Body>
+          <Card.Title> {card.bizName}</Card.Title>
+          <Card.Text>{card.bizDescription}</Card.Text>
+          <Card.Text>{card.bizAddress}</Card.Text>
+          <Card.Text>{card.bizPhone}</Card.Text>
+        </Card.Body>
+        <Card.Footer>
+          {btnDeleteStatus && (
+            <a
+              className="icon-btn btn-delete-card"
+              title="Delete"
+              onClick={(e) => {
+                e.preventDefault();
+                onDelete(card._id);
+              }}
+            >
+              <AiFillDelete></AiFillDelete>
+            </a>
+          )}
+          {btnEditStatus && (
+            <a
+              className="icon-btn btn-edit-card"
+              title="Edit"
+              onClick={() => {
+                onEdit(card);
+              }}
+            >
+              <AiFillEdit />
+            </a>
+          )}
+          {btnAddStatus && (
+            <a
+              className="icon-btn btn-add-card"
+              title="Add To Faveorite"
+              onClick={() => {
+                onAdd(card);
+              }}
+            >
+              <AiFillPlusCircle />
+            </a>
+          )}
+        </Card.Footer>
+      </Card>
     )) || <></>
   );
 }

@@ -9,10 +9,12 @@ function SignInComp({ clickHandler = (f) => f }) {
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control type="email" />
+        <Form.Label className="error"></Form.Label>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" />
+        <Form.Label className="error"></Form.Label>
       </Form.Group>
       <Button
         variant="primary"
@@ -23,9 +25,7 @@ function SignInComp({ clickHandler = (f) => f }) {
             "formBasicEmail",
             "formBasicPassword"
           );
-          if (typeof errorOrData == "string") {
-            toast(errorOrData);
-          } else {
+          if (typeof errorOrData == "object") {
             clickHandler(errorOrData);
           }
         }}

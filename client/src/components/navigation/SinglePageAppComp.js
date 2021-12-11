@@ -6,8 +6,9 @@ function SinglePageAppComp({ set, user }) {
     <Router>
       {" "}
       <NavigationBarComp user={user}></NavigationBarComp>
-      <NavigationRouteComp set={set} user={user}></NavigationRouteComp>
-      {/* <Redirect exact from="/" to="home" /> */}
+      <div className="flex-container ">
+        <NavigationRouteComp set={set} user={user}></NavigationRouteComp>
+      </div>
     </Router>
   );
 }

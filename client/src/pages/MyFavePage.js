@@ -3,7 +3,7 @@ import {
   deleteCardFromFaveorite,
 } from "../helpers/FetchHelper";
 import { useEffect, useState } from "react";
-import FaveCardsComp from "../components/fave-cards/FaveCardsComp";
+import CardsComp from "../components/my-cards/CardsComp";
 
 function MyFavePage({ user }) {
   let [cards, setCards] = useState([]);
@@ -18,20 +18,19 @@ function MyFavePage({ user }) {
     <div className="container h-100">
       <div className="row">
         <div className="col-lg-12">
-          <h1 className="title-page">My Favorites</h1>
+          <h1 className="p-4 text-center">My Favorites</h1>
         </div>
-        <FaveCardsComp
-          page="my-fave"
+        <CardsComp
           cards={cards}
-          user={user}
-          onDelete={deleteCartToFave}
-        ></FaveCardsComp>
+          onDelete={deleteCardToFave}
+          btnDeleteStatus={true}
+        ></CardsComp>
       </div>
     </div>
   );
 
-  function deleteCartToFave(card) {
-    deleteCardFromFaveorite(card._id, localStorage.getItem("token"), (data) => {
+  function deleteCardToFave(id) {
+    deleteCardFromFaveorite(id, localStorage.getItem("token"), (data) => {
       getUserFavoritesCards(localStorage.getItem("token"), (data) => {
         setCards(data);
       });

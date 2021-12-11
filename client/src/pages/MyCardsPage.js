@@ -1,21 +1,28 @@
 import { insertNewCard, editCard } from "../helpers/FetchHelper";
 import { Container, Button, Row, Col } from "react-bootstrap";
 import CardsComp from "../components/my-cards/CardsComp";
-import CreateCardComp from "../components/my-cards/CreateCardComp";
-import EditCardComp from "../components/my-cards/EditCardComp";
+import CardItemComp from "../components/my-cards/CardItemComp";
+import { getMeCards } from "../helpers/FetchHelper";
+import { useEffect, useState } from "react";
 
-import { useState } from "react";
 function MyCardsPage() {
   const [isAddMode, setAddMode] = useState(false);
   const [isEditMode, setEditMode] = useState(false);
 
   const [card, setCard] = useState(null);
+  const [cards, setCards] = useState([]);
+  useEffect(() => {
+    if (localStorage.getItem("token"))
+      getMeCards(localStorage.getItem("token"), (data) => {
+        setCards(data);
+      });
+  }, []);
 
   return (
     <Container className="h-100" id="card-container">
       <Row>
         <Col lg={12}>
-          <h1 className="title-page">My Cards</h1>
+          <h1 className="p-4 text-center">My Cards</h1>
         </Col>
         {!isAddMode && !isEditMode && (
           <Col lg={12}>
@@ -32,31 +39,48 @@ function MyCardsPage() {
         )}
 
         {!isAddMode && !isEditMode && (
-          <CardsComp onEdit={onEditCart}></CardsComp>
+          <CardsComp
+            cards={cards}
+            onEdit={onEditCart}
+            btnEditStatus={true}
+            btnDeleteStatus={true}
+          ></CardsComp>
         )}
 
         {isAddMode && !isEditMode && (
-          <CreateCardComp
-            clickHandler={insertCard}
+          <CardItemComp
+            textBtn="Create"
+            clickHandler={add}
             addMode={setAddMode}
             editMode={setEditMode}
-          ></CreateCardComp>
+          />
         )}
         {!isAddMode && isEditMode && (
-          <EditCardComp
+          <CardItemComp
+            textBtn="Edit"
             clickHandler={edit}
             card={card}
             addMode={setAddMode}
             editMode={setEditMode}
-          ></EditCardComp>
+          />
         )}
       </Row>
     </Container>
   );
 
-  function insertCard(data) {
-    insertNewCard(data, localStorage.getItem("token"), () => {
+  function add(data) {
+    insertNewCard(data, localStorage.getItem("token"), (response) => {
+      cards.push(response);
       setAddMode(false);
+    });
+  }
+
+  function edit(data) {
+    editCard(data, localStorage.getItem("token"), (response) => {
+      cards.forEach(function (card, i) {
+        if (card._id == response._id) cards[i] = response;
+      });
+      setEditMode(false);
     });
   }
 
@@ -64,12 +88,6 @@ function MyCardsPage() {
     setCard(card);
     setAddMode(false);
     setEditMode(true);
-  }
-
-  function edit(data) {
-    editCard(data, localStorage.getItem("token"), (response) => {
-      setEditMode(false);
-    });
   }
 }
 export default MyCardsPage;

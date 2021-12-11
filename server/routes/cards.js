@@ -75,13 +75,18 @@ router.get("/:id", auth, async (req, res) => {
 
 //search cards
 router.get("/search/:key", auth, async (req, res) => {
+  const favorites = await Faveorite.find({ user_id: req.user._id });
+  let favoritesIds = favorites.map((card) => card.card_id);
+
   const card = await Card.find({
+    user_id: { $ne: req.user._id },
     $or: [
       { bizName: { $regex: ".*" + req.params.key + ".*", $options: "i" } },
       {
         bizDescription: { $regex: ".*" + req.params.key + ".*", $options: "i" },
       },
     ],
+    _id: { $nin: favoritesIds },
   });
 
   if (!card)
@@ -92,6 +97,7 @@ router.get("/search/:key", auth, async (req, res) => {
 //create card
 router.post("/", auth, async (req, res) => {
   const { error } = validateCard(req.body);
+  console.log(error);
   if (error) return res.status(400).send(error.details[0].message);
 
   let card = new Card({

@@ -17,13 +17,10 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <>
-        <SinglePageAppComp set={set} user={user}></SinglePageAppComp>
-        <ToastContainer></ToastContainer>
-        <Footer set={set} user={user}></Footer>
-      </>
-    </div>
+    <main>
+      <SinglePageAppComp set={set} user={user}></SinglePageAppComp>
+      <Footer set={set} user={user}></Footer>
+    </main>
   );
 }
 

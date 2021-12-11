@@ -2,9 +2,9 @@ import { registerNewAccount, insertNewCard } from "../helpers/FetchHelper";
 import { toast } from "react-toastify";
 import { Container } from "react-bootstrap";
 import SimpleRegistrationComp from "../components/simple-registration/SimpleRegistrationComp";
-import CreateCardComp from "../components/my-cards/CreateCardComp";
+import CardItemComp from "../components/my-cards/CardItemComp";
 import { useState } from "react";
-import { signInUser } from "../helpers/FetchHelper";
+import { signInUser, getMeData } from "../helpers/FetchHelper";
 import { useHistory } from "react-router-dom";
 
 function BusinessRegistrationPage({ set }) {
@@ -19,7 +19,7 @@ function BusinessRegistrationPage({ set }) {
           text="Business Registration"
         ></SimpleRegistrationComp>
       )}
-      {!isStep1 && <CreateCardComp clickHandler={createCard}></CreateCardComp>}
+      {/* {!isStep1 && <CardItemComp textBtn="Create" clickHandler={createCard} />} */}
     </Container>
   );
 
@@ -34,10 +34,17 @@ function BusinessRegistrationPage({ set }) {
         toast("Account Created Successfully");
 
         signInUser({ email: email, password: password }, (response) => {
-          localStorage.setItem("token", response.token);
+          if (response.token) {
+            localStorage.setItem("token", response.token);
+            getMeData(response.token, (data) => {
+              set(data);
+              // setIsStep1(false);
+              history.push("/my-cards");
+            });
+          } else {
+            toast("Fail to log in");
+          }
         });
-
-        setIsStep1(false);
       } else {
         toast("Eror Acount was not created");
       }
