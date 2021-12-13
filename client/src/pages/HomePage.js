@@ -1,6 +1,8 @@
 import { getFavoritesCards, addFaveoriteCard } from "../helpers/FetchHelper";
 import { useEffect, useState } from "react";
 import CardsComp from "../components/my-cards/CardsComp";
+import { toast } from "react-toastify";
+import { Row, Col } from "react-bootstrap";
 
 function HomePage({ user }) {
   let [cards, setCards] = useState([]);
@@ -14,7 +16,7 @@ function HomePage({ user }) {
   return (
     <div className="container h-100">
       {!user._id && (
-        <div className="row">
+        <Row>
           <div id="wrap-content">
             <h1 id="title-page">Welcome To Our Business CMS</h1>
             <h2 id="subtitle-page">Create Cards for your business</h2>
@@ -22,21 +24,21 @@ function HomePage({ user }) {
               Join To hundreds of businesses already registered with it
             </p>
           </div>
-        </div>
+        </Row>
       )}
 
       {user._id && (
-        <div className="row">
-          <div className="col-lg-12">
+        <Row>
+          <Col lg={12}>
             <h1 className="p-4 text-center">Business list</h1>
-          </div>
+          </Col>
 
           <CardsComp
             cards={cards}
             onAdd={addCardToFave}
             btnAddStatus={true}
           ></CardsComp>
-        </div>
+        </Row>
       )}
 
       {user._id && cards.length == 0 && (
@@ -48,22 +50,25 @@ function HomePage({ user }) {
   );
 
   function addCardToFave(card) {
-    addFaveoriteCard(
-      { bizNumber: card.bizNumber },
-      localStorage.getItem("token"),
-      (data) => {
-        getFavoritesCards(
-          localStorage.getItem("token"),
-          (data) => {
-            setCards(data);
-            alert("Item added to favorites");
-          },
-          (error) => {
-            alert(error);
-          }
-        );
-      }
-    );
+    toast("Item added to favorites");
+
+    setTimeout(() => {
+      addFaveoriteCard(
+        { bizNumber: card.bizNumber },
+        localStorage.getItem("token"),
+        (data) => {
+          getFavoritesCards(
+            localStorage.getItem("token"),
+            (data) => {
+              setCards(data);
+            },
+            (error) => {
+              toast(error);
+            }
+          );
+        }
+      );
+    }, 1000);
   }
 }
 export default HomePage;

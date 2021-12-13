@@ -1,8 +1,11 @@
 import { Form, Button } from "react-bootstrap";
 import validateSimpleRegistration from "../../helpers/simpleRegistrationHelper";
-import { toast } from "react-toastify";
-const notify = (message) => toast(message);
-function SimpleRegistrationComp({ text = "", clickHandler = (f) => f }) {
+
+function SimpleRegistrationComp({
+  serverError,
+  text = "",
+  clickHandler = (f) => f,
+}) {
   return (
     <Form className="user-form">
       <h1 className="user-form-title">{text}</h1>
@@ -19,7 +22,7 @@ function SimpleRegistrationComp({ text = "", clickHandler = (f) => f }) {
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Name</Form.Label>
         <Form.Control type="text" />
-        <Form.Label className="error"></Form.Label>
+        <Form.Label className="error">{serverError}</Form.Label>
       </Form.Group>
       <Button
         variant="primary"

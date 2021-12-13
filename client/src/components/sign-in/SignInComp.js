@@ -1,8 +1,7 @@
 import validateSignIn from "../../helpers/signInHelper";
 import { Form, Button } from "react-bootstrap";
-import { toast } from "react-toastify";
 
-function SignInComp({ clickHandler = (f) => f }) {
+function SignInComp({ serverError, clickHandler = (f) => f }) {
   return (
     <Form className="user-form">
       <h1 className="user-form-title">Sign In</h1>
@@ -14,7 +13,7 @@ function SignInComp({ clickHandler = (f) => f }) {
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" />
-        <Form.Label className="error"></Form.Label>
+        <Form.Label className="error">{serverError}</Form.Label>
       </Form.Group>
       <Button
         variant="primary"

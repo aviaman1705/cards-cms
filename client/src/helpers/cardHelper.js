@@ -64,7 +64,7 @@ export default function validateCard(
     var res = reges.test(data.bizImage);
     if (!res) {
       document.getElementById(idBasicBusinessImage).nextSibling.innerText =
-        "Must enter valid image *";
+        "Must enter image url*";
       notValidFrom = false;
     } else {
       document.getElementById(idBasicBusinessImage).nextSibling.innerText = "";

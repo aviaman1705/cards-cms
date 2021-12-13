@@ -1,9 +1,10 @@
-import { insertNewCard, editCard } from "../helpers/FetchHelper";
+import { insertNewCard, editCard, deleteCard } from "../helpers/FetchHelper";
 import { Container, Button, Row, Col } from "react-bootstrap";
 import CardsComp from "../components/my-cards/CardsComp";
 import CardItemComp from "../components/my-cards/CardItemComp";
 import { getMeCards } from "../helpers/FetchHelper";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 function MyCardsPage() {
   const [isAddMode, setAddMode] = useState(false);
@@ -42,6 +43,7 @@ function MyCardsPage() {
           <CardsComp
             cards={cards}
             onEdit={onEditCart}
+            onDelete={remove}
             btnEditStatus={true}
             btnDeleteStatus={true}
           ></CardsComp>
@@ -81,6 +83,13 @@ function MyCardsPage() {
         if (card._id == response._id) cards[i] = response;
       });
       setEditMode(false);
+    });
+  }
+
+  function remove(cardId) {
+    deleteCard(cardId, localStorage.getItem("token"), (response) => {
+      toast("The item was successfully deleted");
+      setCards(cards.filter((item) => item._id !== cardId));
     });
   }
 

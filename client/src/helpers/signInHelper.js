@@ -11,6 +11,9 @@ export default function validateSignIn(idEmail, idPassword) {
     document.getElementById(
       idPassword
     ).nextSibling.innerText = `*Password must hace 6 letters *`;
+    notValidFrom = false;
+  } else {
+    document.getElementById(idPassword).nextSibling.innerText = ``;
   }
 
   if (data.email) {
@@ -20,10 +23,14 @@ export default function validateSignIn(idEmail, idPassword) {
     if (!res) {
       document.getElementById(idEmail).nextSibling.innerText =
         "Must enter  valid email *";
+      notValidFrom = false;
+    } else {
+      document.getElementById(idEmail).nextSibling.innerText = ``;
     }
   } else {
     document.getElementById(idEmail).nextSibling.innerText =
       "Must enter  valid email *";
+    notValidFrom = false;
   }
 
   return !notValidFrom || data;

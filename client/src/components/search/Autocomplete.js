@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { getSearchResults, addFaveoriteCard } from "../../helpers/FetchHelper";
 import CardsComp from "../my-cards/CardsComp";
+import { toast } from "react-toastify";
+import { Row } from "react-bootstrap";
 
 function Autocomplete() {
   const [text, setText] = useState("");
@@ -29,11 +31,13 @@ function Autocomplete() {
       />
 
       {suggestions && (
-        <CardsComp
-          cards={suggestions}
-          onAdd={addCardToFave}
-          btnAddStatus={true}
-        ></CardsComp>
+        <Row>
+          <CardsComp
+            cards={suggestions}
+            onAdd={addCardToFave}
+            btnAddStatus={true}
+          ></CardsComp>
+        </Row>
       )}
 
       {suggestions.length == 0 && searchStarted && (
@@ -45,18 +49,19 @@ function Autocomplete() {
   );
 
   function addCardToFave(card) {
-    setSuggestions(suggestions.filter((item) => item._id !== card._id));
-
-    addFaveoriteCard(
-      { bizNumber: card.bizNumber },
-      localStorage.getItem("token"),
-      (data) => {
-        alert("Item added to favorites");
-      },
-      (error) => {
-        alert(error);
-      }
-    );
+    toast("Item deleted to favorites");
+    setTimeout(() => {
+      addFaveoriteCard(
+        { bizNumber: card.bizNumber },
+        localStorage.getItem("token"),
+        (data) => {
+          setSuggestions(suggestions.filter((item) => item._id !== card._id));
+        },
+        (error) => {
+          toast(error);
+        }
+      );
+    }, 1000);
   }
 }
 export default Autocomplete;

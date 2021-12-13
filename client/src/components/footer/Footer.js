@@ -1,17 +1,15 @@
-import { Nav } from "react-bootstrap";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Col, Row } from "react-bootstrap";
 import { SocialIcon } from "react-social-icons";
-import { tabs } from "../../helpers/tabs";
 
 function Footer({ user }) {
   return (
     <footer className="footer bd-footer">
       <div className="container py-5">
-        <div className="row">
-          <div className="col-lg-4">
+        <Row>
+          <Col lg={4}>
             <p className="copyright">Avi Aman @ 2021</p>
-          </div>
-          <div className="col-lg-4">
+          </Col>
+          <Col lg={4}>
             <ul className="list">
               <li>
                 <a href="#">Trems</a>
@@ -23,8 +21,8 @@ function Footer({ user }) {
                 <a href="#">Policy</a>
               </li>
             </ul>
-          </div>
-          <div className="col-lg-4 text-center">
+          </Col>
+          <Col lg={4} className="text-center">
             <div className="social">
               <SocialIcon
                 className="ms-3"
@@ -42,8 +40,8 @@ function Footer({ user }) {
                 target="_blank"
               />
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     </footer>
   );

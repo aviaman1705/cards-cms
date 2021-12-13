@@ -1,16 +1,18 @@
 import { signInUser } from "../helpers/FetchHelper";
 import { Container } from "react-bootstrap";
 import SignInComp from "../components/sign-in/SignInComp";
-import { toast } from "react-toastify";
 import { getMeData } from "../helpers/FetchHelper";
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 function SignInPage({ set }) {
   const history = useHistory();
+  let [error, setError] = useState("");
 
   return (
     <Container className="h-100">
-      <SignInComp clickHandler={signIn}></SignInComp>
+      <SignInComp clickHandler={signIn} serverError={error}></SignInComp>
     </Container>
   );
 
@@ -24,7 +26,7 @@ function SignInPage({ set }) {
           history.push("/home");
         });
       } else {
-        toast("Fail to log in");
+        setError("email or password incorrect.");
       }
     });
   }

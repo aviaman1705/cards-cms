@@ -18,6 +18,17 @@ function App() {
 
   return (
     <main>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <SinglePageAppComp set={set} user={user}></SinglePageAppComp>
       <Footer set={set} user={user}></Footer>
     </main>

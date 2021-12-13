@@ -2,7 +2,6 @@ import HomePage from "../pages/HomePage";
 import AboutPage from "../pages/AboutPage";
 import SignInPage from "../pages/SignInPage";
 import BusinessRegistrationPage from "../pages/BusinessRegistrationPage";
-import SimpleRegistrationPage from "../pages/SimpleRegistrationPage";
 import MyCardsPage from "../pages/MyCardsPage";
 import SearchResultsPage from "../pages/SearchResultsPage";
 import { BiArchive, BiCreditCard, BiHome, BiLeftIndent } from "react-icons/bi";
@@ -23,13 +22,6 @@ export const tabs = [
     displayForLoggedin: true,
     icon: <BiArchive></BiArchive>,
   },
-  // {
-  //   name: "Simple Registration",
-  //   href: "/simple-registration",
-  //   page: SimpleRegistrationPage,
-  //   displayForLoggedin: false,
-  //   icon: <BiLeftIndent></BiLeftIndent>,
-  // },
   {
     name: "Registration",
     href: "/registration",
