@@ -1,7 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import { SocialIcon } from "react-social-icons";
 
-function Footer({ user }) {
+function Footer() {
   return (
     <footer className="footer bd-footer">
       <div className="container py-5">

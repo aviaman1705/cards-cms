@@ -9,9 +9,9 @@ import { toast } from "react-toastify";
 function MyCardsPage() {
   const [isAddMode, setAddMode] = useState(false);
   const [isEditMode, setEditMode] = useState(false);
-
   const [card, setCard] = useState(null);
   const [cards, setCards] = useState([]);
+
   useEffect(() => {
     if (localStorage.getItem("token"))
       getMeCards(localStorage.getItem("token"), (data) => {

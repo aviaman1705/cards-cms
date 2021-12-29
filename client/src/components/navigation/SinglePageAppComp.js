@@ -1,13 +1,16 @@
 import NavigationRouteComp from "./NavigationRouteComp";
 import NavigationBarComp from "./NavigationBarComp";
 import { BrowserRouter as Router, Redirect } from "react-router-dom";
-function SinglePageAppComp({ set, user }) {
+function SinglePageAppComp(props) {
   return (
     <Router>
       {" "}
-      <NavigationBarComp user={user}></NavigationBarComp>
+      <NavigationBarComp user={props.user}></NavigationBarComp>
       <div className="flex-container ">
-        <NavigationRouteComp set={set} user={user}></NavigationRouteComp>
+        <NavigationRouteComp
+          set={props.set}
+          user={props.user}
+        ></NavigationRouteComp>
       </div>
     </Router>
   );

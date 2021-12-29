@@ -1,14 +1,10 @@
 import { Form, Button } from "react-bootstrap";
 import validateSimpleRegistration from "../../helpers/simpleRegistrationHelper";
 
-function SimpleRegistrationComp({
-  serverError,
-  text = "",
-  clickHandler = (f) => f,
-}) {
+function SimpleRegistrationComp(props) {
   return (
     <Form className="user-form">
-      <h1 className="user-form-title">{text}</h1>
+      <h1 className="user-form-title">{props.text}</h1>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control type="email" />
@@ -22,7 +18,7 @@ function SimpleRegistrationComp({
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Name</Form.Label>
         <Form.Control type="text" />
-        <Form.Label className="error">{serverError}</Form.Label>
+        <Form.Label className="error">{props.serverError}</Form.Label>
       </Form.Group>
       <Button
         variant="primary"
@@ -36,7 +32,7 @@ function SimpleRegistrationComp({
           );
 
           if (typeof errorOrData == "object") {
-            clickHandler(errorOrData);
+            props.clickHandler(errorOrData);
           }
         }}
       >

@@ -1,60 +1,52 @@
 import { Card } from "react-bootstrap";
 import { AiFillDelete, AiFillEdit, AiFillPlusCircle } from "react-icons/ai";
 
-function CardComp({
-  card,
-  onEdit = (f) => f,
-  onDelete = (f) => f,
-  onAdd = (f) => f,
-  btnAddStatus = false,
-  btnEditStatus = false,
-  btnDeleteStatus = false,
-}) {
+function CardComp(props) {
   return (
-    (card && (
+    (props.card && (
       <Card>
         <Card.Img
           variant="top"
-          src={card.bizImage}
+          src={props.card.bizImage}
           className="card-img-top"
-          alt={card.bizName}
+          alt={props.card.bizName}
         />
         <Card.Body>
-          <Card.Title> {card.bizName}</Card.Title>
-          <Card.Text>{card.bizDescription}</Card.Text>
-          <Card.Text>{card.bizAddress}</Card.Text>
-          <Card.Text>{card.bizPhone}</Card.Text>
+          <Card.Title> {props.card.bizName}</Card.Title>
+          <Card.Text>{props.card.bizDescription}</Card.Text>
+          <Card.Text>{props.card.bizAddress}</Card.Text>
+          <Card.Text>{props.card.bizPhone}</Card.Text>
         </Card.Body>
         <Card.Footer>
-          {btnDeleteStatus && (
+          {props.btnDeleteStatus && (
             <a
               className="icon-btn btn-delete-card"
               title="Delete"
               onClick={(e) => {
                 e.preventDefault();
-                onDelete(card._id);
+                props.onDelete(props.card._id);
               }}
             >
               <AiFillDelete></AiFillDelete>
             </a>
           )}
-          {btnEditStatus && (
+          {props.btnEditStatus && (
             <a
               className="icon-btn btn-edit-card"
               title="Edit"
               onClick={() => {
-                onEdit(card);
+                props.onEdit(props.card);
               }}
             >
               <AiFillEdit />
             </a>
           )}
-          {btnAddStatus && (
+          {props.btnAddStatus && (
             <a
               className="icon-btn btn-add-card"
               title="Add To Faveorite"
               onClick={() => {
-                onAdd(card);
+                props.onAdd(props.card);
               }}
             >
               <AiFillPlusCircle />

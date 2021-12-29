@@ -7,8 +7,9 @@ import CardsComp from "../components/my-cards/CardsComp";
 import { toast } from "react-toastify";
 import { Row, Col } from "react-bootstrap";
 
-function MyFavePage({ user }) {
+function MyFavePage() {
   let [cards, setCards] = useState([]);
+
   useEffect(() => {
     if (localStorage.getItem("token"))
       getUserFavoritesCards(localStorage.getItem("token"), (data) => {

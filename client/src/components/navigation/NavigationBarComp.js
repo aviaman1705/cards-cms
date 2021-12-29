@@ -4,7 +4,7 @@ import { tabs } from "../../helpers/tabs";
 import SignOutUser from "../sign-out/signOutComp";
 import { useLocation, useHistory } from "react-router-dom";
 
-function NavigationBarComp({ user, set }) {
+function NavigationBarComp(props) {
   const location = useLocation();
   const history = useHistory();
 
@@ -18,7 +18,7 @@ function NavigationBarComp({ user, set }) {
             className="justify-content-between"
           >
             <Nav className="me-auto">
-              {user._id
+              {props.user._id
                 ? tabs
                     .filter((x) => x.displayForLoggedin && !x.searchResults)
                     .map((tab, index) => (
@@ -50,7 +50,7 @@ function NavigationBarComp({ user, set }) {
                       </Nav.Link>
                     ))}
             </Nav>
-            {user._id && <SignOutUser user={user}></SignOutUser>}
+            {props.user._id && <SignOutUser user={props.user}></SignOutUser>}
           </Navbar.Collapse>
         </Container>
       </Navbar>

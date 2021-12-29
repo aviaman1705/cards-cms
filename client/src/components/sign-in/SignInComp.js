@@ -1,7 +1,7 @@
 import validateSignIn from "../../helpers/signInHelper";
 import { Form, Button } from "react-bootstrap";
 
-function SignInComp({ serverError, clickHandler = (f) => f }) {
+function SignInComp(props) {
   return (
     <Form className="user-form">
       <h1 className="user-form-title">Sign In</h1>
@@ -13,7 +13,7 @@ function SignInComp({ serverError, clickHandler = (f) => f }) {
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" />
-        <Form.Label className="error">{serverError}</Form.Label>
+        <Form.Label className="error">{props.serverError}</Form.Label>
       </Form.Group>
       <Button
         variant="primary"
@@ -25,7 +25,7 @@ function SignInComp({ serverError, clickHandler = (f) => f }) {
             "formBasicPassword"
           );
           if (typeof errorOrData == "object") {
-            clickHandler(errorOrData);
+            props.clickHandler(errorOrData);
           }
         }}
       >
