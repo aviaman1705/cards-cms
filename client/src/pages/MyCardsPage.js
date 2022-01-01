@@ -1,7 +1,7 @@
 import { insertNewCard, editCard, deleteCard } from "../helpers/FetchHelper";
 import { Container, Button, Row, Col } from "react-bootstrap";
-import CardsComp from "../components/my-cards/CardsComp";
-import CardItemComp from "../components/my-cards/CardItemComp";
+import Cards from "../components/my-cards/Cards";
+import CardForm from "../components/my-cards/CardForm";
 import { getMeCards } from "../helpers/FetchHelper";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -40,17 +40,17 @@ function MyCardsPage() {
         )}
 
         {!isAddMode && !isEditMode && (
-          <CardsComp
+          <Cards
             cards={cards}
             onEdit={onEditCart}
             onDelete={remove}
             btnEditStatus={true}
             btnDeleteStatus={true}
-          ></CardsComp>
+          />
         )}
 
         {isAddMode && !isEditMode && (
-          <CardItemComp
+          <CardForm
             textBtn="Create"
             clickHandler={add}
             addMode={setAddMode}
@@ -58,7 +58,7 @@ function MyCardsPage() {
           />
         )}
         {!isAddMode && isEditMode && (
-          <CardItemComp
+          <CardForm
             textBtn="Edit"
             clickHandler={edit}
             card={card}
@@ -72,7 +72,7 @@ function MyCardsPage() {
 
   function add(data) {
     insertNewCard(data, localStorage.getItem("token"), (response) => {
-      cards.push(response);
+      setCards((oldArray) => [...oldArray, response]);
       setAddMode(false);
     });
   }

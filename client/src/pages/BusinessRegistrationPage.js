@@ -7,19 +7,16 @@ import { signInUser, getMeData } from "../helpers/FetchHelper";
 import { useHistory } from "react-router-dom";
 
 function BusinessRegistrationPage() {
-  const [isStep1, setIsStep1] = useState(true);
   let [error, setError] = useState("");
   const history = useHistory();
 
   return (
     <Container className="h-100">
-      {isStep1 && (
-        <SimpleRegistrationComp
-          serverError={error}
-          clickHandler={registerUser}
-          text="Business Registration"
-        ></SimpleRegistrationComp>
-      )}
+      <SimpleRegistrationComp
+        serverError={error}
+        clickHandler={registerUser}
+        text="Business Registration"
+      ></SimpleRegistrationComp>
     </Container>
   );
 

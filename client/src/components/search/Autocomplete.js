@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { getSearchResults, addFaveoriteCard } from "../../helpers/FetchHelper";
-import CardsComp from "../my-cards/CardsComp";
+import Cards from "../my-cards/Cards";
 import { toast } from "react-toastify";
 import { Row } from "react-bootstrap";
 
@@ -32,11 +32,11 @@ function Autocomplete() {
 
       {suggestions && (
         <Row>
-          <CardsComp
+          <Cards
             cards={suggestions}
             onAdd={addCardToFave}
             btnAddStatus={true}
-          ></CardsComp>
+          />
         </Row>
       )}
 
@@ -61,7 +61,7 @@ function Autocomplete() {
           toast(error);
         }
       );
-    }, 1000);
+    }, 500);
   }
 }
 export default Autocomplete;

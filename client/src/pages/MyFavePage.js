@@ -3,7 +3,8 @@ import {
   deleteCardFromFaveorite,
 } from "../helpers/FetchHelper";
 import { useEffect, useState } from "react";
-import CardsComp from "../components/my-cards/CardsComp";
+
+import Cards from "../components/my-cards/Cards";
 import { toast } from "react-toastify";
 import { Row, Col } from "react-bootstrap";
 
@@ -23,24 +24,22 @@ function MyFavePage() {
         <Col lg={12}>
           <h1 className="p-4 text-center">My Favorites</h1>
         </Col>
-        <CardsComp
+        <Cards
           cards={cards}
-          onDelete={deleteCardToFave}
+          onDelete={deleteCardFromFave}
           btnDeleteStatus={true}
-        ></CardsComp>
+        />
       </Row>
     </div>
   );
 
-  function deleteCardToFave(id) {
+  function deleteCardFromFave(id) {
     toast("Item deleted to favorites");
     setTimeout(() => {
       deleteCardFromFaveorite(id, localStorage.getItem("token"), (data) => {
-        getUserFavoritesCards(localStorage.getItem("token"), (data) => {
-          setCards(data);
-        });
+        setCards(cards.filter((item) => item._id !== id));
       });
-    }, 1000);
+    }, 500);
   }
 }
 export default MyFavePage;

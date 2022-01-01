@@ -37,6 +37,7 @@ router.get("/cards", auth, async (req, res) => {
   const cards = await getCards(data.cards);
   res.send(cards);
 });
+
 //update users cards
 router.patch("/cards", auth, async (req, res) => {
   const { error } = validateCards(req.body);
@@ -118,7 +119,12 @@ router.post("/addFaveoriteCard", auth, async (req, res) => {
   });
 
   faveorite = await faveorite.save();
-  res.send(user);
+
+  let faveoriteCard = await Card.findOne({
+    _id: card._id,
+  });
+
+  res.send(faveoriteCard);
 });
 
 module.exports = router;

@@ -1,10 +1,10 @@
 import { Col } from "react-bootstrap";
-import CardComp from "./CardComp";
+import CardItem from "./CardItem";
 
-function CardsComp(props) {
+function Cards(props) {
   return props.cards.map((c, index) => (
     <Col xl={3} lg={4} md={6} xs={12} key={index}>
-      <CardComp
+      <CardItem
         card={c}
         onEdit={props.onEdit}
         onAdd={props.onAdd}
@@ -12,8 +12,8 @@ function CardsComp(props) {
         btnAddStatus={props.btnAddStatus}
         btnEditStatus={props.btnEditStatus}
         btnDeleteStatus={props.btnDeleteStatus}
-      ></CardComp>
+      ></CardItem>
     </Col>
   ));
 }
-export default CardsComp;
+export default Cards;

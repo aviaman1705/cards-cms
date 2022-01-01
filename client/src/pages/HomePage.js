@@ -1,6 +1,6 @@
 import { getFavoritesCards, addFaveoriteCard } from "../helpers/FetchHelper";
 import { useEffect, useState } from "react";
-import CardsComp from "../components/my-cards/CardsComp";
+import Cards from "../components/my-cards/Cards";
 import { toast } from "react-toastify";
 import { Row, Col } from "react-bootstrap";
 
@@ -33,11 +33,7 @@ function HomePage({ user }) {
             <h1 className="p-4 text-center">Business list</h1>
           </Col>
 
-          <CardsComp
-            cards={cards}
-            onAdd={addCardToFave}
-            btnAddStatus={true}
-          ></CardsComp>
+          <Cards cards={cards} onAdd={addCardToFave} btnAddStatus={true} />
         </Row>
       )}
 
@@ -57,18 +53,10 @@ function HomePage({ user }) {
         { bizNumber: card.bizNumber },
         localStorage.getItem("token"),
         (data) => {
-          getFavoritesCards(
-            localStorage.getItem("token"),
-            (data) => {
-              setCards(data);
-            },
-            (error) => {
-              toast(error);
-            }
-          );
+          setCards(cards.filter((item) => item._id !== data._id));
         }
       );
-    }, 1000);
+    }, 500);
   }
 }
 export default HomePage;

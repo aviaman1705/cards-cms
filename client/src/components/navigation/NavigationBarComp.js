@@ -2,11 +2,10 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { tabs } from "../../helpers/tabs";
 import SignOutUser from "../sign-out/signOutComp";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function NavigationBarComp(props) {
   const location = useLocation();
-  const history = useHistory();
 
   return (
     <header>

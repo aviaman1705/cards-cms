@@ -1,7 +1,7 @@
 import { Card } from "react-bootstrap";
 import { AiFillDelete, AiFillEdit, AiFillPlusCircle } from "react-icons/ai";
-
-function CardComp(props) {
+import "./CardItem.css";
+function CardItem(props) {
   return (
     (props.card && (
       <Card>
@@ -57,4 +57,4 @@ function CardComp(props) {
     )) || <></>
   );
 }
-export default CardComp;
+export default CardItem;

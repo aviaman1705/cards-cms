@@ -1,7 +1,7 @@
 import { Form, Button, Col, Row } from "react-bootstrap";
 import validateCard from "../../helpers/cardHelper";
 
-function CardItemComp(props) {
+function CardForm(props) {
   return (
     <Col lg={4} md={8} xs={12}>
       {!props.card && (
@@ -17,7 +17,7 @@ function CardItemComp(props) {
             <Form.Label className="error"></Form.Label>
           </Form.Group>
           <Form.Group controlId="formBasicBusinessAddress">
-            <Form.Label>Business Address</Form.Label>
+            Y<Form.Label>Business Address</Form.Label>
             <Form.Control type="text" />
             <Form.Label className="error"></Form.Label>
           </Form.Group>
@@ -134,4 +134,4 @@ function CardItemComp(props) {
     </Col>
   );
 }
-export default CardItemComp;
+export default CardForm;

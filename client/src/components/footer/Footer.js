@@ -47,8 +47,4 @@ function Footer() {
   );
 }
 
-function redirect(page) {
-  console.log(page);
-}
-
 export default Footer;
