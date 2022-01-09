@@ -44,8 +44,8 @@ export default function validateCard(
   }
 
   if (data.bizPhone) {
-    var reges = /^0\d([\d]{0,1})([-]{0,1})\d{7}$/;
-    var res = reges.test(data.bizPhone);
+    var regexPhone = /^0\d([\d]{0,1})([-]{0,1})\d{7}$/;
+    let res = regexPhone.test(data.bizPhone);
     if (!res) {
       document.getElementById(idBusinessPhone).nextSibling.innerText =
         "Must enter valid phone *";
@@ -60,8 +60,8 @@ export default function validateCard(
   }
 
   if (data.bizImage) {
-    var reges = /([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i;
-    var res = reges.test(data.bizImage);
+    var regexImages = /([a-z\-_0-9]*\.(jpg|jpeg|png|gif))/i;
+    let res = regexImages.test(data.bizImage);
     if (!res) {
       document.getElementById(idBasicBusinessImage).nextSibling.innerText =
         "Must enter image url*";

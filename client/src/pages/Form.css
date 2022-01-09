@@ -1,0 +1,26 @@
+@media (min-width: 300px) {
+    div#register-container {
+        min-height: 80vh;
+    }
+
+    div#login-container {
+        min-height: 80vh;
+    }
+
+    h1.user-form-title {
+        color: #407f7f;
+        padding: 20px 0px;
+    }
+
+    label.form-label {
+        color: gray;
+        font-weight: 500;
+    }
+
+    label.error.form-label {
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: .875em;
+        color: #dc3545;
+    }
+}

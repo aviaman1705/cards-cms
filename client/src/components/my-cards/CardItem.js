@@ -12,7 +12,10 @@ function CardItem(props) {
           alt={props.card.bizName}
         />
         <Card.Body>
-          <Card.Title> {props.card.bizName}</Card.Title>
+          <Card.Title className="card-item-title">
+            {" "}
+            {props.card.bizName}
+          </Card.Title>
           <Card.Text>{props.card.bizDescription}</Card.Text>
           <Card.Text>{props.card.bizAddress}</Card.Text>
           <Card.Text>{props.card.bizPhone}</Card.Text>
@@ -20,6 +23,7 @@ function CardItem(props) {
         <Card.Footer>
           {props.btnDeleteStatus && (
             <a
+              href="/#"
               className="icon-btn btn-delete-card"
               title="Delete"
               onClick={(e) => {
@@ -32,9 +36,11 @@ function CardItem(props) {
           )}
           {props.btnEditStatus && (
             <a
+              href="/#"
               className="icon-btn btn-edit-card"
               title="Edit"
-              onClick={() => {
+              onClick={(event) => {
+                event.preventDefault();
                 props.onEdit(props.card);
               }}
             >
@@ -43,9 +49,11 @@ function CardItem(props) {
           )}
           {props.btnAddStatus && (
             <a
+              href="/#"
               className="icon-btn btn-add-card"
               title="Add To Faveorite"
-              onClick={() => {
+              onClick={(event) => {
+                event.preventDefault();
                 props.onAdd(props.card);
               }}
             >

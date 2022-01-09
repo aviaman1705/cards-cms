@@ -1,10 +1,11 @@
 import { Container } from "react-bootstrap";
+import "./AboutPage.css";
 
 function AboutPage() {
   return (
-    <Container className="h-100" id="about-container">
+    <Container className="page-container" id="about-container">
       <h1 className="title-page">About Page</h1>
-      <p className="text">
+      <p className="about-text">
         Contrary to popular belief, Lorem Ipsum is not simply random text. It
         has roots in a piece of classical Latin literature from 45 BC, making it
         over 2000 years old. Richard McClintock, a Latin professor at
@@ -22,7 +23,7 @@ function AboutPage() {
         exact original form, accompanied by English versions from the 1914
         translation by H. Rackham.
       </p>
-      <p className="text">
+      <p className="about-text">
         Contrary to popular belief, Lorem Ipsum is not simply random text. It
         has roots in a piece of classical Latin literature from 45 BC, making it
         over 2000 years old. Richard McClintock, a Latin professor at

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { getSearchResults, addFaveoriteCard } from "../../helpers/FetchHelper";
 import Cards from "../my-cards/Cards";
 import { toast } from "react-toastify";
-import { Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
+import "./Autocomplete.css";
 
-function Autocomplete() {
+function Autocomplete(props) {
   const [text, setText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [searchStarted, setStatusSearch] = useState(false);
@@ -20,43 +21,45 @@ function Autocomplete() {
   };
 
   return (
-    <div className="container">
-      <h1 className="p-4 text-center">Search</h1>
+    <Row>
+      <Col lg={12}>
+        <h1 id="search-title">Search</h1>
+      </Col>
+      <Col lg={12}>
+        <input
+          type="text"
+          placeholder="Search..."
+          className="col-md-12 form-control mb-5"
+          onChange={(e) => onChangeHandler(e.target.value)}
+          value={text}
+        />
 
-      <input
-        type="text"
-        className="col-md-12 form-control mb-5"
-        onChange={(e) => onChangeHandler(e.target.value)}
-        value={text}
-      />
+        {suggestions && (
+          <Row>
+            <Cards
+              cards={suggestions}
+              onAdd={addCardToFave}
+              btnAddStatus={props.user._id ? true : false}
+            />
+          </Row>
+        )}
 
-      {suggestions && (
-        <Row>
-          <Cards
-            cards={suggestions}
-            onAdd={addCardToFave}
-            btnAddStatus={true}
-          />
-        </Row>
-      )}
-
-      {suggestions.length == 0 && searchStarted && (
-        <h3 id="no-results-title" className="text-center">
-          No Results Found
-        </h3>
-      )}
-    </div>
+        {suggestions.length === 0 && searchStarted && (
+          <h3 id="no-results-title" className="text-center">
+            No Results Found
+          </h3>
+        )}
+      </Col>
+    </Row>
   );
 
   function addCardToFave(card) {
-    toast("Item deleted to favorites");
+    toast("Item added to favorites");
     setTimeout(() => {
       addFaveoriteCard(
         { bizNumber: card.bizNumber },
         localStorage.getItem("token"),
-        (data) => {
-          setSuggestions(suggestions.filter((item) => item._id !== card._id));
-        },
+        (data) => {},
         (error) => {
           toast(error);
         }

@@ -10,8 +10,12 @@ function NavigationBarComp(props) {
   return (
     <header>
       <Navbar className="main-header" collapseOnSelect expand="lg">
-        <Container>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Container className="px-2">
+          <Navbar.Toggle
+            className="mb-1"
+            id="toggle-btn"
+            aria-controls="responsive-navbar-nav"
+          />
           <Navbar.Collapse
             id="responsive-navbar-nav"
             className="justify-content-between"
@@ -23,7 +27,7 @@ function NavigationBarComp(props) {
                     .map((tab, index) => (
                       <Nav.Link
                         className={`nav-item-link ${
-                          location.pathname == tab.href ? "active" : ""
+                          location.pathname === tab.href ? "active" : ""
                         } `}
                         key={index}
                         to={tab.href}
@@ -38,7 +42,7 @@ function NavigationBarComp(props) {
                     .map((tab, index) => (
                       <Nav.Link
                         className={`nav-item-link ${
-                          location.pathname == tab.href ? "active" : ""
+                          location.pathname === tab.href ? "active" : ""
                         } `}
                         key={index}
                         to={tab.href}

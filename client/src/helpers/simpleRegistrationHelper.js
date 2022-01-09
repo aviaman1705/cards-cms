@@ -23,8 +23,7 @@ export default function validateSimpleRegistration(
   }
 
   if (data.email) {
-    var reges =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var reges = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     var res = reges.test(data.email);
     if (!res) {
       document.getElementById(idEmail).nextSibling.innerText =

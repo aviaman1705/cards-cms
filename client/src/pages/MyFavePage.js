@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 
 import Cards from "../components/my-cards/Cards";
 import { toast } from "react-toastify";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
+import "./MyFavePage.css";
 
 function MyFavePage() {
   let [cards, setCards] = useState([]);
@@ -19,10 +20,10 @@ function MyFavePage() {
   }, []);
 
   return (
-    <div className="container h-100">
+    <Container id="myfaveorite-container">
       <Row>
         <Col lg={12}>
-          <h1 className="p-4 text-center">My Favorites</h1>
+          <h1 id="my-fave-title">My Favorites</h1>
         </Col>
         <Cards
           cards={cards}
@@ -30,7 +31,7 @@ function MyFavePage() {
           btnDeleteStatus={true}
         />
       </Row>
-    </div>
+    </Container>
   );
 
   function deleteCardFromFave(id) {

@@ -6,12 +6,13 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
+import "./Form.css";
 function SignInPage({ set }) {
   const history = useHistory();
   let [error, setError] = useState("");
 
   return (
-    <Container className="h-100">
+    <Container id="login-container">
       <SignInComp clickHandler={signIn} serverError={error}></SignInComp>
     </Container>
   );

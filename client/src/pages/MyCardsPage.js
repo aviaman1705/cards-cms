@@ -6,6 +6,8 @@ import { getMeCards } from "../helpers/FetchHelper";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
+import "./MyCards.css";
+
 function MyCardsPage() {
   const [isAddMode, setAddMode] = useState(false);
   const [isEditMode, setEditMode] = useState(false);
@@ -20,10 +22,10 @@ function MyCardsPage() {
   }, []);
 
   return (
-    <Container className="h-100" id="card-container">
+    <Container className="page-container" id="card-container">
       <Row>
         <Col lg={12}>
-          <h1 className="p-4 text-center">My Cards</h1>
+          <h1 id="my-cards-title">My Cards</h1>
         </Col>
         {!isAddMode && !isEditMode && (
           <Col lg={12}>
@@ -80,7 +82,7 @@ function MyCardsPage() {
   function edit(data) {
     editCard(data, localStorage.getItem("token"), (response) => {
       cards.forEach(function (card, i) {
-        if (card._id == response._id) cards[i] = response;
+        if (card._id === response._id) cards[i] = response;
       });
       setEditMode(false);
     });

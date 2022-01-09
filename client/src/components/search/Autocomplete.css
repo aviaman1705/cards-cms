@@ -1,0 +1,8 @@
+div#search-container {
+    min-height: 80vh;
+}
+
+h1#search-title {
+    color: #407f7f;
+    padding: 20px 0px;
+}

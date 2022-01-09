@@ -1,17 +1,19 @@
-import { registerNewAccount, insertNewCard } from "../helpers/FetchHelper";
+import { registerNewAccount } from "../helpers/FetchHelper";
 import { toast } from "react-toastify";
 import { Container } from "react-bootstrap";
 import SimpleRegistrationComp from "../components/simple-registration/SimpleRegistrationComp";
 import { useState } from "react";
-import { signInUser, getMeData } from "../helpers/FetchHelper";
+import { signInUser } from "../helpers/FetchHelper";
 import { useHistory } from "react-router-dom";
+
+import "./Form.css";
 
 function BusinessRegistrationPage() {
   let [error, setError] = useState("");
   const history = useHistory();
 
   return (
-    <Container className="h-100">
+    <Container id="register-container">
       <SimpleRegistrationComp
         serverError={error}
         clickHandler={registerUser}

@@ -1,6 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import { SocialIcon } from "react-social-icons";
 
+import "./Footer.css";
 function Footer() {
   return (
     <footer className="footer bd-footer">
@@ -12,13 +13,13 @@ function Footer() {
           <Col lg={4}>
             <ul className="list">
               <li>
-                <a href="#">Trems</a>
+                <a href="/#">Trems</a>
               </li>
               <li>
-                <a href="#">Privacy </a>
+                <a href="/#">Privacy </a>
               </li>
               <li>
-                <a href="#">Policy</a>
+                <a href="/#">Policy</a>
               </li>
             </ul>
           </Col>

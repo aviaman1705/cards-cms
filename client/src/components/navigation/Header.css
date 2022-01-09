@@ -1,0 +1,35 @@
+@media (min-width: 300px) {
+    header {
+        background-color: #407F7F;
+    }
+
+    button#toggle-btn {
+        background-color: #fff;
+    }
+
+    nav.main-header {
+        padding: 1.1em 0em;
+    }
+
+    #basic-nav-dropdown {
+        color: #fff;
+    }
+
+    #basic-nav-dropdown:hover {
+        cursor: pointer;
+    }
+
+    button#back-btn {
+        margin: 0px 10px;
+    }
+
+    a.nav-item-link {
+        color: #fff !important;
+    }
+
+    a.nav-item-link.active {
+        color: #407F7F !important;
+        font-weight: 500;
+        background-color: #defcfc;
+    }
+}

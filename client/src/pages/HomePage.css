@@ -1,0 +1,39 @@
+@media (min-width: 300px) {
+    div#anonymous-container {
+        min-height: 80vh;
+    }
+
+    div#wrap-content {
+        margin-top: 40px;
+    }
+
+    h1#business-list-title {
+        color: #407f7f;
+        padding: 20px 0px;
+    }
+
+    h2.empty-faveorite-title.text-center {
+        color: gray;
+        height: 80vh;
+    }
+
+    h1#title-page {
+        color: #f44336;
+        text-align: center;
+    }
+
+    h2#subtitle-page {
+        color: #9e9e9e;
+        text-align: center;
+    }
+
+    p.text-home {
+        text-align: center;
+        padding: 10px 0px;
+        color: #000;
+    }
+
+    div#home-container {
+        min-height: 80vh;
+    }
+}
