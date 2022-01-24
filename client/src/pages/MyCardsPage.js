@@ -22,6 +22,35 @@ function MyCardsPage() {
       });
   }, []);
 
+  const changeEditModeHandler = (card) => {
+    setCard(card);
+    setAddMode(false);
+    setEditMode(true);
+  };
+
+  const onDeleteCardHandler = (cardId) => {
+    deleteCard(cardId, localStorage.getItem("token"), (response) => {
+      toast("The item was successfully deleted");
+      setCards(cards.filter((item) => item._id !== cardId));
+    });
+  };
+
+  const onAddCardHandler = (card) => {
+    insertNewCard(card, localStorage.getItem("token"), (response) => {
+      setCards((oldArray) => [...oldArray, response]);
+      setAddMode(false);
+    });
+  };
+
+  const onEditCardHandler = (card) => {
+    editCard(card, localStorage.getItem("token"), (response) => {
+      cards.forEach(function (card, i) {
+        if (card._id === response._id) cards[i] = response;
+      });
+      setEditMode(false);
+    });
+  };
+
   return (
     <Container className="page-container" id="card-container">
       <Row>
@@ -45,8 +74,8 @@ function MyCardsPage() {
         {!isAddMode && !isEditMode && (
           <Cards
             cards={cards}
-            onEdit={onEditCart}
-            onDelete={onDeleteCard}
+            onEdit={changeEditModeHandler}
+            onDelete={onDeleteCardHandler}
             btnEditStatus={true}
             btnDeleteStatus={true}
           />
@@ -55,7 +84,7 @@ function MyCardsPage() {
         {isAddMode && !isEditMode && (
           <CardForm
             textBtn="Create"
-            clickHandler={add}
+            clickHandler={onAddCardHandler}
             addMode={setAddMode}
             editMode={setEditMode}
           />
@@ -63,7 +92,7 @@ function MyCardsPage() {
         {!isAddMode && isEditMode && (
           <CardForm
             textBtn="Edit"
-            clickHandler={edit}
+            clickHandler={onEditCardHandler}
             card={card}
             addMode={setAddMode}
             editMode={setEditMode}
@@ -72,34 +101,5 @@ function MyCardsPage() {
       </Row>
     </Container>
   );
-
-  function add(data) {
-    insertNewCard(data, localStorage.getItem("token"), (response) => {
-      setCards((oldArray) => [...oldArray, response]);
-      setAddMode(false);
-    });
-  }
-
-  function edit(data) {
-    editCard(data, localStorage.getItem("token"), (response) => {
-      cards.forEach(function (card, i) {
-        if (card._id === response._id) cards[i] = response;
-      });
-      setEditMode(false);
-    });
-  }
-
-  function onDeleteCard(cardId) {
-    deleteCard(cardId, localStorage.getItem("token"), (response) => {
-      toast("The item was successfully deleted");
-      setCards(cards.filter((item) => item._id !== cardId));
-    });
-  }
-
-  function onEditCart(card) {
-    setCard(card);
-    setAddMode(false);
-    setEditMode(true);
-  }
 }
 export default MyCardsPage;
