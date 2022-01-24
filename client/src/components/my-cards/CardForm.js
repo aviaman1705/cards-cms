@@ -1,11 +1,38 @@
-import { Form, Button, Col } from "react-bootstrap";
+import { Form, Col } from "react-bootstrap";
 import validateCard from "../../helpers/cardHelper";
+import Button from "./../UI/Button/Button";
 
 function CardForm(props) {
+  const submitCardHandler = (event) => {
+    event.preventDefault();
+    var errorOrData = validateCard(
+      "formBasicBusinessName",
+      "formBasicBusinessDescription",
+      "formBasicBusinessAddress",
+      "formBasicBusinessPhone",
+      "formBasicBusinessImage"
+    );
+
+    if (typeof errorOrData === "boolean") {
+      return;
+    }
+
+    if (props.card) {
+      errorOrData.id = props.card._id;
+    }
+
+    props.clickHandler(errorOrData);
+  };
+
+  const backStepHandler = () => {
+    props.addMode(false);
+    props.editMode(false);
+  };
+
   return (
     <Col lg={4} md={8} xs={12}>
       {!props.card && (
-        <Form className="card-from">
+        <Form className="card-from" onSubmit={submitCardHandler}>
           <Form.Group controlId="formBasicBusinessName">
             <Form.Label>Business Name</Form.Label>
             <Form.Control type="text" />
@@ -32,34 +59,13 @@ function CardForm(props) {
             <Form.Label className="error"></Form.Label>
           </Form.Group>
           <Form.Group>
-            <Button
-              variant="primary"
-              type="submit"
-              onClick={(e) => {
-                e.preventDefault();
-                var errorOrData = validateCard(
-                  "formBasicBusinessName",
-                  "formBasicBusinessDescription",
-                  "formBasicBusinessAddress",
-                  "formBasicBusinessPhone",
-                  "formBasicBusinessImage"
-                );
-
-                if (typeof errorOrData == "object") {
-                  props.clickHandler(errorOrData);
-                }
-              }}
-            >
+            <Button type="submit" className="btn-primary mr-3">
               {props.textBtn}
             </Button>
-
             <Button
-              id="back-btn"
-              className="btn btn-secondary"
-              onClick={() => {
-                props.addMode(false);
-                props.editMode(false);
-              }}
+              type="button"
+              className="btn-secondary"
+              onClick={backStepHandler}
             >
               Back
             </Button>
@@ -67,7 +73,7 @@ function CardForm(props) {
         </Form>
       )}
       {props.card && (
-        <Form className="card-from">
+        <Form className="card-from" onSubmit={submitCardHandler}>
           <Form.Group controlId="formBasicBusinessName">
             <Form.Label>Business Name</Form.Label>
             <Form.Control type="text" defaultValue={props.card.bizName} />
@@ -97,34 +103,14 @@ function CardForm(props) {
             <Form.Label className="error"></Form.Label>
           </Form.Group>
           <Form.Group controlId="formBasicBusinessPhone">
-            <Button
-              variant="primary"
-              type="submit"
-              onClick={(e) => {
-                e.preventDefault();
-                var errorOrData = validateCard(
-                  "formBasicBusinessName",
-                  "formBasicBusinessDescription",
-                  "formBasicBusinessAddress",
-                  "formBasicBusinessPhone",
-                  "formBasicBusinessImage"
-                );
-                if (typeof errorOrData == "object") {
-                  errorOrData.id = props.card._id;
-                  props.clickHandler(errorOrData);
-                }
-              }}
-            >
+            <Button className="btn-primary mr-3" type="submit">
               {props.textBtn}
             </Button>
 
             <Button
-              id="back-btn"
-              className="btn btn-secondary"
-              onClick={() => {
-                props.addMode(false);
-                props.editMode(false);
-              }}
+              type="button"
+              className="btn-secondary"
+              onClick={backStepHandler}
             >
               Back
             </Button>

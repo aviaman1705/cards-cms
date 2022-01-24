@@ -1,10 +1,11 @@
 import { insertNewCard, editCard, deleteCard } from "../helpers/FetchHelper";
-import { Container, Button, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Cards from "../components/my-cards/Cards";
 import CardForm from "../components/my-cards/CardForm";
 import { getMeCards } from "../helpers/FetchHelper";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Button from "../components/UI/Button/Button";
 
 import "./MyCards.css";
 
@@ -30,8 +31,8 @@ function MyCardsPage() {
         {!isAddMode && !isEditMode && (
           <Col lg={12}>
             <Button
-              id="create-new-card-btn"
-              className="btn primary"
+              className="btn-dark mb-3"
+              type="button"
               onClick={() => {
                 setAddMode(true);
               }}
@@ -45,7 +46,7 @@ function MyCardsPage() {
           <Cards
             cards={cards}
             onEdit={onEditCart}
-            onDelete={remove}
+            onDelete={onDeleteCard}
             btnEditStatus={true}
             btnDeleteStatus={true}
           />
@@ -88,7 +89,7 @@ function MyCardsPage() {
     });
   }
 
-  function remove(cardId) {
+  function onDeleteCard(cardId) {
     deleteCard(cardId, localStorage.getItem("token"), (response) => {
       toast("The item was successfully deleted");
       setCards(cards.filter((item) => item._id !== cardId));
