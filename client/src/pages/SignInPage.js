@@ -3,7 +3,7 @@ import "./Form.css";
 
 const SignInPage = (props) => {
   return (
-    <div className="container" id="login-container">
+    <div className="container form-container">
       <SignInComp set={props.set}></SignInComp>
     </div>
   );

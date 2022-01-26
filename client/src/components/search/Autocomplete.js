@@ -34,7 +34,7 @@ function Autocomplete(props) {
         />
 
         {suggestions && (
-          <div className="col">
+          <div className="row">
             <Cards
               cards={suggestions}
               onAdd={addCardToFave}

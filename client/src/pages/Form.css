@@ -1,31 +1,70 @@
-input.form-control.invalid {
+div.form-container {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-warpper.row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+form.login-form {
+    padding: 20px;
+    background: rgba(250, 250, 250, 0.96);
+    border: 2px solid #07ad90;
+    border-radius: 0px;
+}
+
+h2.user-form-title {
+    color: #07ad90;
+    margin: 0.8rem 0rem;
+    font-weight: bold;
+}
+
+
+input.form-input {
+    border: none;
+    background: transparent;
+    line-height: 2;
+    border-bottom: 1px solid #07ad90;
+    border-radius: 0;
+}
+
+button.Button_button__2TzSi.submit-btn {
+    background: #07ad90;
+    width: 100%;
+    border-radius: 0px;
+    border: 1px solid #07ad90;
+}
+
+textarea:focus, input:focus {
+    outline: none !important;
+}
+
+input.form-control.form-input.invalid {
     border-color: red;
     background: #fbdada;
 }
 
-@media (min-width: 300px) {
-    div#register-container {
-        min-height: 80vh;
-    }
-
-    div#login-container {
-        min-height: 80vh;
-    }
-
-    h1.user-form-title {
-        color: #407f7f;
-        padding: 20px 0px;
-    }
-
-    label.form-label {
-        color: gray;
-        font-weight: 500;
-    }
-
-    label.error.form-label {
-        width: 100%;
-        margin-top: 0.25rem;
-        font-size: .875em;
-        color: #dc3545;
-    }
+h1.user-form-title {
+    color: #407f7f;
+    padding: 20px 0px;
 }
+
+label.form-label {
+    color: gray;
+    font-weight: 500;
+}
+
+label.error.form-label {
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: .875em;
+    color: #dc3545;
+}
+
+@media (min-width: 300px) {}

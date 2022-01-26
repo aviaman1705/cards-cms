@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { tabs } from "../../helpers/tabs";
+import { tabs } from "../../helpers/Tabs";
 import SignOutUser from "../sign-out/signOutComp";
 import { useLocation } from "react-router-dom";
 
-function NavigationBarComp(props) {
+const NavigationBarComp = (props) => {
   const location = useLocation();
 
   return (
@@ -18,7 +18,7 @@ function NavigationBarComp(props) {
             aria-controls="responsive-navbar-nav"
             type="button"
             aria-label="Toggle navigation"
-            className="mb-1 navbar-toggler collapsed"
+            className="mb-1 ml-3 navbar-toggler collapsed"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -62,6 +62,6 @@ function NavigationBarComp(props) {
       </nav>
     </header>
   );
-}
+};
 
 export default NavigationBarComp;

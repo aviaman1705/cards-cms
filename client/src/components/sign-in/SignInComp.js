@@ -98,22 +98,19 @@ const SignInComp = (props) => {
   };
 
   return (
-    <div className="row">
-      <div className="col-12">
-        <h1 className="user-form-title">Sign In</h1>
-      </div>
+    <div className="form-warpper row">
       <div className="col-xl-4 col-lg-6 col-md-8 col-sm-10 col">
-        <form className="user-form" onSubmit={loginHandler}>
+        <form className="login-form" onSubmit={loginHandler}>
+          <h2 className="user-form-title">Sign In</h2>
           <div className="form-group">
             <label className="form-label">Email</label>
             <input
               type="email"
-              autocomplete="false"
               id="formBasicEmail"
               value={emailState.value}
               onChange={emailChangeHandler}
               onBlur={emailBlurHandler}
-              className={`form-control ${
+              className={`form-control form-input ${
                 emailState.isValid === false ? "invalid" : ""
               }`}
             />
@@ -131,13 +128,13 @@ const SignInComp = (props) => {
               value={passwordState.value}
               onChange={passwordChangeHandler}
               onBlur={passwordBlurHandler}
-              className={`form-control ${
+              className={`form-control form-input ${
                 passwordState.isValid === false ? "invalid" : ""
               }`}
             />
             {passwordState.isValid === false ? (
               <label className="error form-label">
-                Password must hace 6 letters*
+                Password must contain at least 6 characters*
               </label>
             ) : null}
 
@@ -147,13 +144,15 @@ const SignInComp = (props) => {
               </label>
             ) : null}
           </div>
-          <Button
-            type="submit"
-            className="btn-primary mr-3"
-            disabled={!formIsValid}
-          >
-            Sign in
-          </Button>
+          <div className="form-group">
+            <Button
+              type="submit"
+              className="submit-btn"
+              disabled={!formIsValid}
+            >
+              Sign in
+            </Button>
+          </div>
         </form>
       </div>
     </div>
