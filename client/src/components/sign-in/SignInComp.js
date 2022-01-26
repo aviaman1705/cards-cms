@@ -103,7 +103,7 @@ const SignInComp = (props) => {
         <h1 className="user-form-title">Sign In</h1>
       </div>
       <div className="col-xl-4 col-lg-6 col-md-8 col-sm-10 col">
-        <form className="user-form" onSubmit={loginHandler} autocomplete="off">
+        <form className="user-form" onSubmit={loginHandler}>
           <div className="form-group">
             <label className="form-label">Email</label>
             <input
