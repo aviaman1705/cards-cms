@@ -21,7 +21,7 @@ export default function validateSignIn(idEmail, idPassword) {
     var res = reges.test(data.email);
     if (!res) {
       document.getElementById(idEmail).nextSibling.innerText =
-        "Must enter  valid email *";
+        "Must enter valid email *";
       notValidFrom = false;
     } else {
       document.getElementById(idEmail).nextSibling.innerText = ``;

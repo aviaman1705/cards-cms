@@ -1,3 +1,8 @@
+input.form-control.invalid {
+    border-color: red;
+    background: #fbdada;
+}
+
 @media (min-width: 300px) {
     div#register-container {
         min-height: 80vh;
