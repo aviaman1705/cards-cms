@@ -1,7 +1,7 @@
 import HomePage from "../pages/HomePage";
 import AboutPage from "../pages/AboutPage";
 import SignInPage from "../pages/SignInPage";
-import BusinessRegistrationPage from "../pages/BusinessRegistrationPage";
+import RegistrationPage from "../pages/RegistrationPage";
 import MyCardsPage from "../pages/MyCardsPage";
 import SearchResultsPage from "../pages/SearchResultsPage";
 import { BiArchive, BiCreditCard, BiHome, BiLeftIndent } from "react-icons/bi";
@@ -25,7 +25,7 @@ export const tabs = [
   {
     name: "Registration",
     href: "/registration",
-    page: BusinessRegistrationPage,
+    page: RegistrationPage,
     displayForLoggedin: false,
     icon: <BiLeftIndent></BiLeftIndent>,
   },

@@ -7,6 +7,7 @@ export default function validateCard(
   idBusinessPhone,
   idBasicBusinessImage
 ) {
+  debugger;
   let notValidFrom = true;
   var data = {
     bizName: getElemVal(idName),

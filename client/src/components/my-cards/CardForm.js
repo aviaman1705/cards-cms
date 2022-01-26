@@ -1,4 +1,3 @@
-import { Form, Col } from "react-bootstrap";
 import validateCard from "../../helpers/cardHelper";
 import Button from "./../UI/Button/Button";
 
@@ -30,35 +29,55 @@ function CardForm(props) {
   };
 
   return (
-    <Col lg={4} md={8} xs={12}>
+    <div className="col-lg-4 col-md-8 col">
       {!props.card && (
-        <Form className="card-from" onSubmit={submitCardHandler}>
-          <Form.Group controlId="formBasicBusinessName">
-            <Form.Label>Business Name</Form.Label>
-            <Form.Control type="text" />
-            <Form.Label className="error"></Form.Label>
-          </Form.Group>
-          <Form.Group controlId="formBasicBusinessDescription">
-            <Form.Label>Business Description</Form.Label>
-            <Form.Control type="text" />
-            <Form.Label className="error"></Form.Label>
-          </Form.Group>
-          <Form.Group controlId="formBasicBusinessAddress">
-            Y<Form.Label>Business Address</Form.Label>
-            <Form.Control type="text" />
-            <Form.Label className="error"></Form.Label>
-          </Form.Group>
-          <Form.Group controlId="formBasicBusinessPhone">
-            <Form.Label>Business Phone</Form.Label>
-            <Form.Control type="text" />
-            <Form.Label className="error"></Form.Label>
-          </Form.Group>
-          <Form.Group controlId="formBasicBusinessImage">
-            <Form.Label>Business Image</Form.Label>
-            <Form.Control type="text" />
-            <Form.Label className="error"></Form.Label>
-          </Form.Group>
-          <Form.Group>
+        <form className="card-from" onSubmit={submitCardHandler}>
+          <div className="form-group">
+            <label className="form-label">Business Name</label>
+            <input
+              type="text"
+              id="formBasicBusinessName"
+              className="form-control"
+            />
+            <label className="error form-label"></label>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Business Description</label>
+            <input
+              type="text"
+              id="formBasicBusinessDescription"
+              className="form-control"
+            />
+            <label className="error form-label"></label>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Business Address</label>
+            <input
+              type="text"
+              id="formBasicBusinessAddress"
+              className="form-control"
+            />
+            <label className="error form-label"></label>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Business Phone</label>
+            <input
+              type="text"
+              id="formBasicBusinessPhone"
+              className="form-control"
+            />
+            <label className="error form-label"></label>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Business Image</label>
+            <input
+              type="text"
+              id="formBasicBusinessImage"
+              className="form-control"
+            />
+            <label className="error form-label"></label>
+          </div>
+          <div className="form-group">
             <Button type="submit" className="btn-primary mr-3">
               {props.textBtn}
             </Button>
@@ -69,44 +88,65 @@ function CardForm(props) {
             >
               Back
             </Button>
-          </Form.Group>
-        </Form>
+          </div>
+        </form>
       )}
       {props.card && (
-        <Form className="card-from" onSubmit={submitCardHandler}>
-          <Form.Group controlId="formBasicBusinessName">
-            <Form.Label>Business Name</Form.Label>
-            <Form.Control type="text" defaultValue={props.card.bizName} />
-            <Form.Label className="error"></Form.Label>
-          </Form.Group>
-          <Form.Group controlId="formBasicBusinessDescription">
-            <Form.Label>Business Description</Form.Label>
-            <Form.Control
+        <form className="card-from" onSubmit={submitCardHandler}>
+          <div className="form-group">
+            <label className="form-label">Business Name</label>
+            <input
               type="text"
+              id="formBasicBusinessName"
+              className="form-control"
+              defaultValue={props.card.bizName}
+            />
+            <label className="error form-label"></label>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Business Description</label>
+            <input
+              type="text"
+              id="formBasicBusinessDescription"
+              className="form-control"
               defaultValue={props.card.bizDescription}
             />
-            <Form.Label className="error"></Form.Label>
-          </Form.Group>
-          <Form.Group controlId="formBasicBusinessAddress">
-            <Form.Label>Business Address</Form.Label>
-            <Form.Control type="text" defaultValue={props.card.bizAddress} />
-            <Form.Label className="error"></Form.Label>
-          </Form.Group>
-          <Form.Group controlId="formBasicBusinessPhone">
-            <Form.Label>Business Phone</Form.Label>
-            <Form.Control type="text" defaultValue={props.card.bizPhone} />
-            <Form.Label className="error"></Form.Label>
-          </Form.Group>
-          <Form.Group controlId="formBasicBusinessImage">
-            <Form.Label>Business Image</Form.Label>
-            <Form.Control type="text" defaultValue={props.card.bizImage} />
-            <Form.Label className="error"></Form.Label>
-          </Form.Group>
-          <Form.Group controlId="formBasicBusinessPhone">
-            <Button className="btn-primary mr-3" type="submit">
+            <label className="error form-label"></label>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Business Address</label>
+            <input
+              type="text"
+              id="formBasicBusinessAddress"
+              className="form-control"
+              defaultValue={props.card.bizAddress}
+            />
+            <label className="error form-label"></label>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Business Phone</label>
+            <input
+              type="text"
+              id="formBasicBusinessPhone"
+              className="form-control"
+              defaultValue={props.card.bizPhone}
+            />
+            <label className="error form-label"></label>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Business Image</label>
+            <input
+              type="text"
+              id="formBasicBusinessImage"
+              className="form-control"
+              defaultValue={props.card.bizImage}
+            />
+            <label className="error form-label"></label>
+          </div>
+          <div className="form-group">
+            <Button type="submit" className="btn-primary mr-3">
               {props.textBtn}
             </Button>
-
             <Button
               type="button"
               className="btn-secondary"
@@ -114,10 +154,10 @@ function CardForm(props) {
             >
               Back
             </Button>
-          </Form.Group>
-        </Form>
+          </div>
+        </form>
       )}
-    </Col>
+    </div>
   );
 }
 export default CardForm;

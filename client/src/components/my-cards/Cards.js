@@ -1,9 +1,8 @@
-import { Col } from "react-bootstrap";
 import CardItem from "./CardItem";
 
 function Cards(props) {
   return props.cards.map((c, index) => (
-    <Col xl={3} lg={4} md={6} xs={12} key={index}>
+    <div className="col-xl-3 col-lg-4 col-md-6" key={index}>
       <CardItem
         card={c}
         onEdit={props.onEdit}
@@ -13,7 +12,7 @@ function Cards(props) {
         btnEditStatus={props.btnEditStatus}
         btnDeleteStatus={props.btnDeleteStatus}
       ></CardItem>
-    </Col>
+    </div>
   ));
 }
 export default Cards;

@@ -1,9 +1,8 @@
-import { Container } from "react-bootstrap";
 import "./AboutPage.css";
 
 function AboutPage() {
   return (
-    <Container className="page-container" id="about-container">
+    <div className="container" id="about-container">
       <h1 className="title-page">About Page</h1>
       <p className="about-text">
         Contrary to popular belief, Lorem Ipsum is not simply random text. It
@@ -41,7 +40,7 @@ function AboutPage() {
         exact original form, accompanied by English versions from the 1914
         translation by H. Rackham.
       </p>
-    </Container>
+    </div>
   );
 }
 export default AboutPage;

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { getSearchResults, addFaveoriteCard } from "../../helpers/FetchHelper";
 import Cards from "../my-cards/Cards";
 import { toast } from "react-toastify";
-import { Col, Row } from "react-bootstrap";
 import "./Autocomplete.css";
 
 function Autocomplete(props) {
@@ -21,11 +20,11 @@ function Autocomplete(props) {
   };
 
   return (
-    <Row>
-      <Col lg={12}>
+    <div className="row">
+      <div className="col-12">
         <h1 id="search-title">Search</h1>
-      </Col>
-      <Col lg={12}>
+      </div>
+      <div className="col-12">
         <input
           type="text"
           placeholder="Search..."
@@ -35,13 +34,13 @@ function Autocomplete(props) {
         />
 
         {suggestions && (
-          <Row>
+          <div className="col">
             <Cards
               cards={suggestions}
               onAdd={addCardToFave}
               btnAddStatus={props.user._id ? true : false}
             />
-          </Row>
+          </div>
         )}
 
         {suggestions.length === 0 && searchStarted && (
@@ -49,8 +48,8 @@ function Autocomplete(props) {
             No Results Found
           </h3>
         )}
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 
   function addCardToFave(card) {

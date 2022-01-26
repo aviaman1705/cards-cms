@@ -1,4 +1,3 @@
-import { Form, Row, Col } from "react-bootstrap";
 import validateSimpleRegistration from "../../helpers/simpleRegistrationHelper";
 import Button from "../UI/Button/Button";
 
@@ -19,33 +18,37 @@ function SimpleRegistrationComp(props) {
   };
 
   return (
-    <Row>
-      <Col lg={12}>
-        <h1 className="user-form-title">{props.text}</h1>
-      </Col>
-      <Col xl={4} lg={6} md={8} sm={10} xs={12}>
-        <Form className="user-form" onSubmit={registerHandler}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="email" />
-            <Form.Label className="error"></Form.Label>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" />
-            <Form.Label className="error"></Form.Label>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicName">
-            <Form.Label>Name</Form.Label>
-            <Form.Control type="text" />
-            <Form.Label className="error">{props.serverError}</Form.Label>
-          </Form.Group>
+    <div className="row">
+      <div className="col-12">
+        <h1 className="user-form-title">Register</h1>
+      </div>
+      <div className="col-xl-4 col-lg-6 col-md-8 col-sm-10 col">
+        <form className="user-form" onSubmit={registerHandler}>
+          <div className="form-group">
+            <label className="form-label">Email</label>
+            <input type="email" id="formBasicEmail" className="form-control" />
+            <label className="error form-label"></label>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Password</label>
+            <input
+              type="password"
+              id="formBasicPassword"
+              className="form-control"
+            />
+            <label className="error form-label"></label>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Name</label>
+            <input type="text" id="formBasicName" className="form-control" />
+            <label className="error form-label"></label>
+          </div>
           <Button type="submit" className="btn-primary mr-3">
             Register
           </Button>
-        </Form>
-      </Col>
-    </Row>
+        </form>
+      </div>
+    </div>
   );
 }
 

@@ -1,5 +1,4 @@
 import { signInUser } from "../helpers/FetchHelper";
-import { Container } from "react-bootstrap";
 import SignInComp from "../components/sign-in/SignInComp";
 import { getMeData } from "../helpers/FetchHelper";
 import { useHistory } from "react-router-dom";
@@ -12,9 +11,9 @@ function SignInPage({ set }) {
   let [error, setError] = useState("");
 
   return (
-    <Container id="login-container">
+    <div className="container" id="login-container">
       <SignInComp clickHandler={signIn} serverError={error}></SignInComp>
-    </Container>
+    </div>
   );
 
   function signIn(data) {

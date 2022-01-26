@@ -1,26 +1,23 @@
-import { Card } from "react-bootstrap";
 import { AiFillDelete, AiFillEdit, AiFillPlusCircle } from "react-icons/ai";
 import "./CardItem.css";
 function CardItem(props) {
   return (
     (props.card && (
-      <Card>
-        <Card.Img
-          variant="top"
+      <div className="card">
+        <img
           src={props.card.bizImage}
           className="card-img-top"
           alt={props.card.bizName}
         />
-        <Card.Body>
-          <Card.Title className="card-item-title">
-            {" "}
-            {props.card.bizName}
-          </Card.Title>
-          <Card.Text>{props.card.bizDescription}</Card.Text>
-          <Card.Text>{props.card.bizAddress}</Card.Text>
-          <Card.Text>{props.card.bizPhone}</Card.Text>
-        </Card.Body>
-        <Card.Footer>
+        <div className="card-Body">
+          <div className="card-title">{props.card.bizName}</div>
+          <div className="card-text">
+            <div>{props.card.bizDescription}</div>
+            <div>{props.card.bizAddress}</div>
+            <div>{props.card.bizPhone}</div>
+          </div>
+        </div>
+        <div className="card-footer">
           {props.btnDeleteStatus && (
             <a
               href="/#"
@@ -60,8 +57,8 @@ function CardItem(props) {
               <AiFillPlusCircle />
             </a>
           )}
-        </Card.Footer>
-      </Card>
+        </div>
+      </div>
     )) || <></>
   );
 }

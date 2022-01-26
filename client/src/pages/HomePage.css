@@ -1,13 +1,32 @@
 @media (min-width: 300px) {
+
     div#anonymous-container {
-        min-height: 80vh;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
     }
 
     div#wrap-content {
-        margin-top: 40px;
+        width: 90%;
+        border: 2px solid #407F7F;
+        padding: 0px;
+        height: 50%;
+        border-radius: 10px;
+        background: #5b8080;
+        display: flex;
+        flex-direction: column;
+        grid-gap: 20px;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        margin-top: 3rem;
     }
 
-    h1#business-list-title {
+    h1#title-page, h2#subtitle-page, p.text-home {
+        color: #fff;
+    }
+
+    /* h1#business-list-title {
         color: #407f7f;
         padding: 20px 0px;
     }
@@ -17,23 +36,24 @@
         height: 80vh;
     }
 
-    h1#title-page {
-        color: #f44336;
-        text-align: center;
-    }
-
-    h2#subtitle-page {
-        color: #9e9e9e;
-        text-align: center;
-    }
-
-    p.text-home {
-        text-align: center;
-        padding: 10px 0px;
-        color: #000;
+    h1#title-page, h2#subtitle-page, p.text-home {
+        color: #fff;
     }
 
     div#home-container {
         min-height: 80vh;
-    }
+    } */
 }
+
+/* Small devies (tablets, 768px and up) */
+
+@media (min-width: 768px) {}
+
+
+/* Small devies (desktops, 992px and up) */
+
+@media (min-width: 992px) {}
+
+/* Small devies (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {}

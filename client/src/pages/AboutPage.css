@@ -1,6 +1,6 @@
 @media (min-width: 300px) {
     div#about-container {
-        min-height: 80vh;
+        min-height: 100vh;
     }
 
     h1.title-page {

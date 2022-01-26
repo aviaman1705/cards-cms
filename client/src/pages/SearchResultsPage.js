@@ -1,11 +1,10 @@
-import { Container } from "react-bootstrap";
 import Autocomplete from "../components/search/Autocomplete";
 
 function SearchResultsPage(props) {
   return (
-    <Container id="search-container">
+    <div className="container" id="search-container">
       <Autocomplete user={props.user} />
-    </Container>
+    </div>
   );
 }
 export default SearchResultsPage;

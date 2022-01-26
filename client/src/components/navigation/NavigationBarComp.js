@@ -1,4 +1,3 @@
-import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { tabs } from "../../helpers/tabs";
 import SignOutUser from "../sign-out/signOutComp";
@@ -9,54 +8,58 @@ function NavigationBarComp(props) {
 
   return (
     <header>
-      <Navbar className="main-header" collapseOnSelect expand="lg">
-        <Container className="px-2">
-          <Navbar.Toggle
-            className="mb-1"
+      <nav
+        className="main-header navbar navbar-expand-lg navbar-light"
+        expand="lg"
+      >
+        <div className="container">
+          <button
             id="toggle-btn"
             aria-controls="responsive-navbar-nav"
-          />
-          <Navbar.Collapse
-            id="responsive-navbar-nav"
-            className="justify-content-between"
+            type="button"
+            aria-label="Toggle navigation"
+            className="mb-1 navbar-toggler collapsed"
           >
-            <Nav className="me-auto">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div
+            className="justify-content-between navbar-collapse collapse"
+            id="responsive-navbar-nav"
+          >
+            <div className="me-auto nav">
               {props.user._id
                 ? tabs
                     .filter((x) => x.displayForLoggedin && !x.searchResults)
                     .map((tab, index) => (
-                      <Nav.Link
-                        className={`nav-item-link ${
+                      <Link
+                        className={`nav-item-link nav-link ${
                           location.pathname === tab.href ? "active" : ""
-                        } `}
+                        }`}
                         key={index}
                         to={tab.href}
-                        as={Link}
                       >
-                        {" "}
-                        {tab.icon} {tab.name}{" "}
-                      </Nav.Link>
+                        {tab.name}
+                      </Link>
                     ))
                 : tabs
                     .filter((x) => !x.hideForLoggedout)
                     .map((tab, index) => (
-                      <Nav.Link
-                        className={`nav-item-link ${
+                      <Link
+                        className={`nav-item-link nav-link ${
                           location.pathname === tab.href ? "active" : ""
-                        } `}
+                        }`}
                         key={index}
                         to={tab.href}
-                        as={Link}
                       >
-                        {" "}
-                        {tab.icon} {tab.name}{" "}
-                      </Nav.Link>
+                        {tab.name}
+                      </Link>
                     ))}
-            </Nav>
+            </div>
             {props.user._id && <SignOutUser user={props.user}></SignOutUser>}
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+          </div>
+        </div>
+      </nav>
     </header>
   );
 }

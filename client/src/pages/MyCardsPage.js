@@ -1,5 +1,4 @@
 import { insertNewCard, editCard, deleteCard } from "../helpers/FetchHelper";
-import { Container, Row, Col } from "react-bootstrap";
 import Cards from "../components/my-cards/Cards";
 import CardForm from "../components/my-cards/CardForm";
 import { getMeCards } from "../helpers/FetchHelper";
@@ -52,13 +51,13 @@ function MyCardsPage() {
   };
 
   return (
-    <Container className="page-container" id="card-container">
-      <Row>
-        <Col lg={12}>
+    <div className="container" id="card-container">
+      <div className="row">
+        <div className="col-12">
           <h1 id="my-cards-title">My Cards</h1>
-        </Col>
+        </div>
         {!isAddMode && !isEditMode && (
-          <Col lg={12}>
+          <div className="col-12">
             <Button
               className="btn-dark mb-3"
               type="button"
@@ -68,7 +67,7 @@ function MyCardsPage() {
             >
               Create New Card
             </Button>
-          </Col>
+          </div>
         )}
 
         {!isAddMode && !isEditMode && (
@@ -98,8 +97,8 @@ function MyCardsPage() {
             editMode={setEditMode}
           />
         )}
-      </Row>
-    </Container>
+      </div>
+    </div>
   );
 }
 export default MyCardsPage;

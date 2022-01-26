@@ -1,6 +1,5 @@
 import { registerNewAccount } from "../helpers/FetchHelper";
 import { toast } from "react-toastify";
-import { Container } from "react-bootstrap";
 import SimpleRegistrationComp from "../components/simple-registration/SimpleRegistrationComp";
 import { useState } from "react";
 import { signInUser } from "../helpers/FetchHelper";
@@ -8,18 +7,18 @@ import { useHistory } from "react-router-dom";
 
 import "./Form.css";
 
-function BusinessRegistrationPage() {
+function RegistrationPage() {
   let [error, setError] = useState("");
   const history = useHistory();
 
   return (
-    <Container id="register-container">
+    <div className="container" id="register-container">
       <SimpleRegistrationComp
         serverError={error}
         clickHandler={registerUser}
         text="Business Registration"
       ></SimpleRegistrationComp>
-    </Container>
+    </div>
   );
 
   function registerUser(data) {
@@ -49,4 +48,4 @@ function BusinessRegistrationPage() {
   }
 }
 
-export default BusinessRegistrationPage;
+export default RegistrationPage;

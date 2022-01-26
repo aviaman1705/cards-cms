@@ -14,7 +14,7 @@ function App() {
   }, []);
 
   return (
-    <main>
+    <>
       <ToastContainer
         position="top-center"
         autoClose={3000}
@@ -28,7 +28,7 @@ function App() {
       />
       <SinglePageAppComp set={set} user={user}></SinglePageAppComp>
       <Footer set={set} user={user}></Footer>
-    </main>
+    </>
   );
 }
 
