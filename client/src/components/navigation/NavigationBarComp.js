@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { tabs } from "../../helpers/tabs";
+import { tabs } from "../../helpers/Tabs";
 import SignOutUser from "../sign-out/signOutComp";
 import { useLocation } from "react-router-dom";
 
