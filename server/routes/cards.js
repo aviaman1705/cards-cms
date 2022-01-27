@@ -30,7 +30,8 @@ router.put("/:id", auth, async (req, res) => {
 
   let card = await Card.findOneAndUpdate(
     { _id: req.params.id, user_id: req.user._id },
-    req.body
+    req.body,
+    { useFindAndModify: false }
   );
   if (!card)
     return res.status(404).send("The card with the given ID was not found.");

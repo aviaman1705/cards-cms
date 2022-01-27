@@ -84,6 +84,13 @@ function MyCardsPage() {
           <CardForm
             textBtn="Create"
             clickHandler={onAddCardHandler}
+            card={{
+              bizName: "",
+              bizDescription: "",
+              bizAddress: "",
+              bizPhone: "",
+              bizImage: "",
+            }}
             addMode={setAddMode}
             editMode={setEditMode}
           />
