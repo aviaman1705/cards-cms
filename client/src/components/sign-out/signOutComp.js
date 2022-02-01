@@ -1,8 +1,8 @@
-function SignOutUser({ user }) {
-  const logout = () => {
-    localStorage.clear();
-    window.location.href = "/sign-in";
-  };
+import { useContext } from "react";
+import AuthContext from "../../state/auth-context";
+
+const SignOutUser = ({ user }) => {
+  const ctx = useContext(AuthContext);
 
   return (
     <div className="nav-item dropdown">
@@ -15,14 +15,14 @@ function SignOutUser({ user }) {
         aria-haspopup="true"
         aria-expanded="false"
       >
-        Hi {user.name}
+        Hi {ctx.user.name}
       </a>
       <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a className="dropdown-item" href="/#" onClick={logout}>
+        <a className="dropdown-item" href="/#" onClick={ctx.onLogout}>
           Logout
         </a>
       </div>
     </div>
   );
-}
+};
 export default SignOutUser;

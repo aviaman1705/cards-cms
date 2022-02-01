@@ -3,5 +3,11 @@ import "./index.css";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.css";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContextPrvider } from "./state/auth-context";
 
-render(<App />, document.getElementById("root"));
+render(
+  <AuthContextPrvider>
+    <App />
+  </AuthContextPrvider>,
+  document.getElementById("root")
+);

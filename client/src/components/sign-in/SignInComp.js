@@ -1,11 +1,13 @@
-import { useReducer, useState, useEffect } from "react";
+import { useReducer, useState, useEffect, useContext } from "react";
 import Button from "../UI/Button/Button";
-import { signInUser, getMeData } from "../../helpers/FetchHelper";
+import { signInUser } from "../../helpers/FetchHelper";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { emailReducer, passwordReducer } from "../../helpers/RegisterHelper";
+import AuthContext from "../../state/auth-context";
 
 const SignInComp = (props) => {
+  const ctx = useContext(AuthContext);
   const history = useHistory();
 
   const [formIsValid, setFormIsValid] = useState(false);
@@ -66,11 +68,8 @@ const SignInComp = (props) => {
 
         if (response.token) {
           toast("Welcome to U");
-          localStorage.setItem("token", response.token);
-          getMeData(response.token, (data) => {
-            props.set(data);
-            history.push("/home");
-          });
+          ctx.onLogin(response.token);
+          history.push("/home");
         }
       }
     );

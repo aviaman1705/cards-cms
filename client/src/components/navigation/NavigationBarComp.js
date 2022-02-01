@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import { tabs } from "../../helpers/Tabs";
 import SignOutUser from "../sign-out/signOutComp";
 import { useLocation } from "react-router-dom";
+import AuthContext from "../../state/auth-context";
+import { useContext } from "react";
 
 const NavigationBarComp = (props) => {
+  const ctx = useContext(AuthContext);
   const location = useLocation();
 
   return (
@@ -28,7 +31,7 @@ const NavigationBarComp = (props) => {
             id="responsive-navbar-nav"
           >
             <div className="me-auto nav">
-              {props.user._id
+              {ctx.isLoggedIn
                 ? tabs
                     .filter((x) => x.displayForLoggedin && !x.searchResults)
                     .map((tab, index) => (
@@ -56,7 +59,7 @@ const NavigationBarComp = (props) => {
                       </Link>
                     ))}
             </div>
-            {props.user._id && <SignOutUser user={props.user}></SignOutUser>}
+            {ctx.isLoggedIn && <SignOutUser user={props.user}></SignOutUser>}
           </div>
         </div>
       </nav>

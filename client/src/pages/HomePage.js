@@ -1,10 +1,12 @@
 import { getFavoritesCards, addFaveoriteCard } from "../helpers/FetchHelper";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Cards from "../components/my-cards/Cards";
 import { toast } from "react-toastify";
+import AuthContext from "../state/auth-context";
 import "./HomePage.css";
 
 function HomePage(props) {
+  const ctx = useContext(AuthContext);
   let [cards, setCards] = useState([]);
 
   useEffect(() => {
@@ -16,7 +18,7 @@ function HomePage(props) {
 
   return (
     <>
-      {!props.user._id && (
+      {!ctx.isLoggedIn && (
         <div id="anonymous-container">
           <div id="wrap-content">
             <h1 id="title-page">Welcome To Our Business CMS</h1>
@@ -28,13 +30,13 @@ function HomePage(props) {
         </div>
       )}
 
-      {props.user._id && (
+      {ctx.isLoggedIn && (
         <div className="container" id="home-container">
           <h1 className="page-title">Business list</h1>
           <div className="row">
             <Cards cards={cards} onAdd={addCardToFave} btnAddStatus={true} />
           </div>
-          {props.user._id && cards.length === 0 && (
+          {ctx.isLoggedIn && cards.length === 0 && (
             <h2 className="empty-faveorite-title text-center">
               There are no businesses left that can be saved in favorites
             </h2>
