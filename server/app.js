@@ -1,11 +1,12 @@
 const users = require("./routes/users");
 const auth = require("./routes/auth");
 const cards = require("./routes/cards");
+const cities = require("./routes/cities");
+const { User } = require("./models/user");
 const express = require("express");
 const app = express();
 const http = require("http").Server(app);
 const mongoose = require("mongoose");
-const { User } = require("./models/user");
 const cors = require("cors");
 
 mongoose
@@ -25,6 +26,8 @@ app.use("/api/users", users);
 app.use("/api/auth", auth);
 
 app.use("/api/cards", cards);
+
+app.use("/api/cities", cities);
 
 app.get("/", (req, res) => {
   res.send(new Date().toLocaleTimeString());
