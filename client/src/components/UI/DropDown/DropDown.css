@@ -1,0 +1,13 @@
+button#dropdown-menu-align-right {
+    width: 100%;
+    background-color: #dddae0;
+    color: black;
+    border-color: #c5c1c8;
+    direction: rtl;
+}
+
+.dropdown-menu.show {
+    width: 100%;
+    text-align: right;
+    direction: rtl;
+}

@@ -1,23 +1,39 @@
-import { getFavoritesCards, addFaveoriteCard } from "../helpers/FetchHelper";
+import {
+  getFavoritesCards,
+  addFaveoriteCard,
+  getCities,
+} from "../helpers/FetchHelper";
 import { useContext, useEffect, useState } from "react";
 import Cards from "../components/my-cards/Cards";
 import { toast } from "react-toastify";
 import AuthContext from "../state/auth-context";
 import "./HomePage.css";
+import DropDown from "../components/UI/DropDown/DropDown";
 
 function HomePage(props) {
   const ctx = useContext(AuthContext);
   let [cards, setCards] = useState([]);
+  const [cities, setCities] = useState([]);
 
   useEffect(() => {
     if (localStorage.getItem("token"))
       getFavoritesCards(localStorage.getItem("token"), (data) => {
         setCards(data);
       });
+
+    getCities(localStorage.getItem("token"), (response) => {
+      setCities(response);
+    });
   }, []);
 
   return (
     <>
+      <div className="row">
+        <div className="col-lg-2">
+          <DropDown defaultText="בחר עיר..." items={cities} />
+        </div>
+      </div>
+
       {!ctx.isLoggedIn && (
         <div id="anonymous-container">
           <div id="wrap-content">

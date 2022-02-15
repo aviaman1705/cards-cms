@@ -139,6 +139,16 @@ export function deleteCardFromFaveorite(idToDelete, token, callback) {
     .catch((x) => callback(x));
 }
 
+//city
+export function getCities(token, callback) {
+  if (!token) return;
+  let url = baseUrl + "/api/cities";
+  fetch(url, { headers: { "x-auth-token": token } })
+    .then((x) => x.json())
+    .then((x) => callback(x))
+    .catch((x) => callback(x));
+}
+
 function getConfigurationForPostRequest(data) {
   return {
     headers: {
