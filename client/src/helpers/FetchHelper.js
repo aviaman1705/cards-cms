@@ -149,6 +149,16 @@ export function getCities(token, callback) {
     .catch((x) => callback(x));
 }
 
+//categories
+export function getCategories(token, callback) {
+  if (!token) return;
+  let url = baseUrl + "/api/categories";
+  fetch(url, { headers: { "x-auth-token": token } })
+    .then((x) => x.json())
+    .then((x) => callback(x))
+    .catch((x) => callback(x));
+}
+
 function getConfigurationForPostRequest(data) {
   return {
     headers: {

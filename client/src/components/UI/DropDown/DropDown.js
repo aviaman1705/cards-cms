@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import DropdownButton from "react-bootstrap/esm/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 
@@ -7,11 +7,10 @@ import "./DropDown.css";
 
 const DropDown = (props) => {
   const [title, setTitle] = useState(props.defaultText);
-  const [selectedValue, setSelectedValue] = useState("");
 
   const handleSelect = (e) => {
-    setSelectedValue(e);
     setTitle(e);
+    props.onSelectedOption(e);
   };
 
   return (
@@ -25,7 +24,7 @@ const DropDown = (props) => {
           {props.defaultText}
         </Dropdown.Item>
         {props.items.map((item) => (
-          <Dropdown.Item key={item._id} eventKey={item.title}>
+          <Dropdown.Item key={item._id} eventKey={item._id}>
             {item.title}
           </Dropdown.Item>
         ))}
