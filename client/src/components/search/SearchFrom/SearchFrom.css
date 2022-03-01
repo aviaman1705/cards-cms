@@ -1,0 +1,30 @@
+form#search-form {
+    padding: 3rem 0rem;
+}
+
+label.form-label.search-from-label {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    position: absolute;
+    left: -5000px;
+    overflow: hidden;
+}
+
+select.form-control.search-form-select {
+    text-align: right;
+    direction: rtl;
+    padding: 0.6rem 0.75rem;
+    background-position-x: 5px;
+}
+
+.invalid-feedback.search-form-error {
+    text-align: right;
+    direction: rtl;
+}
+
+button#search-from-btn {
+    border: 1px solid #407f7f;
+    background: #407f7f;
+    padding: 0.5rem 3.5rem;
+}

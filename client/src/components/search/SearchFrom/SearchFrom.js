@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { getCategories, getCities } from "../../../helpers/FetchHelper";
+import { selectOptionReducer } from "../../../helpers/SearchHelper";
 import Button from "../../UI/Button/Button";
-import DropDown from "../../UI/DropDown/DropDown";
 
 import "./SearchFrom.css";
 
@@ -11,22 +11,97 @@ const SearchFrom = (props) => {
   const [selectedCity, setsSlectedCity] = useState("");
   const [selectedCategory, setsSlectedCategory] = useState("");
 
-  useEffect(() => {
-    getCities(localStorage.getItem("token"), (response) => {
-      setCities(response);
-    });
+  const [formIsValid, setFormIsValid] = useState(false);
 
-    getCategories(localStorage.getItem("token"), (response) => {
-      setCategories(response);
-    });
+  const [cityState, dispatchCity] = useReducer(selectOptionReducer, {
+    value: "",
+    isValid: null,
+  });
+
+  const [categoryState, dispatchCategory] = useReducer(selectOptionReducer, {
+    value: "",
+    isValid: null,
+  });
+
+  const DUMMY_CATEGORIES = [
+    {
+      _id: 1,
+      title: "category 1",
+    },
+    {
+      _id: 2,
+      title: "category 2",
+    },
+    {
+      _id: 3,
+      title: "category 3",
+    },
+    {
+      _id: 4,
+      title: "category 4",
+    },
+  ];
+
+  const DUMMY_CITIES = [
+    {
+      _id: 1,
+      title: "city 1",
+    },
+    {
+      _id: 2,
+      title: "city 2",
+    },
+    {
+      _id: 3,
+      title: "city 3",
+    },
+    {
+      _id: 4,
+      title: "city 4",
+    },
+  ];
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      setFormIsValid(cityState.isValid);
+    }, 200);
+
+    return () => {
+      clearTimeout(identifier);
+    };
+  }, [cityState.isValid]);
+
+  useEffect(() => {
+    // getCities(localStorage.getItem("token"), (response) => {
+    //   setCities(response);
+    // });
+    // getCategories(localStorage.getItem("token"), (response) => {
+    //   setCategories(response);
+    // });
   }, []);
 
-  const onSelectedCity = (city) => {
-    setsSlectedCity(city);
+  const onChangeCityHandler = (event) => {
+    let selectedCity = DUMMY_CITIES.find(
+      (city) => city.title === event.target.value
+    );
+
+    if (selectedCity === undefined) {
+      dispatchCity({ type: "USER_SELECT", val: -1 });
+    } else {
+      dispatchCity({ type: "USER_SELECT", val: selectedCity._id });
+    }
   };
 
-  const onSelectedCategory = (category) => {
-    setsSlectedCategory(category);
+  const onChangeCategoryHandler = (event) => {
+    let selectedCategory = DUMMY_CATEGORIES.find(
+      (category) => category.title === event.target.value
+    );
+
+    if (selectedCategory === undefined) {
+      dispatchCategory({ type: "USER_SELECT", val: -1 });
+    } else {
+      dispatchCategory({ type: "USER_SELECT", val: selectedCategory._id });
+    }
   };
 
   const searchHandler = (event) => {
@@ -36,25 +111,75 @@ const SearchFrom = (props) => {
   };
 
   return (
-    <form className="row" onSubmit={searchHandler}>
-      <div className="col-lg-2">
-        <DropDown
-          defaultText="בחר עיר..."
-          items={cities}
-          onSelectedOption={onSelectedCity}
-        />
-      </div>
-      <div className="col-lg-2">
-        <DropDown
-          defaultText="בחר קטגוריה..."
-          items={categories}
-          onSelectedOption={onSelectedCategory}
-        />
-      </div>
-      <div className="col-lg-2">
-        <Button type="submit" className="submit-btn">
-          חפש
-        </Button>
+    <form
+      id="search-form"
+      className="row needs-validation"
+      noValidate
+      onSubmit={searchHandler}
+    >
+      <div className="col-6 mx-auto">
+        <div id="search-from-input-container" className="row">
+          <div className="col-md-4 text-right">
+            <label
+              htmlFor="selectOptionCity"
+              className="form-label search-from-label"
+            >
+              עיר
+            </label>
+            <select
+              id="selectOptionCity"
+              onChange={onChangeCityHandler}
+              defaultValue={"DEFAULT"}
+              required
+              className={`form-control search-form-select ${
+                cityState.isValid === false ? "is-invalid" : ""
+              }`}
+            >
+              <option value="DEFAULT">בחר עיר...</option>
+              {DUMMY_CITIES.map((city) => (
+                <option key={city._id}>{city.title}</option>
+              ))}
+            </select>
+            <div className="invalid-feedback search-form-error">
+              אנא בחר עיר.
+            </div>
+          </div>
+          <div className="col-md-4">
+            <label
+              htmlFor="selectOptionCategory"
+              className="form-label search-from-label"
+            >
+              קטוגריה
+            </label>
+            <select
+              id="selectOptionCategory"
+              onChange={onChangeCategoryHandler}
+              defaultValue={"DEFAULT"}
+              required
+              className={`form-control search-form-select ${
+                categoryState.isValid === false ? "is-invalid" : ""
+              }`}
+            >
+              <option value="DEFAULT">בחר קטגוריה...</option>
+              {DUMMY_CATEGORIES.map((category) => (
+                <option key={category._id}>{category.title}</option>
+              ))}
+            </select>
+            <div className="invalid-feedback search-form-error">
+              אנא בחר קטגוריה.
+            </div>
+          </div>
+          <div className="col-md-4">
+            <Button
+              type="submit"
+              id="search-from-btn"
+              className="submit-btn"
+              disabled={!formIsValid}
+            >
+              חפש עסקים
+            </Button>
+          </div>
+        </div>
       </div>
     </form>
   );

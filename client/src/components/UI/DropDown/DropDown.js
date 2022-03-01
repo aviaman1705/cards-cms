@@ -17,7 +17,8 @@ const DropDown = (props) => {
     <>
       <DropdownButton
         title={title}
-        id="dropdown-menu-align-right"
+        // id="dropdown-menu-align-right"
+        className="dropdown-menu-item"
         onSelect={handleSelect}
       >
         <Dropdown.Item eventKey={props.defaultText}>

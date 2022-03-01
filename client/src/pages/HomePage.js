@@ -18,10 +18,10 @@ function HomePage(props) {
   }, []);
 
   return (
-    <>
+    <div className="layout-container">
       <SearchFrom />
 
-      {!ctx.isLoggedIn && (
+      {/* {!ctx.isLoggedIn && (
         <div id="anonymous-container">
           <div id="wrap-content">
             <h1 id="title-page">Welcome To Our Business CMS</h1>
@@ -45,8 +45,8 @@ function HomePage(props) {
             </h2>
           )}
         </div>
-      )}
-    </>
+      )} */}
+    </div>
   );
 
   function addCardToFave(card) {

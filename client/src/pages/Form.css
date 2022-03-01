@@ -34,12 +34,12 @@ input.form-input {
     border-radius: 0;
 }
 
-button.Button_button__2TzSi.submit-btn {
+/* button.Button_button__2TzSi.submit-btn {
     background: #07ad90;
     width: 100%;
     border-radius: 0px;
     border: 1px solid #07ad90;
-}
+} */
 
 textarea:focus, input:focus {
     outline: none !important;
