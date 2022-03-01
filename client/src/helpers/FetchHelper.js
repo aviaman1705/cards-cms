@@ -69,6 +69,15 @@ export function getBusinessCount(callback) {
     .catch((x) => callback(x));
 }
 
+//cards
+export function searchBusiness(categoryId, cityId, callback) {
+  let url = `${baseUrl}/api/cards/searchBusiness/${categoryId}/${cityId}`;
+  fetch(url)
+    .then((x) => x.json())
+    .then((x) => callback(x))
+    .catch((x) => callback(x));
+}
+
 export function getFavoritesCards(token, callback) {
   let url = baseUrl + "/api/cards/favorites";
   fetch(url, { headers: { "x-auth-token": token } })
@@ -140,20 +149,18 @@ export function deleteCardFromFaveorite(idToDelete, token, callback) {
 }
 
 //city
-export function getCities(token, callback) {
-  if (!token) return;
+export function getCities(callback) {
   let url = baseUrl + "/api/cities";
-  fetch(url, { headers: { "x-auth-token": token } })
+  fetch(url)
     .then((x) => x.json())
     .then((x) => callback(x))
     .catch((x) => callback(x));
 }
 
 //categories
-export function getCategories(token, callback) {
-  if (!token) return;
+export function getCategories(callback) {
   let url = baseUrl + "/api/categories";
-  fetch(url, { headers: { "x-auth-token": token } })
+  fetch(url)
     .then((x) => x.json())
     .then((x) => callback(x))
     .catch((x) => callback(x));

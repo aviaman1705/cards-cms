@@ -1,5 +1,6 @@
 const express = require("express");
 const _ = require("lodash");
+var ObjectId = require("mongodb").ObjectID;
 const { Card, validateCard, generateBizNumber } = require("../models/card");
 const { User, Faveorite } = require("../models/user");
 const auth = require("../middleware/auth");
@@ -93,6 +94,21 @@ router.get("/search/:key", auth, async (req, res) => {
   if (!card)
     return res.status(404).send("The card with the given ID was not found.");
   res.send(card);
+});
+
+//search business cards
+router.get("/searchBusiness/:categoryId/:cityId", async (req, res) => {
+  console.log("req.params.categoryId ", req.params.categoryId);
+  console.log("req.params.cityId ", req.params.cityId);
+  const cards = await Card.find({
+    category_id: ObjectId(req.params.categoryId),
+    city_id: ObjectId(req.params.cityId),
+  });
+
+  console.log(cards);
+
+  if (!cards) return res.status(404).send("Cards doesn't exsist.");
+  res.send(cards);
 });
 
 //create card

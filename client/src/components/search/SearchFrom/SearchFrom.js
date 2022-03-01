@@ -1,5 +1,9 @@
 import { useEffect, useReducer, useState } from "react";
-import { getCategories, getCities } from "../../../helpers/FetchHelper";
+import {
+  getCategories,
+  getCities,
+  searchBusiness,
+} from "../../../helpers/FetchHelper";
 import { selectOptionReducer } from "../../../helpers/SearchHelper";
 import Button from "../../UI/Button/Button";
 
@@ -8,9 +12,6 @@ import "./SearchFrom.css";
 const SearchFrom = (props) => {
   const [cities, setCities] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [selectedCity, setsSlectedCity] = useState("");
-  const [selectedCategory, setsSlectedCategory] = useState("");
-
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [cityState, dispatchCity] = useReducer(selectOptionReducer, {
@@ -23,43 +24,14 @@ const SearchFrom = (props) => {
     isValid: null,
   });
 
-  const DUMMY_CATEGORIES = [
-    {
-      _id: 1,
-      title: "category 1",
-    },
-    {
-      _id: 2,
-      title: "category 2",
-    },
-    {
-      _id: 3,
-      title: "category 3",
-    },
-    {
-      _id: 4,
-      title: "category 4",
-    },
-  ];
-
-  const DUMMY_CITIES = [
-    {
-      _id: 1,
-      title: "city 1",
-    },
-    {
-      _id: 2,
-      title: "city 2",
-    },
-    {
-      _id: 3,
-      title: "city 3",
-    },
-    {
-      _id: 4,
-      title: "city 4",
-    },
-  ];
+  useEffect(() => {
+    getCities((response) => {
+      setCities(response);
+    });
+    getCategories((response) => {
+      setCategories(response);
+    });
+  }, []);
 
   useEffect(() => {
     const identifier = setTimeout(() => {
@@ -71,19 +43,8 @@ const SearchFrom = (props) => {
     };
   }, [cityState.isValid]);
 
-  useEffect(() => {
-    // getCities(localStorage.getItem("token"), (response) => {
-    //   setCities(response);
-    // });
-    // getCategories(localStorage.getItem("token"), (response) => {
-    //   setCategories(response);
-    // });
-  }, []);
-
   const onChangeCityHandler = (event) => {
-    let selectedCity = DUMMY_CITIES.find(
-      (city) => city.title === event.target.value
-    );
+    let selectedCity = cities.find((city) => city.title === event.target.value);
 
     if (selectedCity === undefined) {
       dispatchCity({ type: "USER_SELECT", val: -1 });
@@ -93,7 +54,7 @@ const SearchFrom = (props) => {
   };
 
   const onChangeCategoryHandler = (event) => {
-    let selectedCategory = DUMMY_CATEGORIES.find(
+    let selectedCategory = categories.find(
       (category) => category.title === event.target.value
     );
 
@@ -106,8 +67,10 @@ const SearchFrom = (props) => {
 
   const searchHandler = (event) => {
     event.preventDefault();
-    console.log("selectedCategory " + selectedCategory);
-    console.log("selectedCity " + selectedCity);
+
+    searchBusiness(categoryState.value, cityState.value, (response) => {
+      console.log(response);
+    });
   };
 
   return (
@@ -136,7 +99,7 @@ const SearchFrom = (props) => {
               }`}
             >
               <option value="DEFAULT">בחר עיר...</option>
-              {DUMMY_CITIES.map((city) => (
+              {cities.map((city) => (
                 <option key={city._id}>{city.title}</option>
               ))}
             </select>
@@ -161,7 +124,7 @@ const SearchFrom = (props) => {
               }`}
             >
               <option value="DEFAULT">בחר קטגוריה...</option>
-              {DUMMY_CATEGORIES.map((category) => (
+              {categories.map((category) => (
                 <option key={category._id}>{category.title}</option>
               ))}
             </select>
