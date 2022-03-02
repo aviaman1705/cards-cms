@@ -1,3 +1,10 @@
+h1#search-business-page-title {
+    text-align: center;
+    background: #407F7F;
+    color: #fff;
+    padding: 1rem;
+}
+
 @media (min-width: 300px) {
 
     div#anonymous-container {

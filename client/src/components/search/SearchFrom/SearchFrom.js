@@ -69,7 +69,7 @@ const SearchFrom = (props) => {
     event.preventDefault();
 
     searchBusiness(categoryState.value, cityState.value, (response) => {
-      console.log(response);
+      props.setCards(response);
     });
   };
 

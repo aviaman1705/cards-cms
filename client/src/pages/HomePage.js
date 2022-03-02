@@ -19,7 +19,8 @@ function HomePage(props) {
 
   return (
     <div className="layout-container">
-      <SearchFrom />
+      <SearchFrom setCards={setCards} />
+      <Cards cards={cards} />
 
       {/* {!ctx.isLoggedIn && (
         <div id="anonymous-container">
