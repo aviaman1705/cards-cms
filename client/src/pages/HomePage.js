@@ -1,10 +1,10 @@
 import { getFavoritesCards, addFaveoriteCard } from "../helpers/FetchHelper";
 import { useContext, useEffect, useState } from "react";
-import Cards from "../components/my-cards/Cards";
 import { toast } from "react-toastify";
 import AuthContext from "../state/auth-context";
 import "./HomePage.css";
 import SearchFrom from "../components/search/SearchFrom/SearchFrom";
+import Cards from "../components/Cards/Cards";
 
 function HomePage(props) {
   const ctx = useContext(AuthContext);

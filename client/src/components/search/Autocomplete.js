@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { getSearchResults, addFaveoriteCard } from "../../helpers/FetchHelper";
-import Cards from "../my-cards/Cards";
+
 import { toast } from "react-toastify";
 import "./Autocomplete.css";
+import Cards from "../Cards/Cards";
 
 function Autocomplete(props) {
   const [text, setText] = useState("");

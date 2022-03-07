@@ -3,7 +3,7 @@ import "./CardItem.css";
 function CardItem(props) {
   return (
     (props.card && (
-      <div className="card col-3 col-md-offset-2">
+      <div className="card col-2 col-md-offset-2">
         <img
           src={props.card.bizImage}
           className="card-img-top"
@@ -12,8 +12,9 @@ function CardItem(props) {
         <div className="card-body">
           <h5 className="card-title">{props.card.bizName}</h5>
           <p className="card-text">{props.card.bizDescription}</p>
+          <p className="card-text">{props.card.bizPhone}</p>
           <p className="card-text">
-            <small className="text-muted">Last updated 3 mins ago</small>
+            <small className="text-muted">{props.card.bizAddress}</small>
           </p>
         </div>
       </div>

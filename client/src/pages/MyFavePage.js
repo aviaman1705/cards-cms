@@ -4,7 +4,6 @@ import {
 } from "../helpers/FetchHelper";
 import { useEffect, useState } from "react";
 
-import Cards from "../components/my-cards/Cards";
 import { toast } from "react-toastify";
 
 import "./MyFavePage.css";

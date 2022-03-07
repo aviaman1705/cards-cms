@@ -1,0 +1,25 @@
+@media (min-width: 300px) {
+    div#card-container {
+        min-height: 80vh;
+    }
+
+    h1#my-cards-title {
+        color: #407f7f;
+        padding: 20px 0px;
+    }
+
+    button#btn-add-card {
+        background: #0d6efd;
+        border: 1px solid #0d6efd;
+    }
+
+    button#btn-add-card:hover {
+        opacity: 0.8;
+    }
+
+    div#wrap-add-btn {
+        padding: 3rem 0rem 1rem 0rem;
+        display: flex;
+        justify-content: flex-end;
+    }
+}

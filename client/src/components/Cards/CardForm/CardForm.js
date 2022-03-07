@@ -4,9 +4,9 @@ import {
   descReducer,
   imageReducer,
   phoneReducer,
-} from "../../helpers/CardHelper";
-import Button from "./../UI/Button/Button";
-import { nameReducer } from "../../helpers/CardHelper";
+} from "../../../helpers/CardHelper";
+import Button from "../../UI/Button/Button";
+import { nameReducer } from "../../../helpers/CardHelper";
 
 function CardForm(props) {
   const [formIsValid, setFormIsValid] = useState(false);

@@ -1,12 +1,12 @@
 import { insertNewCard, editCard, deleteCard } from "../helpers/FetchHelper";
-import Cards from "../components/my-cards/Cards";
-import CardForm from "../components/my-cards/CardForm";
 import { getMeCards } from "../helpers/FetchHelper";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Button from "../components/UI/Button/Button";
+import CardForm from "../components/Cards/CardForm/CardForm";
+import Cards from "../components/Cards/Cards";
 
-import "./MyCards.css";
+import "./MyCardsPage.css";
 
 function MyCardsPage() {
   const [isAddMode, setAddMode] = useState(false);
@@ -53,19 +53,17 @@ function MyCardsPage() {
   return (
     <div className="container" id="card-container">
       <div className="row">
-        <div className="col-12">
-          <h1 id="my-cards-title">My Cards</h1>
-        </div>
         {!isAddMode && !isEditMode && (
-          <div className="col-12">
+          <div id="wrap-add-btn" className="col">
             <Button
-              className="btn-dark mb-3"
+              id="btn-add-card"
+              className="mb-3"
               type="button"
               onClick={() => {
                 setAddMode(true);
               }}
             >
-              Create New Card
+              יצירת כרטיס
             </Button>
           </div>
         )}

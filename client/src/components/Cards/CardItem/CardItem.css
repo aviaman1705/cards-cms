@@ -5,6 +5,10 @@
     direction: rtl;
 }
 
+.card:hover {
+    cursor: pointer;
+}
+
 /* @media (min-width: 300px) {
     .card-item-title.card-title.h5 {
         color: #f44336;

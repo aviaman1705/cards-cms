@@ -1,30 +1,13 @@
-import CardItem from "./CardItem";
+import CardItem from "./CardItem/CardItem";
+import "./Cards.css";
 
 function Cards(props) {
   return (
     <div className="container">
-      <div className="row">
+      <div id="cards-wrapper" className="row">
         <h1 id="search-business-page-title">רשימת עסקים</h1>
         {!props.cards && <p id="no-result">אין תוצאות</p>}
 
-        {props.cards.map((card) => (
-          <CardItem key={card._id} card={card} />
-        ))}
-        {props.cards.map((card) => (
-          <CardItem key={card._id} card={card} />
-        ))}
-        {props.cards.map((card) => (
-          <CardItem key={card._id} card={card} />
-        ))}
-        {props.cards.map((card) => (
-          <CardItem key={card._id} card={card} />
-        ))}
-        {props.cards.map((card) => (
-          <CardItem key={card._id} card={card} />
-        ))}
-        {props.cards.map((card) => (
-          <CardItem key={card._id} card={card} />
-        ))}
         {props.cards.map((card) => (
           <CardItem key={card._id} card={card} />
         ))}
