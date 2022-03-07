@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { tabs } from "../../helpers/Tabs";
+import { tabs } from "../../helpers/tabs";
 import SignOutUser from "../sign-out/signOutComp";
 import { useLocation } from "react-router-dom";
 import AuthContext from "../../state/auth-context";
@@ -11,55 +11,58 @@ const NavigationBarComp = (props) => {
 
   return (
     <header>
-      <nav
-        className="main-header navbar navbar-expand-lg navbar-light"
-        expand="lg"
-      >
+      <nav class="navbar navbar-expand-lg">
+        {" "}
         <div className="container">
+          <a id="site-name-title" class="navbar-brand ps-2" href="#">
+            Cards CMS
+          </a>
           <button
-            id="toggle-btn"
-            aria-controls="responsive-navbar-nav"
+            class="navbar-toggler"
             type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01"
+            aria-expanded="false"
             aria-label="Toggle navigation"
-            className="mb-1 ml-3 navbar-toggler collapsed"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"> &#9776;</span>
           </button>
-
-          <div
-            className="justify-content-between navbar-collapse collapse"
-            id="responsive-navbar-nav"
-          >
-            <div className="me-auto nav">
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            {ctx.isLoggedIn && <SignOutUser user={props.user}></SignOutUser>}
+            <ul class="navbar-nav ms-auto">
               {ctx.isLoggedIn
                 ? tabs
                     .filter((x) => x.displayForLoggedin && !x.searchResults)
                     .map((tab, index) => (
-                      <Link
-                        className={`nav-item-link nav-link ${
-                          location.pathname === tab.href ? "active" : ""
-                        }`}
-                        key={index}
-                        to={tab.href}
-                      >
-                        {tab.name}
-                      </Link>
+                      <li class="nav-item">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === tab.href ? "active" : ""
+                          }`}
+                          key={index}
+                          to={tab.href}
+                        >
+                          {tab.name}
+                        </Link>
+                      </li>
                     ))
                 : tabs
                     .filter((x) => !x.hideForLoggedout)
                     .map((tab, index) => (
-                      <Link
-                        className={`nav-item-link nav-link ${
-                          location.pathname === tab.href ? "active" : ""
-                        }`}
-                        key={index}
-                        to={tab.href}
-                      >
-                        {tab.name}
-                      </Link>
+                      <li class="nav-item">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === tab.href ? "active" : ""
+                          }`}
+                          key={index}
+                          to={tab.href}
+                        >
+                          {tab.name}
+                        </Link>
+                      </li>
                     ))}
-            </div>
-            {ctx.isLoggedIn && <SignOutUser user={props.user}></SignOutUser>}
+            </ul>
           </div>
         </div>
       </nav>

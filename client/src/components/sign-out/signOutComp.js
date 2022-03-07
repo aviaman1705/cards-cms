@@ -5,23 +5,23 @@ const SignOutUser = ({ user }) => {
   const ctx = useContext(AuthContext);
 
   return (
-    <div className="nav-item dropdown">
-      <a
-        className="nav-link dropdown-toggle"
-        href="/#"
-        id="basic-nav-dropdown"
-        role="button"
-        data-toggle="dropdown"
-        aria-haspopup="true"
+    <div class="dropdown">
+      <button
+        class="btn dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton1"
+        data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        Hi {ctx.user.name}
-      </a>
-      <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a className="dropdown-item" href="/#" onClick={ctx.onLogout}>
-          Logout
-        </a>
-      </div>
+        היי {ctx.user.name}
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li>
+          <a class="dropdown-item" href="/#" onClick={ctx.onLogout}>
+            יציאה
+          </a>
+        </li>
+      </ul>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import {
   deleteCardFromFaveorite,
 } from "../helpers/FetchHelper";
 import { useEffect, useState } from "react";
-
+import Cards from "../components/Cards/Cards";
 import { toast } from "react-toastify";
 
 import "./MyFavePage.css";
