@@ -11,14 +11,14 @@ const NavigationBarComp = (props) => {
 
   return (
     <header>
-      <nav class="navbar navbar-expand-lg">
+      <nav className="navbar navbar-expand-lg">
         {" "}
         <div className="container">
-          <a id="site-name-title" class="navbar-brand ps-2" href="#">
+          <a id="site-name-title" className="navbar-brand ps-2" href="#">
             Cards CMS
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarTogglerDemo01"
@@ -26,21 +26,20 @@ const NavigationBarComp = (props) => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"> &#9776;</span>
+            <span className="navbar-toggler-icon"> &#9776;</span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             {ctx.isLoggedIn && <SignOutUser user={props.user}></SignOutUser>}
-            <ul class="navbar-nav ms-auto">
+            <ul className="navbar-nav ms-auto">
               {ctx.isLoggedIn
                 ? tabs
                     .filter((x) => x.displayForLoggedin && !x.searchResults)
                     .map((tab, index) => (
-                      <li class="nav-item">
+                      <li className="nav-item" key={index}>
                         <Link
                           className={`nav-link ${
                             location.pathname === tab.href ? "active" : ""
                           }`}
-                          key={index}
                           to={tab.href}
                         >
                           {tab.name}
@@ -50,12 +49,11 @@ const NavigationBarComp = (props) => {
                 : tabs
                     .filter((x) => !x.hideForLoggedout)
                     .map((tab, index) => (
-                      <li class="nav-item">
+                      <li className="nav-item" key={index}>
                         <Link
                           className={`nav-link ${
                             location.pathname === tab.href ? "active" : ""
                           }`}
-                          key={index}
                           to={tab.href}
                         >
                           {tab.name}

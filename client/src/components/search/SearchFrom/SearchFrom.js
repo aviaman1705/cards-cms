@@ -12,7 +12,7 @@ import "./SearchFrom.css";
 const SearchFrom = (props) => {
   const [cities, setCities] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [formIsValid, setFormIsValid] = useState(false);
+  //const [formIsValid, setFormIsValid] = useState(true);
 
   const [cityState, dispatchCity] = useReducer(selectOptionReducer, {
     value: "",
@@ -32,16 +32,6 @@ const SearchFrom = (props) => {
       setCategories(response);
     });
   }, []);
-
-  useEffect(() => {
-    const identifier = setTimeout(() => {
-      setFormIsValid(cityState.isValid);
-    }, 200);
-
-    return () => {
-      clearTimeout(identifier);
-    };
-  }, [cityState.isValid]);
 
   const onChangeCityHandler = (event) => {
     let selectedCity = cities.find((city) => city.title === event.target.value);
@@ -68,6 +58,19 @@ const SearchFrom = (props) => {
   const searchHandler = (event) => {
     event.preventDefault();
 
+    console.log(`categoryState ${categoryState.value}`);
+    console.log(`cityState ${cityState.value}`);
+
+    if (!categoryState.isValid || categoryState.value === -1) {
+      dispatchCategory({ type: "USER_SUBMIT", val: -1 });
+      return;
+    }
+
+    if (!cityState.isValid || cityState.value === -1) {
+      dispatchCity({ type: "USER_SUBMIT", val: -1 });
+      return;
+    }
+
     searchBusiness(categoryState.value, cityState.value, (response) => {
       props.setCards(response);
     });
@@ -80,9 +83,9 @@ const SearchFrom = (props) => {
       noValidate
       onSubmit={searchHandler}
     >
-      <div className="col-6 mx-auto">
+      <div className="col mx-auto">
         <div id="search-from-input-container" className="row">
-          <div className="col-md-4 text-right">
+          <div className="col-md-5 text-right">
             <label
               htmlFor="selectOptionCity"
               className="form-label search-from-label"
@@ -107,7 +110,7 @@ const SearchFrom = (props) => {
               אנא בחר עיר.
             </div>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-5 text-right">
             <label
               htmlFor="selectOptionCategory"
               className="form-label search-from-label"
@@ -132,14 +135,9 @@ const SearchFrom = (props) => {
               אנא בחר קטגוריה.
             </div>
           </div>
-          <div className="col-md-4">
-            <Button
-              type="submit"
-              id="search-from-btn"
-              className="submit-btn"
-              disabled={!formIsValid}
-            >
-              חפש עסקים
+          <div className="col-md-2 col-xs-12">
+            <Button type="submit" id="search-from-btn" className="submit-btn">
+              חפש
             </Button>
           </div>
         </div>

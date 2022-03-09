@@ -5,9 +5,9 @@ const SignOutUser = ({ user }) => {
   const ctx = useContext(AuthContext);
 
   return (
-    <div class="dropdown">
+    <div className="dropdown">
       <button
-        class="btn dropdown-toggle"
+        className="btn dropdown-toggle"
         type="button"
         id="dropdownMenuButton1"
         data-bs-toggle="dropdown"
@@ -15,9 +15,9 @@ const SignOutUser = ({ user }) => {
       >
         היי {ctx.user.name}
       </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li>
-          <a class="dropdown-item" href="/#" onClick={ctx.onLogout}>
+          <a className="dropdown-item" href="/#" onClick={ctx.onLogout}>
             יציאה
           </a>
         </li>

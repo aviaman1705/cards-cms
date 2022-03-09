@@ -1,5 +1,5 @@
 import { Switch, Route, Redirect } from "react-router-dom";
-import { tabs } from "../../helpers/Tabs";
+import { tabs } from "../../helpers/tabs";
 
 function NavigationRouteComp(props) {
   return (

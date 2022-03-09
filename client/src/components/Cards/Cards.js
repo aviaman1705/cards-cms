@@ -9,24 +9,19 @@ function Cards(props) {
         {!props.cards && <p id="no-result">אין תוצאות</p>}
 
         {props.cards.map((card) => (
-          <CardItem key={card._id} card={card} />
+          <CardItem
+            key={card._id}
+            card={card}
+            onEdit={props.onEdit}
+            onAdd={props.onAdd}
+            onDelete={props.onDelete}
+            btnAddStatus={props.btnAddStatus}
+            btnEditStatus={props.btnEditStatus}
+            btnDeleteStatus={props.btnDeleteStatus}
+          />
         ))}
       </div>
     </div>
   );
-
-  // return props.cards.map((c, index) => (
-  //   <div className="col-xl-3 col-lg-4 col-md-6" key={index}>
-  //     <CardItem
-  //       card={c}
-  //       onEdit={props.onEdit}
-  //       onAdd={props.onAdd}
-  //       onDelete={props.onDelete}
-  //       btnAddStatus={props.btnAddStatus}
-  //       btnEditStatus={props.btnEditStatus}
-  //       btnDeleteStatus={props.btnDeleteStatus}
-  //     ></CardItem>
-  //   </div>
-  // ));
 }
 export default Cards;

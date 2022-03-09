@@ -18,10 +18,9 @@ function HomePage(props) {
   }, []);
 
   return (
-    <div className="layout-container">
+    <div className="layout-container container">
       <SearchFrom setCards={setCards} />
       <Cards cards={cards} />
-
       {/* {!ctx.isLoggedIn && (
         <div id="anonymous-container">
           <div id="wrap-content">
