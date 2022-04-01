@@ -1,0 +1,6 @@
+div#buttons-form-section {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 30px;
+    padding: 1rem 0rem;
+}

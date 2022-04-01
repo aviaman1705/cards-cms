@@ -52,7 +52,7 @@ function MyCardsPage() {
 
   return (
     <div className="container" id="card-container">
-      <div className="row">
+      <div id="cards-wrap" className="row">
         {!isAddMode && !isEditMode && (
           <div id="wrap-add-btn" className="col">
             <Button
@@ -80,7 +80,7 @@ function MyCardsPage() {
 
         {isAddMode && !isEditMode && (
           <CardForm
-            textBtn="Create"
+            textBtn="יצירה"
             clickHandler={onAddCardHandler}
             card={{
               bizName: "",
@@ -95,7 +95,7 @@ function MyCardsPage() {
         )}
         {!isAddMode && isEditMode && (
           <CardForm
-            textBtn="Edit"
+            textBtn="עריכה"
             clickHandler={onEditCardHandler}
             card={card}
             addMode={setAddMode}

@@ -3,6 +3,12 @@
         min-height: 80vh;
     }
 
+    #cards-wrap {
+        display: flex;
+        flex-direction: row-reverse;
+        text-align: right;
+    }
+
     h1#my-cards-title {
         color: #407f7f;
         padding: 20px 0px;

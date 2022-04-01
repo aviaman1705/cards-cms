@@ -1,17 +1,18 @@
+import "./CardDetails.css";
+
 const CardDetails = (props) => {
   return (
     <div id="card-dtails-container">
       <div className="card-details-item">
-        <h3> {props.bizName}</h3>
-      </div>
-      <div className="card-details-item">
-        <p>{props.bizDescription}</p>
-      </div>
-      <div className="card-details-item">
-        <span>{props.bizPhone}</span>
-      </div>
-      <div className="card-details-item">
-        <span>{props.bizAddress}</span>
+        <h3 id="card-details-name"> {props.bizName}</h3>
+        <p id="card-details-desc">{props.bizDescription}</p>
+        <div id="card-details-address">
+          <span>{props.bizPhone}</span>
+          <span>{props.bizAddress}</span>
+        </div>
+        <div id="card-details.image">
+          <img src={props.bizImage} />
+        </div>
       </div>
     </div>
   );

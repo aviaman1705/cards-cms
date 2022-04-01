@@ -8,6 +8,8 @@ import {
 import Button from "../../UI/Button/Button";
 import { nameReducer } from "../../../helpers/CardHelper";
 
+import "./CardForm.css";
+
 function CardForm(props) {
   const [formIsValid, setFormIsValid] = useState(false);
 
@@ -131,7 +133,7 @@ function CardForm(props) {
     <div className="col-lg-4 col-md-8 col">
       <form className="card-from" onSubmit={submitCardHandler}>
         <div className="form-group">
-          <label className="form-label">Business Name</label>
+          <label className="form-label">שם עסק</label>
           <input
             type="text"
             id="formBasicBusinessName"
@@ -144,14 +146,14 @@ function CardForm(props) {
           />
           {nameState.isValid === false ? (
             <label className="error form-label">
-              Name must contain at least 2 characters*
+              שם חייב להכיל 2 תווים לפחות*
             </label>
           ) : null}
 
           <label className="error form-label"></label>
         </div>
         <div className="form-group">
-          <label className="form-label">Business Address</label>
+          <label className="form-label">כתובת</label>
           <input
             type="text"
             id="formBasicBusinessAddress"
@@ -164,12 +166,12 @@ function CardForm(props) {
           />
           {addressState.isValid === false ? (
             <label className="error form-label">
-              Address must contain at least 2 characters*
+              כתובת חייבת להכיל 2 תווים לפחות*
             </label>
           ) : null}
         </div>
         <div className="form-group">
-          <label className="form-label">Business Phone</label>
+          <label className="form-label">טלפון</label>
           <input
             type="text"
             id="formBasicBusinessPhone"
@@ -181,11 +183,11 @@ function CardForm(props) {
             }`}
           />
           {phoneState.isValid === false ? (
-            <label className="error form-label">Must enter valid phone *</label>
+            <label className="error form-label">הזן מספר טלפון תקין*</label>
           ) : null}
         </div>
         <div className="form-group">
-          <label className="form-label">Business Image</label>
+          <label className="form-label">תמונה</label>
           <input
             type="text"
             id="formBasicBusinessImage"
@@ -197,11 +199,11 @@ function CardForm(props) {
             }`}
           />
           {imageState.isValid === false ? (
-            <label className="error form-label">Must enter image url*</label>
+            <label className="error form-label">הזן פורמט תמונה תקין*</label>
           ) : null}
         </div>
         <div className="form-group">
-          <label className="form-label">Business Description</label>
+          <label className="form-label">תיאור</label>
           <textarea
             type="text"
             id="formBasicBusinessDescription"
@@ -214,11 +216,11 @@ function CardForm(props) {
           />
           {descState.isValid === false ? (
             <label className="error form-label">
-              Desc must contain at least 6 characters*
+              תיאור חייב להכיל 6 תווים לפחות*
             </label>
           ) : null}
         </div>
-        <div className="form-group">
+        <div id="buttons-form-section" className="form-group">
           <Button
             type="submit"
             className="btn-primary mr-3"
@@ -231,7 +233,7 @@ function CardForm(props) {
             className="btn-secondary"
             onClick={backStepHandler}
           >
-            Back
+            חזרה
           </Button>
         </div>
       </form>

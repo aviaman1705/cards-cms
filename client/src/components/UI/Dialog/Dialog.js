@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { IoIosClose } from "react-icons/io";
 import Modal from "react-modal";
+
+import "./Dialog.css";
 
 const Dialog = (props) => {
   const customStyles = {
@@ -10,6 +12,13 @@ const Dialog = (props) => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
+      border: "1px solid rgb(204, 204, 204)",
+      background: "#fff",
+      overflow: "auto",
+      width: "40%",
+      height: "60%",
+      outline: "none",
+      padding: "20px",
     },
   };
 
@@ -26,7 +35,8 @@ const Dialog = (props) => {
     console.log("afterOpenModal event");
   };
 
-  const closeModal = () => {
+  const closeModal = (event) => {
+    event.preventDefault();
     props.close();
   };
 
@@ -38,9 +48,12 @@ const Dialog = (props) => {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
+        overlayClassName="Overlay"
         contentLabel="Example Modal"
       >
-        <button onClick={closeModal}>close</button>
+        <a id="close-modal-btn" href="/#" onClick={closeModal}>
+          <IoIosClose />
+        </a>
         {props.children}
         {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
         <button onClick={closeModal}>close</button>

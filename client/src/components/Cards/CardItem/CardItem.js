@@ -83,6 +83,7 @@ function CardItem(props) {
             bizDescription={props.card.bizDescription}
             bizPhone={props.card.bizPhone}
             bizAddress={props.card.bizAddress}
+            bizImage={props.card.bizImage}
           />
         </Dialog>
       </>
