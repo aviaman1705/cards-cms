@@ -1,4 +1,4 @@
-import { insertNewCard, editCard, deleteCard } from "../helpers/FetchHelper";
+import { editCard, deleteCard, createCard } from "../helpers/FetchHelper";
 import { getMeCards } from "../helpers/FetchHelper";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -7,19 +7,35 @@ import CardForm from "../components/Cards/CardForm/CardForm";
 import Cards from "../components/Cards/Cards";
 
 import "./MyCardsPage.css";
+import { useAuth } from "../firebase/firebase";
+import AddCard from "../components/Cards/AddCard";
 
 function MyCardsPage() {
+  //const currentUser = useAuth();
+
+  const [cardId, setCardId] = useState("");
   const [isAddMode, setAddMode] = useState(false);
   const [isEditMode, setEditMode] = useState(false);
   const [card, setCard] = useState(null);
   const [cards, setCards] = useState([]);
+  const [serverError, setServerError] = useState(false);
 
-  useEffect(() => {
-    if (localStorage.getItem("token"))
-      getMeCards(localStorage.getItem("token"), (data) => {
-        setCards(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   if (currentUser)
+  //     getMeCards((data) => {
+  //       setCards(data.filter((card) => card.user_id === currentUser.uid));
+  //     });
+  // }, [currentUser]);
+
+  const getCardIdHandler = (id) => {
+    console.log("The ID of document to be edited: ", id);
+    setCardId(id);
+  };
+
+  const setDefaultMode = () => {
+    setAddMode(false);
+    setEditMode(false);
+  };
 
   const changeEditModeHandler = (card) => {
     setCard(card);
@@ -35,14 +51,21 @@ function MyCardsPage() {
   };
 
   const onAddCardHandler = (card) => {
-    insertNewCard(card, localStorage.getItem("token"), (response) => {
-      setCards((oldArray) => [...oldArray, response]);
-      setAddMode(false);
-    });
+    createCard(card).then(
+      function (value) {
+        console.log("Contents: " + value);
+        setServerError(false);
+        setAddMode(false);
+      },
+      function (reason) {
+        console.log(`${reason.message}`);
+        setServerError(true);
+      }
+    );
   };
 
   const onEditCardHandler = (card) => {
-    editCard(card, localStorage.getItem("token"), (response) => {
+    editCard(card, (response) => {
       cards.forEach(function (card, i) {
         if (card._id === response._id) cards[i] = response;
       });
@@ -70,7 +93,7 @@ function MyCardsPage() {
 
         {!isAddMode && !isEditMode && (
           <Cards
-            cards={cards}
+            getCardId={getCardIdHandler}
             onEdit={changeEditModeHandler}
             onDelete={onDeleteCardHandler}
             btnEditStatus={true}
@@ -79,28 +102,36 @@ function MyCardsPage() {
         )}
 
         {isAddMode && !isEditMode && (
-          <CardForm
-            textBtn="יצירה"
-            clickHandler={onAddCardHandler}
-            card={{
-              bizName: "",
-              bizDescription: "",
-              bizAddress: "",
-              bizPhone: "",
-              bizImage: "",
-            }}
-            addMode={setAddMode}
-            editMode={setEditMode}
-          />
+          <AddCard btnText="הוסף" setDefaultMode={setDefaultMode} />
+          // <CardForm
+          //   textBtn="יצירה"
+          //   clickHandler={onAddCardHandler}
+          //   card={{
+          //     bizName: "",
+          //     bizDescription: "",
+          //     bizAddress: "",
+          //     bizPhone: "",
+          //     bizImage: "",
+          //   }}
+          //   addMode={setAddMode}
+          //   editMode={setEditMode}
+          //   serverError={serverError}
+          // />
         )}
         {!isAddMode && isEditMode && (
-          <CardForm
-            textBtn="עריכה"
-            clickHandler={onEditCardHandler}
-            card={card}
-            addMode={setAddMode}
-            editMode={setEditMode}
+          <AddCard
+            id={cardId}
+            setCardId={setCardId}
+            setDefaultMode={setDefaultMode}
+            btnText="ערוך"
           />
+          // <CardForm
+          //   textBtn="עריכה"
+          //   clickHandler={onEditCardHandler}
+          //   card={card}
+          //   addMode={setAddMode}
+          //   editMode={setEditMode}
+          // />
         )}
       </div>
     </div>

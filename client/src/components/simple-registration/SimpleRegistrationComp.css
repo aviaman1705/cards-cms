@@ -1,0 +1,46 @@
+.form-container {
+    min-height: 100vh;
+}
+
+.row {
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 12px 12px 22px grey;
+}
+
+.col-lg-5.img-wrapper {
+    display: flex;
+    padding: 1rem;
+}
+
+img {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+
+}
+
+h1.font-weight-bold.py-3 {
+    color: black;
+}
+
+.btn1 {
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btn1:hover {
+    background: white;
+    border: 1px solid;
+    color: black;
+}
+
+label.error.form-label {
+    color: red;
+    float: right;
+}

@@ -1,5 +1,5 @@
 import SimpleRegistrationComp from "../components/simple-registration/SimpleRegistrationComp";
-import "./Form.css";
+// import "./Form.css";
 
 const RegistrationPage = () => {
   return (

@@ -1,4 +1,4 @@
-div.form-container {
+/* div.form-container {
     min-height: 80vh;
     display: flex;
     justify-content: center;
@@ -32,7 +32,7 @@ input.form-input {
     line-height: 2;
     border-bottom: 1px solid #07ad90;
     border-radius: 0;
-}
+} */
 
 /* button.Button_button__2TzSi.submit-btn {
     background: #07ad90;
@@ -41,7 +41,8 @@ input.form-input {
     border: 1px solid #07ad90;
 } */
 
-textarea:focus, input:focus {
+/* textarea:focus,
+input:focus {
     outline: none !important;
 }
 
@@ -67,4 +68,4 @@ label.error.form-label {
     color: #dc3545;
 }
 
-@media (min-width: 300px) {}
+@media (min-width: 300px) {} */

@@ -1,18 +1,14 @@
-import { useEffect, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { toast } from "react-toastify";
-import { registerNewAccount, signInUser } from "../../helpers/FetchHelper";
 import Button from "../UI/Button/Button";
-import {
-  emailReducer,
-  passwordReducer,
-  nameReducer,
-} from "../../helpers/RegisterHelper";
+import { emailReducer, passwordReducer } from "../../helpers/RegisterHelper";
+
+import { signup } from "../../firebase/firebase";
+import "./SimpleRegistrationComp.css";
 
 const SimpleRegistrationComp = (props) => {
   const history = useHistory();
 
-  const [formIsValid, setFormIsValid] = useState(false);
   const [serverError, setServerError] = useState(false);
 
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
@@ -25,25 +21,6 @@ const SimpleRegistrationComp = (props) => {
     isValid: null,
   });
 
-  const [nameState, dispatchName] = useReducer(nameReducer, {
-    value: "",
-    isValid: null,
-  });
-
-  useEffect(() => {
-    const identifier = setTimeout(() => {
-      console.log("Checking form validity!");
-      setFormIsValid(
-        emailState.isValid && passwordState.isValid && nameState.isValid
-      );
-    }, 500);
-
-    return () => {
-      console.log("CLEANUP");
-      clearTimeout(identifier);
-    };
-  }, [emailState.isValid, passwordState.isValid, nameState.isValid]);
-
   const emailChangeHandler = (event) => {
     setServerError(false);
     dispatchEmail({ type: "USER_INPUT", val: event.target.value });
@@ -54,11 +31,6 @@ const SimpleRegistrationComp = (props) => {
     dispatchPassword({ type: "USER_INPUT", val: event.target.value });
   };
 
-  const nameChangeHandler = (event) => {
-    setServerError(false);
-    dispatchName({ type: "USER_INPUT", val: event.target.value });
-  };
-
   const emailBlurHandler = () => {
     dispatchEmail({ type: "INPUT_BLUR" });
   };
@@ -67,119 +39,103 @@ const SimpleRegistrationComp = (props) => {
     dispatchPassword({ type: "INPUT_BLUR" });
   };
 
-  const nameBlurHandler = () => {
-    dispatchName({ type: "INPUT_BLUR" });
-  };
-
-  const registerHandler = (event) => {
+  const registerHandler = async (event) => {
     event.preventDefault();
 
-    let userData = {
-      email: emailState.value,
-      password: passwordState.value,
-      name: nameState.value,
-      biz: true,
-    };
+    if (emailState.isValid !== true) {
+      dispatchEmail({});
+      return;
+    }
 
-    registerNewAccount(userData, (data) => {
-      if (data._id === undefined) {
+    if (passwordState.isValid !== true) {
+      dispatchPassword({});
+      return;
+    }
+
+    signup(emailState.value, passwordState.value)
+      .then((userCredential) => {
+        // Signed in
+        setTimeout(() => {
+          // const user = userCredential.user;
+          history.push("/sign-in");
+        }, 2000);
+      })
+      .catch((error) => {
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
         setServerError(true);
-      }
-
-      if (data._id) {
-        signInUser(
-          { email: userData.email, password: userData.password },
-          (response) => {
-            if (response.token) {
-              toast("Account was created successfully");
-              setTimeout(() => {
-                history.push("/sign-in");
-              }, 2000);
-            } else {
-              toast("Fail to log in");
-            }
-          }
-        );
-      }
-    });
+      });
   };
 
   return (
-    <div className="form-warpper row">
-      <div className="col-xl-4 col-lg-6 col-md-8 col-sm-10 col">
-        <form className="login-form" onSubmit={registerHandler}>
-          <h2 className="user-form-title">Register</h2>
-          <div className="form-group">
-            <label className="form-label">Email</label>
-            <input
-              type="email"
-              id="formBasicEmail"
-              value={emailState.value}
-              onChange={emailChangeHandler}
-              onBlur={emailBlurHandler}
-              className={`form-control form-input ${
-                emailState.isValid === false ? "invalid" : ""
-              }`}
+    <section className="form my-4 mx-5">
+      <div className="container">
+        <div className="row no-gutters">
+          <div className="col-lg-5 img-wrapper">
+            <img
+              src="images/business-card-1.jpg"
+              className="img-fluid"
+              alt=""
             />
-            {emailState.isValid === false ? (
-              <label className="error form-label">
-                Must enter valid email*
-              </label>
-            ) : null}
           </div>
-          <div className="form-group">
-            <label className="form-label">Password</label>
-            <input
-              type="password"
-              id="formBasicPassword"
-              value={passwordState.value}
-              onChange={passwordChangeHandler}
-              onBlur={passwordBlurHandler}
-              className={`form-control form-input ${
-                passwordState.isValid === false ? "invalid" : ""
-              }`}
-            />
-            {passwordState.isValid === false ? (
-              <label className="error form-label">
-                Password must contain at least 6 characters*
-              </label>
-            ) : null}
+          <div className="col-lg-7 px-5">
+            <h1 className="font-weight-bold py-3 text-end">הרשמה</h1>
+            <form onSubmit={registerHandler}>
+              <div className="form-row">
+                <div className="col-lg-7 float-end">
+                  <input
+                    type="email"
+                    value={emailState.value}
+                    placeholder="מייל"
+                    onChange={emailChangeHandler}
+                    onBlur={emailBlurHandler}
+                    className={`form-control my-3 p-2 ${
+                      emailState.isValid === false ? "invalid" : ""
+                    }`}
+                  />
+                  {emailState.isValid === false ? (
+                    <label className="error form-label">
+                      חובה להזין מייל תקין
+                    </label>
+                  ) : null}
+                  {serverError === true ? (
+                    <label className="error form-label">
+                      מייל כבר קיים במערכת
+                    </label>
+                  ) : null}
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="col-lg-7 float-end">
+                  <input
+                    type="password"
+                    placeholder="סיסמא"
+                    value={passwordState.value}
+                    onBlur={passwordBlurHandler}
+                    onChange={passwordChangeHandler}
+                    className={`form-control my-3 p-2 ${
+                      passwordState.isValid === false ? "invalid" : ""
+                    }`}
+                  />
+                  {passwordState.isValid === false ? (
+                    <label className="error form-label">
+                      סיסמא חייבת להכיל 6 תווים לפחות
+                    </label>
+                  ) : null}
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="col-lg-7 float-end">
+                  <Button type="password" className="btn1 mt-3 mb-5">
+                    הרשמה
+                  </Button>
+                </div>
+              </div>
+            </form>
           </div>
-
-          <div className="form-group">
-            <label className="form-label">Name</label>
-            <input
-              type="text"
-              id="formBasicName"
-              value={nameState.value}
-              onChange={nameChangeHandler}
-              onBlur={nameBlurHandler}
-              className={`form-control form-input ${
-                nameState.isValid === false ? "invalid" : ""
-              }`}
-            />
-            {nameState.isValid === false ? (
-              <label className="error form-label">
-                Name must contain at least 2 characters*
-              </label>
-            ) : null}
-
-            {serverError === true ? (
-              <label className="error form-label">Email allready exists*</label>
-            ) : null}
-          </div>
-          <div className="form-group">
-            <Button
-              type="submit"
-              className="submit-btn"
-              disabled={!formIsValid}
-            >
-              Register
-            </Button>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import AuthContext from "../../state/auth-context";
+import AuthContext from "../../store/auth-context";
 
-const SignOutUser = ({ user }) => {
+const SignOutUser = () => {
   const ctx = useContext(AuthContext);
 
   return (
@@ -13,11 +13,11 @@ const SignOutUser = ({ user }) => {
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        היי {ctx.user.name}
+        היי {ctx.user?.email}
       </button>
       <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li>
-          <a className="dropdown-item" href="/#" onClick={ctx.onLogout}>
+          <a className="dropdown-item" href="/#" onClick={ctx.logout}>
             יציאה
           </a>
         </li>

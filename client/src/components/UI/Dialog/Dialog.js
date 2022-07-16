@@ -22,12 +22,12 @@ const Dialog = (props) => {
     },
   };
 
-  let subtitle;
+  //let subtitle;
   //const [modalIsOpen, setIsOpen] = useState(false);
 
-  const openModal = () => {
-    //setIsOpen(true);
-  };
+  // const openModal = () => {
+  //   //setIsOpen(true);
+  // };
 
   const afterOpenModal = () => {
     // references are now sync'd and can be accessed.

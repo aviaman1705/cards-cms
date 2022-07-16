@@ -1,4 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
+import { Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import {
   getCategories,
   getCities,
@@ -26,10 +29,25 @@ const SearchFrom = (props) => {
 
   useEffect(() => {
     getCities((response) => {
-      setCities(response);
+      const loadedCities = [];
+      for (const key in response) {
+        loadedCities.push({
+          id: key,
+          title: response[key].title,
+        });
+      }
+      setCities(loadedCities);
     });
+
     getCategories((response) => {
-      setCategories(response);
+      const loadedCategories = [];
+      for (const key in response) {
+        loadedCategories.push({
+          id: key,
+          title: response[key].title,
+        });
+      }
+      setCategories(loadedCategories);
     });
   }, []);
 
@@ -77,72 +95,85 @@ const SearchFrom = (props) => {
   };
 
   return (
-    <form
-      id="search-form"
-      className="row needs-validation"
-      noValidate
-      onSubmit={searchHandler}
-    >
-      <div className="col mx-auto">
-        <div id="search-from-input-container" className="row">
-          <div className="col-md-5 text-right">
-            <label
-              htmlFor="selectOptionCity"
-              className="form-label search-from-label"
-            >
-              עיר
-            </label>
-            <select
-              id="selectOptionCity"
-              onChange={onChangeCityHandler}
-              defaultValue={"DEFAULT"}
-              required
-              className={`form-control search-form-select ${
-                cityState.isValid === false ? "is-invalid" : ""
-              }`}
-            >
-              <option value="DEFAULT">בחר עיר...</option>
-              {cities.map((city) => (
-                <option key={city._id}>{city.title}</option>
-              ))}
-            </select>
-            <div className="invalid-feedback search-form-error">
-              אנא בחר עיר.
-            </div>
-          </div>
-          <div className="col-md-5 text-right">
-            <label
-              htmlFor="selectOptionCategory"
-              className="form-label search-from-label"
-            >
-              קטוגריה
-            </label>
-            <select
-              id="selectOptionCategory"
-              onChange={onChangeCategoryHandler}
-              defaultValue={"DEFAULT"}
-              required
-              className={`form-control search-form-select ${
-                categoryState.isValid === false ? "is-invalid" : ""
-              }`}
-            >
-              <option value="DEFAULT">בחר קטגוריה...</option>
-              {categories.map((category) => (
-                <option key={category._id}>{category.title}</option>
-              ))}
-            </select>
-            <div className="invalid-feedback search-form-error">
-              אנא בחר קטגוריה.
-            </div>
-          </div>
-          <div className="col-md-2 col-xs-12">
-            <Button type="submit" id="search-from-btn" className="submit-btn">
-              חפש
-            </Button>
-          </div>
-        </div>
-      </div>
-    </form>
+    <Form onSubmit={searchHandler}>
+      <Row className="justify-content-md-center">
+        <Col lg={3}>
+          <select
+            className="form-control"
+            onChange={onChangeCityHandler}
+            defaultValue={"DEFAULT"}
+          >
+            <option value="DEFAULT">בחר עיר...</option>
+            {cities.map((city, index) => (
+              <option key={index}>{city.title}</option>
+            ))}
+          </select>
+        </Col>
+        <Col lg={3}>
+          <select
+            className="form-control"
+            onChange={onChangeCategoryHandler}
+            defaultValue={"DEFAULT"}
+            required
+          >
+            <option value="DEFAULT">בחר קטגוריה...</option>
+            {categories.map((category, index) => (
+              <option key={index}>{category.title}</option>
+            ))}
+          </select>
+        </Col>
+        <Col lg={2}>
+          <Button id="search-from-button" type="submit">
+            חפש
+          </Button>
+        </Col>
+      </Row>
+    </Form>
+    // <form>
+    //   <div class="form-row">
+    //     <div class="col-7">
+    //       <input type="text" class="form-control" placeholder="City" />
+    //     </div>
+    //     <div class="col">
+    //       <input type="text" class="form-control" placeholder="State" />
+    //     </div>
+    //     <div class="col">
+    //       <input type="text" class="form-control" placeholder="Zip" />
+    //     </div>
+    //   </div>
+    // </form>
+    // <div id="search-from-wrapper">
+    //   <form onSubmit={searchHandler}>
+    //     <div className="search-form-group">
+    //       <select
+    //         className="search-from-control"
+    //         onChange={onChangeCityHandler}
+    //         defaultValue={"DEFAULT"}
+    //       >
+    //         <option value="DEFAULT">בחר עיר...</option>
+    //         {cities.map((city, index) => (
+    //           <option key={index}>{city.name}</option>
+    //         ))}
+    //       </select>
+    //     </div>
+    //     <div className="search-form-group">
+    //       <select
+    //         className="search-from-control"
+    //         onChange={onChangeCategoryHandler}
+    //         defaultValue={"DEFAULT"}
+    //         required
+    //       >
+    //         <option value="DEFAULT">בחר קטגוריה...</option>
+    //         {categories.map((category, index) => (
+    //           <option key={index}>{category.title}</option>
+    //         ))}
+    //       </select>
+    //     </div>
+    //     <Button className="search-from-button" type="submit">
+    //       חפש
+    //     </Button>
+    //   </form>
+    // </div>
   );
 };
 

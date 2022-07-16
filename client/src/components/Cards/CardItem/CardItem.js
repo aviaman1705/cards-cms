@@ -19,20 +19,20 @@ function CardItem(props) {
     (props.card && (
       <>
         <div
-          className="card col-lg-3 col-md-6 col-sm-6 col-xs-12 col-md-offset-2"
+          className="col-lg-3 col-md-6 col-sm-6 col-xs-12 col-md-offset-2"
           onClick={openModal}
         >
           <img
-            src={props.card.bizImage}
+            src={props.card.image}
             className="card-img-top"
-            alt={props.card.bizName}
+            alt={props.card.name}
           />
           <div className="card-body">
-            <h5 className="card-title">{props.card.bizName}</h5>
-            <p className="card-text">{props.card.bizDescription}</p>
-            <p className="card-text">{props.card.bizPhone}</p>
+            <h5 className="card-title">{props.card.name}</h5>
+            <p className="card-text">{props.card.desc}</p>
+            <p className="card-text">{props.card.phone}</p>
             <p className="card-text">
-              <small className="text-muted">{props.card.bizAddress}</small>
+              <small className="text-muted">{props.card.address}</small>
             </p>
           </div>
           <div className="card-footer">
@@ -43,7 +43,7 @@ function CardItem(props) {
                 title="Delete"
                 onClick={(e) => {
                   e.preventDefault();
-                  props.onDelete(props.card._id);
+                  props.onDelete(props.card.id);
                 }}
               >
                 <AiFillDelete></AiFillDelete>
@@ -77,7 +77,7 @@ function CardItem(props) {
             )}
           </div>
         </div>
-        <Dialog modalIsOpen={modalIsOpen} close={closeModal}>
+        {/* <Dialog modalIsOpen={modalIsOpen} close={closeModal}>
           <CardDetails
             bizName={props.card.bizName}
             bizDescription={props.card.bizDescription}
@@ -85,7 +85,7 @@ function CardItem(props) {
             bizAddress={props.card.bizAddress}
             bizImage={props.card.bizImage}
           />
-        </Dialog>
+        </Dialog> */}
       </>
     )) || <></>
   );

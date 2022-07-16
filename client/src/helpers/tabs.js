@@ -10,7 +10,7 @@ import MyFavePage from "../pages/MyFavePage";
 export const tabs = [
   {
     name: "כניסה",
-    href: "/sign-in",
+    href: "/login",
     page: SignInPage,
     displayForLoggedin: false,
     icon: <BiLeftIndent></BiLeftIndent>,

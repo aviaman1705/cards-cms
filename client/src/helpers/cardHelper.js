@@ -5,6 +5,9 @@ export const nameReducer = (state, action) => {
   if (action.type === "INPUT_BLUR") {
     return { value: state.value, isValid: state.value.trim().length >= 2 };
   }
+  if (action.type === "EMPTY_FORM") {
+    return { value: "", isValid: null };
+  }
   return { value: "", isValid: false };
 };
 
@@ -15,6 +18,9 @@ export const descReducer = (state, action) => {
   if (action.type === "INPUT_BLUR") {
     return { value: state.value, isValid: state.value.trim().length >= 2 };
   }
+  if (action.type === "EMPTY_FORM") {
+    return { value: "", isValid: null };
+  }
   return { value: "", isValid: false };
 };
 
@@ -24,6 +30,9 @@ export const addressReducer = (state, action) => {
   }
   if (action.type === "INPUT_BLUR") {
     return { value: state.value, isValid: state.value.trim().length >= 2 };
+  }
+  if (action.type === "EMPTY_FORM") {
+    return { value: "", isValid: null };
   }
   return { value: "", isValid: false };
 };
@@ -37,17 +46,21 @@ export const phoneReducer = (state, action) => {
   if (action.type === "INPUT_BLUR") {
     return { value: state.value, isValid: regexPhone.test(state.value) };
   }
+  if (action.type === "EMPTY_FORM") {
+    return { value: "", isValid: null };
+  }
   return { value: "", isValid: false };
 };
 
 export const imageReducer = (state, action) => {
-  var regexImage = /([a-z\-_0-9]*\.(jpg|jpeg|png|gif))/i;
-
   if (action.type === "USER_INPUT") {
-    return { value: action.val, isValid: regexImage.test(action.val) };
+    return { value: action.val, isValid: action.val.trim().length >= 2 };
   }
   if (action.type === "INPUT_BLUR") {
-    return { value: state.value, isValid: regexImage.test(state.value) };
+    return { value: state.value, isValid: state.value.trim().length >= 2 };
+  }
+  if (action.type === "EMPTY_FORM") {
+    return { value: "", isValid: null };
   }
   return { value: "", isValid: false };
 };

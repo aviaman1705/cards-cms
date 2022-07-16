@@ -11,7 +11,7 @@ const CardDetails = (props) => {
           <span>{props.bizAddress}</span>
         </div>
         <div id="card-details.image">
-          <img src={props.bizImage} />
+          <img src={props.bizImage} alt={props.bizName} />
         </div>
       </div>
     </div>

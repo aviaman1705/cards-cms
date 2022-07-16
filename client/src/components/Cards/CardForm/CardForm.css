@@ -1,6 +1,29 @@
-div#buttons-form-section {
-    display: flex;
-    flex-direction: row-reverse;
-    gap: 30px;
-    padding: 1rem 0rem;
+form {
+    position: relative;
+}
+
+.spinner-border {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+}
+
+.form-control {
+    text-align: right;
+}
+
+textarea.form-control.invalid,
+input.form-control.invalid {
+    border-color: #dc3545 !important;
+    background-image: none !important;
+}
+
+textarea.form-control.valid,
+input.form-control.valid {
+    border-color: #198754 !important;
+    background-image: none !important;
+}
+
+.invalid-feedback {
+    display: block !important;
 }

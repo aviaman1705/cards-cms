@@ -7,7 +7,15 @@
     font-family: 'Zen Kaku Gothic New', sans-serif;
 }
 
-main, header, section, aside, footer {
+body {
+    background-color: rgba(219, 226, 226) !important;
+}
+
+main,
+header,
+section,
+aside,
+footer {
     margin: 0;
     color: #ffffff;
 }
@@ -31,3 +39,18 @@ h1.page-title {
     color: #407f7f;
     padding: 20px 0px;
 }
+
+/* webkit solution */
+::-webkit-input-placeholder {
+    text-align: right;
+}
+
+/* mozilla solution */
+input:-moz-placeholder {
+    text-align: right;
+}
+
+/* .form-control {
+    text-align: right;
+    direction: rtl;
+} */
