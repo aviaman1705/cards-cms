@@ -31,7 +31,7 @@
 .header a {
     text-decoration: none;
     color: white;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .header button {
@@ -52,4 +52,9 @@
 .header button:hover {
     background-color: #c291e2;
     color: #38015c;
+}
+
+nav .active {
+    text-decoration: underline;
+    font-weight: bold;
 }

@@ -5,7 +5,7 @@ import {
   imageReducer,
   phoneReducer,
   nameReducer,
-} from "../../../helpers/cardHelper";
+} from "../../../helpers/CardHelper";
 import { useAuth } from "../../../firebase/firebase";
 // import { upload } from "../../../firebase/firebase";
 import CardDataService from "../../../services/card.service";
@@ -114,9 +114,9 @@ function CardForm(props) {
   };
 
   const handleChange = (e) => {
-    if (e.target.files[0]) {
-      setPhoto(e.target.files[0]);
-    }
+    // if (e.target.files[0]) {
+    //   setPhoto(e.target.files[0]);
+    // }
   };
 
   const submitCardHandler = async (event) => {
@@ -290,7 +290,7 @@ function CardForm(props) {
             placeholder="טלפון"
             value={phoneState.value}
             onChange={phoneChangeHandler}
-            onBlur={phoneBlurHandler}
+            // onBlur={phoneBlurHandler}
           />
           {phoneState.isValid === false ? (
             <div className="invalid-feedback"> הזן מספר טלפון תקין*</div>
