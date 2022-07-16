@@ -10,7 +10,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 
 var firebaseConfig = {
   apiKey: "AIzaSyCR6JFZuAdYXT-tn_WHvNKVq1XK_LoSSuI",
@@ -55,7 +55,7 @@ export function useAuth() {
 export async function upload(file, currentUser) {
   const fileRef = ref(storage, `images/${new Date().getTime()}.png`);
 
-  const snapshot = await uploadBytes(fileRef, file);
+  //const snapshot = await uploadBytes(fileRef, file);
   const photoURL = await getDownloadURL(fileRef);
 
   updateProfile(currentUser, { photoURL });

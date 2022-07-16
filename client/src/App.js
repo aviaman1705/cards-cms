@@ -1,6 +1,3 @@
-import { ToastContainer } from "react-toastify";
-import SinglePageAppComp from "./components/navigation/SinglePageAppComp";
-import Footer from "./components/footer/Footer";
 import AuthContext from "./store/auth-context";
 import { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";

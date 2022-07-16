@@ -5,19 +5,19 @@ import {
   imageReducer,
   phoneReducer,
   nameReducer,
-} from "../../../helpers/CardHelper";
-import { upload, useAuth } from "../../../firebase/firebase";
+} from "../../../helpers/cardHelper";
+import { useAuth } from "../../../firebase/firebase";
+// import { upload } from "../../../firebase/firebase";
 import CardDataService from "../../../services/card.service";
 import Button from "../../UI/Button/Button";
 
 import "./CardForm.css";
-import { async } from "@firebase/util";
 
 function CardForm(props) {
   const currentUser = useAuth();
 
   const [formIsValid, setFormIsValid] = useState(false);
-  const [photo, setPhoto] = useState(null);
+  //const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const [nameState, dispatchName] = useReducer(nameReducer, {
@@ -87,9 +87,9 @@ function CardForm(props) {
     dispatchPhone({ type: "USER_INPUT", val: event.target.value });
   };
 
-  const imageChangeHandler = (event) => {
-    dispatchImage({ type: "USER_INPUT", val: event.target.value });
-  };
+  // const imageChangeHandler = (event) => {
+  //   dispatchImage({ type: "USER_INPUT", val: event.target.value });
+  // };
 
   const nameBlurHandler = () => {
     dispatchName({ type: "INPUT_BLUR" });
@@ -105,9 +105,9 @@ function CardForm(props) {
     console.log("formIsValid " + formIsValid);
   };
 
-  const phoneBlurHandler = () => {
-    dispatchPhone({ type: "INPUT_BLUR" });
-  };
+  // const phoneBlurHandler = () => {
+  //   dispatchPhone({ type: "INPUT_BLUR" });
+  // };
 
   const imageBlurHandler = () => {
     dispatchImage({ type: "INPUT_BLUR" });

@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-  updateProfile,
-} from "firebase/auth";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+// import {
+//   getAuth,
+//   createUserWithEmailAndPassword,
+//   signInWithEmailAndPassword,
+//   onAuthStateChanged,
+//   signOut,
+//   updateProfile,
+// } from "firebase/auth";
+// import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
 var firebaseConfig = {

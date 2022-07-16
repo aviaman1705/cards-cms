@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import { useState, useRef, useContext, useReducer } from "react";
+import { useState, useContext, useReducer } from "react";
 import AuthContext from "../../store/auth-context";
 import classes from "./AuthForm.module.css";
 import {
@@ -104,7 +104,6 @@ const AuthForm = () => {
             return res.json();
           } else {
             res.json().then((data) => {
-              let errorMessage = "Authentication failed!";
               if (data && data.error && data.error.message) {
                 if (data.error.message.includes("PASSWORD")) {
                   setServerError("Incorrect email or password");

@@ -1,19 +1,18 @@
-import { useState } from "react";
 import { AiFillDelete, AiFillEdit, AiFillPlusCircle } from "react-icons/ai";
-import Dialog from "../../UI/Dialog/Dialog";
-import CardDetails from "../CardDetails/CardDetails";
+// import Dialog from "../../UI/Dialog/Dialog";
+// import CardDetails from "../CardDetails/CardDetails";
 
 import "./CardItem.css";
 function CardItem(props) {
-  const [modalIsOpen, setIsOpen] = useState(false);
+  //const [modalIsOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
-    setIsOpen(true);
+    //setIsOpen(true);
   };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  // const closeModal = () => {
+  //   setIsOpen(false);
+  // };
 
   return (
     (props.card && (
